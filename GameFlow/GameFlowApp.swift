@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct GameFlowApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GameList(store: Store(initialState: Search.State(),
+                                  reducer: {
+                                    Search()}))
         }
     }
 }
