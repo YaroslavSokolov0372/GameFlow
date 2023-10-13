@@ -12,9 +12,12 @@ import ComposableArchitecture
 struct GameFlowApp: App {
     var body: some Scene {
         WindowGroup {
-            GameList(store: Store(initialState: Search.State(),
-                                  reducer: {
-                                    Search()}))
+//            GameList(store: Store(initialState: GameListDomain.State(),
+//                                  reducer: {
+//                                    GameListDomain()}))
+            MainView(store: Store(initialState: MainDomain.State(), reducer: {
+                MainDomain()
+            }))
         }
     }
 }

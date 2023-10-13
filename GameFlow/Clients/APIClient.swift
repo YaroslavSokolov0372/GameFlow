@@ -10,12 +10,15 @@ import ComposableArchitecture
 import Alamofire
 
 
+struct IconImage {
+    
+}
+
 
 struct APIClient {
     
-    var fetchGamges: @Sendable () async throws -> [Game]
-    var fetchTournaments: @Sendable ([Game]) async throws -> [Game]
-    
+    var fetchOngoingTournaments: @Sendable () async throws -> [Serie]
+    var fetchUpcomingTournaments: @Sendable () async throws -> [Serie]
 }
 
 extension DependencyValues {
@@ -28,47 +31,39 @@ extension DependencyValues {
 
 extension APIClient: DependencyKey {
     static var liveValue = APIClient {
-        let baseURL = "https://api.pandascore.co/"
-        let result: [Game] = []
+        let baseURL = "https://api.pandascore.co"
         
+        //MARK: - Fetch Games
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request("\(baseURL)/videogames",
-                       method: .get,
-                       headers: ["accept": "application/json",
-                                 "Authorization": "Bearer \(Secrets.apiKey)"
-                                ])
-            .responseDecodable(of: [Game].self) { response in
-                switch response.result {
-                case .success(let games):
-                    continuation.resume(returning: games)
-                case .failure(let error):
-                    continuation.resume(throwing: error)
+            AF.request("\(baseURL)/dota2/series/running", method: .get, headers: ["accept": "application/json", "Authorization": "Bearer \(Secrets.apiKey)"])
+                .responseDecodable(of: [Serie].self) { response in
+                    switch response.result {
+                    case .success(let series):
+                        print(series.count)
+                        continuation.resume(returning: series)
+                        
+                    case .failure(let error):
+                        continuation.resume(throwing: error)
+                    }
                 }
-            }
         }
-    } fetchTournaments: { game in
-        return game
+    } fetchUpcomingTournaments: {
+        let baseURL = "https://api.pandascore.co"
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request("\(baseURL)/dota2/series/upcoming", method: .get, headers: ["accept": "application/json", "Authorization": "Bearer \(Secrets.apiKey)"])
+                .responseDecodable(of: [Serie].self) { response in
+                    switch response.result {
+                    case .success(let series):
+                        print(series.count)
+                        continuation.resume(returning: series)
+                        
+                    case .failure(let error):
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
     }
 }
 
-//extension APIClient: DependencyValues {
-//    var APIClient: APIClient {
-//        get { self[ApiClient.self] }
-//        set { self[APIClient.self] = newValue }
-//    }
-//}
 
 
-
-struct GamesClient {
-    var search: (String) async throws -> [Game]
-}
-
-
-extension GamesClient {
-    static let searchQuery = GamesClient { query in
-        var components = URLComponents(string: "https://api.pandascore.co/videogames/")!
-        
-        return []
-    }
-}

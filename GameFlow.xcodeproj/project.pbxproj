@@ -10,15 +10,18 @@
 		D1D93D1B2AD47C9F003F1CC7 /* GameFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D1A2AD47C9F003F1CC7 /* GameFlowApp.swift */; };
 		D1D93D1F2AD47CA0003F1CC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1D93D1E2AD47CA0003F1CC7 /* Assets.xcassets */; };
 		D1D93D222AD47CA0003F1CC7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1D93D212AD47CA0003F1CC7 /* Preview Assets.xcassets */; };
-		D1D93D2A2AD47F1B003F1CC7 /* CustomSeachField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D292AD47F1B003F1CC7 /* CustomSeachField.swift */; };
 		D1D93D2D2AD48AD4003F1CC7 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = D1D93D2C2AD48AD4003F1CC7 /* ComposableArchitecture */; };
-		D1D93D2F2AD48ADB003F1CC7 /* GameList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D2E2AD48ADB003F1CC7 /* GameList.swift */; };
 		D1D93D322AD48CC2003F1CC7 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D312AD48CC2003F1CC7 /* Game.swift */; };
-		D1D93D372AD4978A003F1CC7 /* DetaiInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D362AD4978A003F1CC7 /* DetaiInfoView.swift */; };
 		D1D93D3A2AD49C1E003F1CC7 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D392AD49C1E003F1CC7 /* APIClient.swift */; };
 		D1D93D3D2AD55136003F1CC7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D1D93D3C2AD55136003F1CC7 /* Alamofire */; };
 		D1D93D3F2AD551C0003F1CC7 /* API_Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D3E2AD551C0003F1CC7 /* API_Key.swift */; };
-		D1D93D442AD58AB6003F1CC7 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D432AD58AB6003F1CC7 /* GameCell.swift */; };
+		D1D93D482AD6A7E6003F1CC7 /* Tournament.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D472AD6A7E6003F1CC7 /* Tournament.swift */; };
+		D1D93D4A2AD6B1C7003F1CC7 /* Serie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D492AD6B1C7003F1CC7 /* Serie.swift */; };
+		D1D93D4C2AD6B2DC003F1CC7 /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D4B2AD6B2DC003F1CC7 /* League.swift */; };
+		D1D93D562AD94523003F1CC7 /* TournamentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D552AD94523003F1CC7 /* TournamentsView.swift */; };
+		D1D93D5D2AD948FC003F1CC7 /* TournamentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D5C2AD948FC003F1CC7 /* TournamentViewCell.swift */; };
+		D1D93D612AD95675003F1CC7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D602AD95675003F1CC7 /* MainView.swift */; };
+		D1D93D662AD9B912003F1CC7 /* shimmerEffectView .swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D652AD9B912003F1CC7 /* shimmerEffectView .swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,13 +29,16 @@
 		D1D93D1A2AD47C9F003F1CC7 /* GameFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFlowApp.swift; sourceTree = "<group>"; };
 		D1D93D1E2AD47CA0003F1CC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1D93D212AD47CA0003F1CC7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		D1D93D292AD47F1B003F1CC7 /* CustomSeachField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSeachField.swift; sourceTree = "<group>"; };
-		D1D93D2E2AD48ADB003F1CC7 /* GameList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameList.swift; sourceTree = "<group>"; };
 		D1D93D312AD48CC2003F1CC7 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		D1D93D362AD4978A003F1CC7 /* DetaiInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaiInfoView.swift; sourceTree = "<group>"; };
 		D1D93D392AD49C1E003F1CC7 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		D1D93D3E2AD551C0003F1CC7 /* API_Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_Key.swift; sourceTree = "<group>"; };
-		D1D93D432AD58AB6003F1CC7 /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
+		D1D93D472AD6A7E6003F1CC7 /* Tournament.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tournament.swift; sourceTree = "<group>"; };
+		D1D93D492AD6B1C7003F1CC7 /* Serie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serie.swift; sourceTree = "<group>"; };
+		D1D93D4B2AD6B2DC003F1CC7 /* League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
+		D1D93D552AD94523003F1CC7 /* TournamentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentsView.swift; sourceTree = "<group>"; };
+		D1D93D5C2AD948FC003F1CC7 /* TournamentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentViewCell.swift; sourceTree = "<group>"; };
+		D1D93D602AD95675003F1CC7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		D1D93D652AD9B912003F1CC7 /* shimmerEffectView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "shimmerEffectView .swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +57,7 @@
 		D1D93D0E2AD47C9F003F1CC7 = {
 			isa = PBXGroup;
 			children = (
+				D1D93D652AD9B912003F1CC7 /* shimmerEffectView .swift */,
 				D1D93D192AD47C9F003F1CC7 /* GameFlow */,
 				D1D93D182AD47C9F003F1CC7 /* Products */,
 			);
@@ -67,10 +74,10 @@
 		D1D93D192AD47C9F003F1CC7 /* GameFlow */ = {
 			isa = PBXGroup;
 			children = (
+				D1D93D622AD9AFFC003F1CC7 /* Helpers */,
 				D1D93D402AD5636D003F1CC7 /* Modules */,
 				D1D93D302AD48CB3003F1CC7 /* Model */,
 				D1D93D382AD499D2003F1CC7 /* Clients */,
-				D1D93D332AD4970F003F1CC7 /* UI */,
 				D1D93D1A2AD47C9F003F1CC7 /* GameFlowApp.swift */,
 				D1D93D1E2AD47CA0003F1CC7 /* Assets.xcassets */,
 				D1D93D202AD47CA0003F1CC7 /* Preview Content */,
@@ -90,19 +97,11 @@
 			isa = PBXGroup;
 			children = (
 				D1D93D312AD48CC2003F1CC7 /* Game.swift */,
+				D1D93D472AD6A7E6003F1CC7 /* Tournament.swift */,
+				D1D93D492AD6B1C7003F1CC7 /* Serie.swift */,
+				D1D93D4B2AD6B2DC003F1CC7 /* League.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		D1D93D332AD4970F003F1CC7 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				D1D93D2E2AD48ADB003F1CC7 /* GameList.swift */,
-				D1D93D432AD58AB6003F1CC7 /* GameCell.swift */,
-				D1D93D362AD4978A003F1CC7 /* DetaiInfoView.swift */,
-				D1D93D292AD47F1B003F1CC7 /* CustomSeachField.swift */,
-			);
-			path = UI;
 			sourceTree = "<group>";
 		};
 		D1D93D382AD499D2003F1CC7 /* Clients */ = {
@@ -117,8 +116,42 @@
 		D1D93D402AD5636D003F1CC7 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				D1D93D5F2AD95662003F1CC7 /* Main */,
+				D1D93D572AD9480E003F1CC7 /* Tournaments */,
+				D1D93D5E2AD95656003F1CC7 /* TournamentCell */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		D1D93D572AD9480E003F1CC7 /* Tournaments */ = {
+			isa = PBXGroup;
+			children = (
+				D1D93D552AD94523003F1CC7 /* TournamentsView.swift */,
+			);
+			path = Tournaments;
+			sourceTree = "<group>";
+		};
+		D1D93D5E2AD95656003F1CC7 /* TournamentCell */ = {
+			isa = PBXGroup;
+			children = (
+				D1D93D5C2AD948FC003F1CC7 /* TournamentViewCell.swift */,
+			);
+			path = TournamentCell;
+			sourceTree = "<group>";
+		};
+		D1D93D5F2AD95662003F1CC7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				D1D93D602AD95675003F1CC7 /* MainView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		D1D93D622AD9AFFC003F1CC7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,13 +232,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1D93D2A2AD47F1B003F1CC7 /* CustomSeachField.swift in Sources */,
+				D1D93D5D2AD948FC003F1CC7 /* TournamentViewCell.swift in Sources */,
 				D1D93D3F2AD551C0003F1CC7 /* API_Key.swift in Sources */,
 				D1D93D3A2AD49C1E003F1CC7 /* APIClient.swift in Sources */,
-				D1D93D372AD4978A003F1CC7 /* DetaiInfoView.swift in Sources */,
-				D1D93D2F2AD48ADB003F1CC7 /* GameList.swift in Sources */,
+				D1D93D482AD6A7E6003F1CC7 /* Tournament.swift in Sources */,
+				D1D93D4A2AD6B1C7003F1CC7 /* Serie.swift in Sources */,
+				D1D93D612AD95675003F1CC7 /* MainView.swift in Sources */,
 				D1D93D322AD48CC2003F1CC7 /* Game.swift in Sources */,
-				D1D93D442AD58AB6003F1CC7 /* GameCell.swift in Sources */,
+				D1D93D662AD9B912003F1CC7 /* shimmerEffectView .swift in Sources */,
+				D1D93D562AD94523003F1CC7 /* TournamentsView.swift in Sources */,
+				D1D93D4C2AD6B2DC003F1CC7 /* League.swift in Sources */,
 				D1D93D1B2AD47C9F003F1CC7 /* GameFlowApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
