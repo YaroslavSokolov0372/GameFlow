@@ -17,7 +17,7 @@
 		D1D93D482AD6A7E6003F1CC7 /* Tournament.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D472AD6A7E6003F1CC7 /* Tournament.swift */; };
 		D1D93D4A2AD6B1C7003F1CC7 /* Serie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D492AD6B1C7003F1CC7 /* Serie.swift */; };
 		D1D93D4C2AD6B2DC003F1CC7 /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D4B2AD6B2DC003F1CC7 /* League.swift */; };
-		D1D93D562AD94523003F1CC7 /* TournamentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D552AD94523003F1CC7 /* TournamentListView.swift */; };
+		D1D93D562AD94523003F1CC7 /* SeriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D552AD94523003F1CC7 /* SeriesListView.swift */; };
 		D1D93D5D2AD948FC003F1CC7 /* TournamentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D5C2AD948FC003F1CC7 /* TournamentViewCell.swift */; };
 		D1D93D612AD95675003F1CC7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D602AD95675003F1CC7 /* MainView.swift */; };
 		D1D93D662AD9B912003F1CC7 /* shimmerEffectView .swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D652AD9B912003F1CC7 /* shimmerEffectView .swift */; };
@@ -36,7 +36,7 @@
 		D1D93D472AD6A7E6003F1CC7 /* Tournament.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tournament.swift; sourceTree = "<group>"; };
 		D1D93D492AD6B1C7003F1CC7 /* Serie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serie.swift; sourceTree = "<group>"; };
 		D1D93D4B2AD6B2DC003F1CC7 /* League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
-		D1D93D552AD94523003F1CC7 /* TournamentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentListView.swift; sourceTree = "<group>"; };
+		D1D93D552AD94523003F1CC7 /* SeriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesListView.swift; sourceTree = "<group>"; };
 		D1D93D5C2AD948FC003F1CC7 /* TournamentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentViewCell.swift; sourceTree = "<group>"; };
 		D1D93D602AD95675003F1CC7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D1D93D652AD9B912003F1CC7 /* shimmerEffectView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "shimmerEffectView .swift"; sourceTree = "<group>"; };
@@ -120,10 +120,11 @@
 		D1D93D402AD5636D003F1CC7 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				D1D93D6B2ADB0948003F1CC7 /* DetailInfoView */,
 				D1D93D5F2AD95662003F1CC7 /* Main */,
 				D1D93D572AD9480E003F1CC7 /* Tournaments */,
 				D1D93D5E2AD95656003F1CC7 /* TournamentCell */,
+				D1D93D6B2ADB0948003F1CC7 /* DetailInfoView */,
+				D1D93D6E2ADC1A8D003F1CC7 /* ScheduleCell */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -131,7 +132,7 @@
 		D1D93D572AD9480E003F1CC7 /* Tournaments */ = {
 			isa = PBXGroup;
 			children = (
-				D1D93D552AD94523003F1CC7 /* TournamentListView.swift */,
+				D1D93D552AD94523003F1CC7 /* SeriesListView.swift */,
 			);
 			path = Tournaments;
 			sourceTree = "<group>";
@@ -166,6 +167,13 @@
 				D1D93D6C2ADB097F003F1CC7 /* DetailInfoView.swift */,
 			);
 			path = DetailInfoView;
+			sourceTree = "<group>";
+		};
+		D1D93D6E2ADC1A8D003F1CC7 /* ScheduleCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ScheduleCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,7 +264,7 @@
 				D1D93D612AD95675003F1CC7 /* MainView.swift in Sources */,
 				D1D93D662AD9B912003F1CC7 /* shimmerEffectView .swift in Sources */,
 				D1D93D6D2ADB097F003F1CC7 /* DetailInfoView.swift in Sources */,
-				D1D93D562AD94523003F1CC7 /* TournamentListView.swift in Sources */,
+				D1D93D562AD94523003F1CC7 /* SeriesListView.swift in Sources */,
 				D1D93D4C2AD6B2DC003F1CC7 /* League.swift in Sources */,
 				D1D93D1B2AD47C9F003F1CC7 /* GameFlowApp.swift in Sources */,
 			);

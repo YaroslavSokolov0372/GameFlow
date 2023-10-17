@@ -11,6 +11,4 @@ import Foundation
 enum Secrets {
     static let apiKey = "12ewwdwdqdq"
     
-    
-    
 }

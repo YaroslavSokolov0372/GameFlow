@@ -13,37 +13,43 @@ import Foundation
 //    let tournaments: [Tournament]
 //}
 
-//struct Tournament: Decodable, Identifiable {
-//    
-//    let begin_at: String?
+struct Tournament: Decodable, Identifiable {
+    
+    let begin_at: String?
 //    let detailed_stats: Bool
-//    let end_at: String?
-//    let has_bracket: Bool
-//    let id: Int
+    let end_at: String?
+    let has_bracket: Bool
+    let id: Int
 //    let league: League
-//    let league_id: Int
-//    let live_supported: Bool
-//    let matches: [Match]
-//    let modified_at: String
-//    let name: String
-//    let prizepool: String?
+    let league_id: Int
+    let live_supported: Bool
+    let matches: [Match]
+    let modified_at: String
+    let name: String
+    let prizepool: String?
 //    let serie: Serie
-//    let serie_id: Int
-//    let slug: String
-//    let teams: [Team]
-//    let tier: String?
+    let serie_id: Int
+    let slug: String
+    let teams: [Team]
+    let tier: String?
 //    let videogame: Dictionary<String, StringOrIntType>
 //    let videogame_title: VideoGameTitle?
-//    let winner_type: String?
-//    
-//
-//}
-//
-//extension Tournament: Equatable {
-//    static func == (lhs: Tournament, rhs: Tournament) -> Bool {
-//        lhs.id == rhs.id
-//    }
-//}
+    let winner_type: String?
+    
+
+}
+
+extension Tournament: Equatable {
+    static func == (lhs: Tournament, rhs: Tournament) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+extension Tournament: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
 
 struct Videogame: Decodable {
     let id: Int
@@ -67,6 +73,13 @@ struct Team: Decodable {
     let name: String
     let slug: String?
     
+}
+
+
+extension Team: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
 
 struct Match: Decodable {
@@ -145,22 +158,22 @@ enum StringOrIntType: Codable {
 //    }
 }
 
-extension StringOrIntType: Equatable {
-    
-}
+//extension StringOrIntType: Equatable {
+//    
+//}
 
-extension Array {
-    func sortedByDate() -> Self {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd’T’HH:mm:ssZ"
-        
-        return self.sorted { firstElement, secondElement in
-            dateFormatter.date(from: firstElement as! String)! > dateFormatter.date(from: secondElement as! String)!
-        }
-            
-    }
-}
+//extension Array {
+//    func sortedByDate() -> Self {
+//        
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd’T’HH:mm:ssZ"
+//        
+//        return self.sorted { firstElement, secondElement in
+//            dateFormatter.date(from: firstElement as! String)! > dateFormatter.date(from: secondElement as! String)!
+//        }
+//            
+//    }
+//}
 
 
 //extension Tournament: Hashable {

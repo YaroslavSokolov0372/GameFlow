@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct Serie: Decodable, Equatable {
+struct Serie: Decodable, Equatable, Hashable {
     
     let begin_at: String?
     let end_at: String?
@@ -20,7 +20,7 @@ struct Serie: Decodable, Equatable {
     let name: String?
     let season: String?
     let slug: String
-    let tournaments: [Tournament]
+    let tournaments: [Self.Tournament]
     let winner_type: String?
     let year: Int?
     
@@ -51,6 +51,10 @@ struct Serie: Decodable, Equatable {
 //        let winner_type: String?
         
 
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 
     
