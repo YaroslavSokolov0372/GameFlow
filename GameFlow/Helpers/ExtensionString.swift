@@ -19,11 +19,11 @@ extension String {
 
 
 extension String {
-    var fotmattedString: String {
+    func fotmattedString() -> String {
         let dateFormatter = ISO8601DateFormatter()
         let date = dateFormatter.date(from: self)!
         let newFormatter = DateFormatter()
         newFormatter.dateFormat = "MM/dd"
-        return newFormatter.string(from: date)
+        return newFormatter.string(from: date).replacingOccurrences(of: "/", with: ".")
     }
 }

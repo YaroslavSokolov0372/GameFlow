@@ -30,7 +30,7 @@ struct Serie: Decodable, Equatable, Hashable {
         let begin_at: String?
         let detailed_stats: Bool
         let end_at: String?
-        let has_bracket: Bool
+        let has_bracket: Bool?
         let id: Int
 //        let league: League
         let league_id: Int

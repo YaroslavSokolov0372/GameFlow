@@ -38,7 +38,6 @@ struct SeriesListDomain: Reducer {
         Reduce { state, action in
             switch action {
             case .startedFetching:
-                //                print(state.isFetching)
                 if state.series.isEmpty {
                     state.isFetching = true
                     return .run { send in

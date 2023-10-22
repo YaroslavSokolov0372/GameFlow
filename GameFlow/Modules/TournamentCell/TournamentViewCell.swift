@@ -106,8 +106,8 @@ struct TournamentViewCell: View {
                                             
                                             HStack {
                                                 
-                                                Text(viewStore.serie.begin_at?.fotmattedString ?? "") +
-                                                Text("-\(viewStore.serie.end_at?.fotmattedString ?? "")")
+                                                Text(viewStore.serie.begin_at == nil ? viewStore.serie.begin_at!.fotmattedString() :  "") +
+                                                Text("-\(viewStore.serie.end_at == nil ? viewStore.serie.end_at!.fotmattedString() : "")")
                 
                                                 if viewStore.serie.tournaments.count > 0 {
                                                     if viewStore.serie.tournaments[0].prizepool != nil {
