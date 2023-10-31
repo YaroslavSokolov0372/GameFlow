@@ -12,12 +12,12 @@ struct MainDomain: Reducer {
     
     struct State: Equatable {
         var path = StackState<Path.State>()
-        var ongoingSeriesState = SeriesListDomain.State(apiFetchType: .ongoingSeries)
+//        var ongoingSeriesState = TournamentsListDomain.State(apiFetchType: .ongoingSeries)
     }
     
     enum Action {
         case path(StackAction<Path.State, Path.Action>)
-        case ongoingSeriesAction(SeriesListDomain.Action)
+//        case ongoingSeriesAction(TournamentsListDomain.Action)
     }
     
     
@@ -26,18 +26,18 @@ struct MainDomain: Reducer {
     var body: some Reducer<State, Action> {
         
         
-        Scope(state: \.ongoingSeriesState, action: /Action.ongoingSeriesAction) {
-            SeriesListDomain()
-        }
+//        Scope(state: \.ongoingSeriesState, action: /Action.ongoingSeriesAction) {
+//            TournamentsListDomain()
+//        }
         
         Reduce { state, action in
             switch action {
-            case .ongoingSeriesAction(.seriesViewTapped(let serie)):
-//                print("hello")
-                state.path.append(.detailInfo(.init(serie: serie, id: .init())))
-                return .none
-            case .ongoingSeriesAction(_):
-                return .none
+//            case .ongoingSeriesAction(.seriesViewTapped(let serie)):
+////                print("hello")
+//                state.path.append(.detailInfo(.init(serie: serie, id: .init())))
+//                return .none
+//            case .ongoingSeriesAction(_):
+//                return .none
             case .path(_):
                 return .none
             }
@@ -72,73 +72,132 @@ struct MainView: View {
         NavigationStackStore(
             self.store.scope(state: \.path, action: { .path($0) })) {
                 WithViewStore(store, observe: { $0 }) { viewStore in
-                    ZStack {
-                        
-                        Color.mainBack
-                            .ignoresSafeArea()
-                        
-                        VStack {
-                            //MARK: - Ongoing Tournaments
-                            HStack {
-                                Text("Ongoing Tournaments")
-                                    .foregroundStyle(.gameListCellForeground)
-                                    .font(.title2)
-                                    .bold()
-                                
-                                
-                                Spacer()
-                                
-                                Button {
-                                    
-                                } label: {
-                                    Image(systemName: "bell.fill")
-                                        .foregroundStyle(.gameListCellForeground)
-                                        .font(.system(size: 20))
-                                }
-                            }
-                            .padding(10)
-                            .padding(.leading, 10)
-                            .padding(.trailing, 15)
-                            
-                            //MARK: - Ongoing Tournaments List
-                            
-//                            TournamentListView(store: Store(initialState: TournamentListDomain.State( apiFetchType: .ongoingTournaments), reducer: {
-//                                TournamentListDomain()
+//                    ZStack {
+//                        
+////                        Color.mainBack
+////                            .ignoresSafeArea()
+//                        
+//                        VStack {
+//                            //MARK: - Ongoing Tournaments
+//                            HStack {
+//                                Text("Ongoing Tournaments")
+////                                    .foregroundStyle(.gameListCellForeground)
+//                                    .font(.title2)
+//                                    .bold()
+//                                
+//                                
+//                                Spacer()
+//                                
+//                                Button {
+//                                    
+//                                } label: {
+//                                    Image(systemName: "bell.fill")
+////                                        .foregroundStyle(.gameListCellForeground)
+//                                        .font(.system(size: 20))
+//                                }
+//                            }
+//                            .padding(10)
+//                            .padding(.leading, 10)
+//                            .padding(.trailing, 15)
+//                            
+//                            //MARK: - Ongoing Tournaments List
+//                            
+////                            TournamentListView(store: Store(initialState: TournamentListDomain.State( apiFetchType: .ongoingTournaments), reducer: {
+////                                TournamentListDomain()
+////                            }))
+//                            SeriesListView(store: self.store.scope(state: \.ongoingSeriesState, action: MainDomain.Action.ongoingSeriesAction))
+//                            
+//                            //MARK: - Upcoming Tournaments List
+//                            HStack {
+//                                Text("Upcoming Tournaments")
+//                                    .foregroundStyle(.gameListCellForeground)
+//                                    .font(.title2)
+//                                    .bold()
+//                                
+//                                Spacer()
+//                                
+//                                Button {
+//                                    
+//                                } label: {
+//                                    Image(systemName: "bell")
+//                                        .foregroundStyle(.gameListCellForeground)
+//                                        .font(.system(size: 20))
+//                                }
+//                            }
+//                            .padding(10)
+//                            .padding(.leading, 10)
+//        //                    .padding(.trailing, 35)
+//                            .padding(.trailing, 15)
+//                            
+//                            
+//                            //MARK: - Upcoming TOurnamnets List
+//                            SeriesListView(store: Store(initialState: SeriesListDomain.State( apiFetchType: .upcommingSeries), reducer: {
+//                                SeriesListDomain()
 //                            }))
-                            SeriesListView(store: self.store.scope(state: \.ongoingSeriesState, action: MainDomain.Action.ongoingSeriesAction))
-                            
-                            //MARK: - Upcoming Tournaments List
-                            HStack {
-                                Text("Upcoming Tournaments")
-                                    .foregroundStyle(.gameListCellForeground)
-                                    .font(.title2)
-                                    .bold()
-                                
-                                Spacer()
-                                
-                                Button {
-                                    
-                                } label: {
-                                    Image(systemName: "bell")
-                                        .foregroundStyle(.gameListCellForeground)
-                                        .font(.system(size: 20))
-                                }
-                            }
-                            .padding(10)
-                            .padding(.leading, 10)
-        //                    .padding(.trailing, 35)
-                            .padding(.trailing, 15)
-                            
-                            
-                            //MARK: - Upcoming TOurnamnets List
-                            SeriesListView(store: Store(initialState: SeriesListDomain.State( apiFetchType: .upcommingSeries), reducer: {
-                                SeriesListDomain()
-                            }))
-                            
-                            Spacer()
-                        }
-                    }
+//                            
+//                            Spacer()
+//                        }
+//                    }
                     
+                    GeometryReader { geo in
+                    ZStack {
+                            Color("Black", bundle: .main)
+                                .ignoresSafeArea()
+                            
+                            VStack() {
+                                
+                                
+                                //MARK: - Search
+                                
+                                SearchField(store: Store(initialState: SearchFieldDomain.State(), reducer: {
+                                    SearchFieldDomain()
+                                }))
+                                
+                                
+                                //MARK: - Series
+                                TabView {
+                                    
+                                    SeriesListView(store: Store(initialState: SeriesListDomain.State(), reducer: {
+                                        SeriesListDomain()
+                                    }))
+                                    
+                                    SeriesListView(store: Store(initialState: SeriesListDomain.State(), reducer: {
+                                        SeriesListDomain()
+                                    }))
+                                    
+                                    SeriesListView(store: Store(initialState: SeriesListDomain.State(), reducer: {
+                                        SeriesListDomain()
+                                    }))
+                                }
+                                .tabViewStyle(.page(indexDisplayMode: .never))
+                                .ignoresSafeArea()
+                                
+                            }
+                            .overlay {
+                                ZStack {
+                                    VStack {
+                                        ZStack {
+                                            Rectangle()
+                                                .foregroundStyle(Color("Black", bundle: .main))
+                                                .frame(height: 70)
+                                                .mask {
+                                                    LinearGradient(colors: [.white, .white, .white.opacity(0.0), .white.opacity(0.0)], startPoint: .top, endPoint: .bottom)
+                                                }
+                                            
+                                            RoundedRectangle(cornerRadius: 25)
+                                                .frame(width: 350, height: 50)
+                                        }
+                                        Spacer()
+                                    }
+                                }
+//                                .frame(width: geo.size.width, height: geo.size.height, alignment: .top)
+                                .offset(y: 53)
+                                
+                            }
+                        }
+                    
+                        
+                    }
                 }
             } destination: { state in
                 switch state {

@@ -98,8 +98,8 @@ struct DetailInfoView: View {
             
             ZStack {
                 
-                Color.mainBack
-                    .ignoresSafeArea()
+//                Color.mainBack
+//                    .ignoresSafeArea()
                 
                 ScrollView {
                     
@@ -262,9 +262,6 @@ struct DetailInfoView: View {
 //                            .scrollIndicators(.hidden)
 //                        }
                         
-                            UpcomingMatchesList(store: Store(initialState: UpcomingMatchesListDomain.State(tournaments: viewStore.tournaments), reducer: {
-                                UpcomingMatchesListDomain()
-                            }))
                     }
                     
                     
@@ -277,10 +274,6 @@ struct DetailInfoView: View {
                             .bold()
                             .padding(.bottom, 10)
                             .padding(.horizontal)
-                        
-                            ResultsList(store: Store(initialState: ResultsListDomain.State(tournaments: viewStore.tournaments), reducer: {
-                                ResultsListDomain()
-                            }))
                         
                         
                         //                        HStack() {
@@ -538,7 +531,7 @@ struct DetailInfoView: View {
                                     .padding(.horizontal, 10)
                                     .background(
                                         RoundedRectangle(cornerRadius: 25)
-                                            .foregroundStyle(.gameListCellForeground)
+//                                            .foregroundStyle(.gameListCellForeground)
                                     )
                                 }
                                 .padding(.horizontal)

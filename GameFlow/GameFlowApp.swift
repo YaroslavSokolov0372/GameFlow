@@ -18,6 +18,9 @@ struct GameFlowApp: App {
             MainView(store: Store(initialState: MainDomain.State(), reducer: {
                 MainDomain()
             }))
+//            SeriesListView(store: Store(initialState: SeriesListDomain.State(), reducer: {
+//                SeriesListDomain()
+//            }))
         }
     }
 }

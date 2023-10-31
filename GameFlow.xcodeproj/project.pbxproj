@@ -17,23 +17,26 @@
 		D1D93D482AD6A7E6003F1CC7 /* Tournament.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D472AD6A7E6003F1CC7 /* Tournament.swift */; };
 		D1D93D4A2AD6B1C7003F1CC7 /* Serie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D492AD6B1C7003F1CC7 /* Serie.swift */; };
 		D1D93D4C2AD6B2DC003F1CC7 /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D4B2AD6B2DC003F1CC7 /* League.swift */; };
-		D1D93D562AD94523003F1CC7 /* SeriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D552AD94523003F1CC7 /* SeriesListView.swift */; };
+		D1D93D562AD94523003F1CC7 /* TournamentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D552AD94523003F1CC7 /* TournamentListView.swift */; };
 		D1D93D5D2AD948FC003F1CC7 /* TournamentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D5C2AD948FC003F1CC7 /* TournamentViewCell.swift */; };
 		D1D93D612AD95675003F1CC7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D602AD95675003F1CC7 /* MainView.swift */; };
-		D1D93D662AD9B912003F1CC7 /* shimmerEffectView .swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D652AD9B912003F1CC7 /* shimmerEffectView .swift */; };
 		D1D93D682ADAAA7B003F1CC7 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D672ADAAA7B003F1CC7 /* Images.swift */; };
 		D1D93D6A2ADACE9A003F1CC7 /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D692ADACE9A003F1CC7 /* ExtensionString.swift */; };
 		D1D93D6D2ADB097F003F1CC7 /* DetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D6C2ADB097F003F1CC7 /* DetailInfoView.swift */; };
 		D1D93D782AE4157B003F1CC7 /* ExtensionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D772AE4157B003F1CC7 /* ExtensionDate.swift */; };
 		D1D93D7A2AE41FE6003F1CC7 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D792AE41FE6003F1CC7 /* Match.swift */; };
 		D1D93D7C2AE42058003F1CC7 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D7B2AE42058003F1CC7 /* Team.swift */; };
-		D1D93D7E2AE420FD003F1CC7 /* UpcomingMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D7D2AE420FD003F1CC7 /* UpcomingMatchCell.swift */; };
-		D1D93D802AE4210A003F1CC7 /* UpcomingMatchesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D7F2AE4210A003F1CC7 /* UpcomingMatchesList.swift */; };
 		D1D93D832AE421D2003F1CC7 /* Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D822AE421D2003F1CC7 /* Opponent.swift */; };
-		D1D93D862AE472E8003F1CC7 /* TournamentsResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D852AE472E8003F1CC7 /* TournamentsResultCell.swift */; };
-		D1D93D892AE4730A003F1CC7 /* ResultsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D882AE4730A003F1CC7 /* ResultsList.swift */; };
-		D1D93D8D2AE56769003F1CC7 /* ParticipantsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D8C2AE56769003F1CC7 /* ParticipantsCellView.swift */; };
-		D1D93D8F2AE56872003F1CC7 /* ParticipantsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D8E2AE56872003F1CC7 /* ParticipantsList.swift */; };
+		D1D93DAB2AF1777A003F1CC7 /* SerieCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DAA2AF1777A003F1CC7 /* SerieCellView.swift */; };
+		D1D93DB32AF17DE8003F1CC7 /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1D93DAD2AF17DE8003F1CC7 /* Gilroy-Medium.ttf */; };
+		D1D93DB42AF17DE8003F1CC7 /* Gilroy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1D93DAE2AF17DE8003F1CC7 /* Gilroy-Regular.ttf */; };
+		D1D93DB52AF17DE8003F1CC7 /* Gilroy-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1D93DAF2AF17DE8003F1CC7 /* Gilroy-SemiBold.ttf */; };
+		D1D93DB62AF17DE8003F1CC7 /* Gilroy-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1D93DB02AF17DE8003F1CC7 /* Gilroy-Bold.ttf */; };
+		D1D93DB72AF17DE8003F1CC7 /* Gilroy-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1D93DB12AF17DE8003F1CC7 /* Gilroy-Thin.ttf */; };
+		D1D93DB82AF17DE8003F1CC7 /* Gilroy-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1D93DB22AF17DE8003F1CC7 /* Gilroy-Light.ttf */; };
+		D1D93DBB2AF1837B003F1CC7 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DBA2AF1837B003F1CC7 /* Fonts.swift */; };
+		D1D93DBD2AF1898F003F1CC7 /* SeriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DBC2AF1898F003F1CC7 /* SeriesListView.swift */; };
+		D1D93DBF2AF1A1AE003F1CC7 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DBE2AF1A1AE003F1CC7 /* SearchField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,23 +49,27 @@
 		D1D93D472AD6A7E6003F1CC7 /* Tournament.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tournament.swift; sourceTree = "<group>"; };
 		D1D93D492AD6B1C7003F1CC7 /* Serie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serie.swift; sourceTree = "<group>"; };
 		D1D93D4B2AD6B2DC003F1CC7 /* League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
-		D1D93D552AD94523003F1CC7 /* SeriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesListView.swift; sourceTree = "<group>"; };
+		D1D93D552AD94523003F1CC7 /* TournamentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentListView.swift; sourceTree = "<group>"; };
 		D1D93D5C2AD948FC003F1CC7 /* TournamentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentViewCell.swift; sourceTree = "<group>"; };
 		D1D93D602AD95675003F1CC7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		D1D93D652AD9B912003F1CC7 /* shimmerEffectView .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "shimmerEffectView .swift"; sourceTree = "<group>"; };
 		D1D93D672ADAAA7B003F1CC7 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		D1D93D692ADACE9A003F1CC7 /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
 		D1D93D6C2ADB097F003F1CC7 /* DetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoView.swift; sourceTree = "<group>"; };
 		D1D93D772AE4157B003F1CC7 /* ExtensionDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDate.swift; sourceTree = "<group>"; };
 		D1D93D792AE41FE6003F1CC7 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		D1D93D7B2AE42058003F1CC7 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
-		D1D93D7D2AE420FD003F1CC7 /* UpcomingMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMatchCell.swift; sourceTree = "<group>"; };
-		D1D93D7F2AE4210A003F1CC7 /* UpcomingMatchesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMatchesList.swift; sourceTree = "<group>"; };
 		D1D93D822AE421D2003F1CC7 /* Opponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opponent.swift; sourceTree = "<group>"; };
-		D1D93D852AE472E8003F1CC7 /* TournamentsResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentsResultCell.swift; sourceTree = "<group>"; };
-		D1D93D882AE4730A003F1CC7 /* ResultsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsList.swift; sourceTree = "<group>"; };
-		D1D93D8C2AE56769003F1CC7 /* ParticipantsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsCellView.swift; sourceTree = "<group>"; };
-		D1D93D8E2AE56872003F1CC7 /* ParticipantsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsList.swift; sourceTree = "<group>"; };
+		D1D93DAA2AF1777A003F1CC7 /* SerieCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieCellView.swift; sourceTree = "<group>"; };
+		D1D93DAD2AF17DE8003F1CC7 /* Gilroy-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Medium.ttf"; sourceTree = "<group>"; };
+		D1D93DAE2AF17DE8003F1CC7 /* Gilroy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Regular.ttf"; sourceTree = "<group>"; };
+		D1D93DAF2AF17DE8003F1CC7 /* Gilroy-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-SemiBold.ttf"; sourceTree = "<group>"; };
+		D1D93DB02AF17DE8003F1CC7 /* Gilroy-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Bold.ttf"; sourceTree = "<group>"; };
+		D1D93DB12AF17DE8003F1CC7 /* Gilroy-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Thin.ttf"; sourceTree = "<group>"; };
+		D1D93DB22AF17DE8003F1CC7 /* Gilroy-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Light.ttf"; sourceTree = "<group>"; };
+		D1D93DB92AF17E00003F1CC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1D93DBA2AF1837B003F1CC7 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		D1D93DBC2AF1898F003F1CC7 /* SeriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesListView.swift; sourceTree = "<group>"; };
+		D1D93DBE2AF1A1AE003F1CC7 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,14 +104,14 @@
 		D1D93D192AD47C9F003F1CC7 /* GameFlow */ = {
 			isa = PBXGroup;
 			children = (
-				D1D93D762AE1ACB9003F1CC7 /* TeamListView */,
+				D1D93DB92AF17E00003F1CC7 /* Info.plist */,
+				D1D93D382AD499D2003F1CC7 /* Clients */,
 				D1D93D622AD9AFFC003F1CC7 /* Helpers */,
+				D1D93DAC2AF17DD2003F1CC7 /* Fonts */,
 				D1D93D402AD5636D003F1CC7 /* Modules */,
 				D1D93D302AD48CB3003F1CC7 /* Model */,
-				D1D93D382AD499D2003F1CC7 /* Clients */,
 				D1D93D1A2AD47C9F003F1CC7 /* GameFlowApp.swift */,
 				D1D93D1E2AD47CA0003F1CC7 /* Assets.xcassets */,
-				D1D93D652AD9B912003F1CC7 /* shimmerEffectView .swift */,
 				D1D93D202AD47CA0003F1CC7 /* Preview Content */,
 			);
 			path = GameFlow;
@@ -144,14 +151,9 @@
 		D1D93D402AD5636D003F1CC7 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				D1D93D8B2AE56752003F1CC7 /* ParticipantsCell */,
-				D1D93D8A2AE5673E003F1CC7 /* ParticipantsList */,
-				D1D93D872AE472EE003F1CC7 /* TournamentsResults */,
-				D1D93D842AE472D5003F1CC7 /* TournamentResultsCell */,
+				D1D93DA92AF17766003F1CC7 /* Series */,
 				D1D93D5F2AD95662003F1CC7 /* Main */,
 				D1D93D6B2ADB0948003F1CC7 /* DetailInfo */,
-				D1D93D6E2ADC1A8D003F1CC7 /* UpcomingMatchesList */,
-				D1D93D812AE4211E003F1CC7 /* UpcomingMatchCell */,
 				D1D93D572AD9480E003F1CC7 /* TournamentsList */,
 				D1D93D5E2AD95656003F1CC7 /* TournamentCell */,
 			);
@@ -161,7 +163,7 @@
 		D1D93D572AD9480E003F1CC7 /* TournamentsList */ = {
 			isa = PBXGroup;
 			children = (
-				D1D93D552AD94523003F1CC7 /* SeriesListView.swift */,
+				D1D93D552AD94523003F1CC7 /* TournamentListView.swift */,
 			);
 			path = TournamentsList;
 			sourceTree = "<group>";
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				D1D93D602AD95675003F1CC7 /* MainView.swift */,
+				D1D93DBE2AF1A1AE003F1CC7 /* SearchField.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -199,59 +202,27 @@
 			path = DetailInfo;
 			sourceTree = "<group>";
 		};
-		D1D93D6E2ADC1A8D003F1CC7 /* UpcomingMatchesList */ = {
+		D1D93DA92AF17766003F1CC7 /* Series */ = {
 			isa = PBXGroup;
 			children = (
-				D1D93D7F2AE4210A003F1CC7 /* UpcomingMatchesList.swift */,
+				D1D93DAA2AF1777A003F1CC7 /* SerieCellView.swift */,
+				D1D93DBC2AF1898F003F1CC7 /* SeriesListView.swift */,
 			);
-			path = UpcomingMatchesList;
+			path = Series;
 			sourceTree = "<group>";
 		};
-		D1D93D762AE1ACB9003F1CC7 /* TeamListView */ = {
+		D1D93DAC2AF17DD2003F1CC7 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				D1D93DB02AF17DE8003F1CC7 /* Gilroy-Bold.ttf */,
+				D1D93DB22AF17DE8003F1CC7 /* Gilroy-Light.ttf */,
+				D1D93DAD2AF17DE8003F1CC7 /* Gilroy-Medium.ttf */,
+				D1D93DAE2AF17DE8003F1CC7 /* Gilroy-Regular.ttf */,
+				D1D93DAF2AF17DE8003F1CC7 /* Gilroy-SemiBold.ttf */,
+				D1D93DB12AF17DE8003F1CC7 /* Gilroy-Thin.ttf */,
+				D1D93DBA2AF1837B003F1CC7 /* Fonts.swift */,
 			);
-			path = TeamListView;
-			sourceTree = "<group>";
-		};
-		D1D93D812AE4211E003F1CC7 /* UpcomingMatchCell */ = {
-			isa = PBXGroup;
-			children = (
-				D1D93D7D2AE420FD003F1CC7 /* UpcomingMatchCell.swift */,
-			);
-			path = UpcomingMatchCell;
-			sourceTree = "<group>";
-		};
-		D1D93D842AE472D5003F1CC7 /* TournamentResultsCell */ = {
-			isa = PBXGroup;
-			children = (
-				D1D93D852AE472E8003F1CC7 /* TournamentsResultCell.swift */,
-			);
-			path = TournamentResultsCell;
-			sourceTree = "<group>";
-		};
-		D1D93D872AE472EE003F1CC7 /* TournamentsResults */ = {
-			isa = PBXGroup;
-			children = (
-				D1D93D882AE4730A003F1CC7 /* ResultsList.swift */,
-			);
-			path = TournamentsResults;
-			sourceTree = "<group>";
-		};
-		D1D93D8A2AE5673E003F1CC7 /* ParticipantsList */ = {
-			isa = PBXGroup;
-			children = (
-				D1D93D8E2AE56872003F1CC7 /* ParticipantsList.swift */,
-			);
-			path = ParticipantsList;
-			sourceTree = "<group>";
-		};
-		D1D93D8B2AE56752003F1CC7 /* ParticipantsCell */ = {
-			isa = PBXGroup;
-			children = (
-				D1D93D8C2AE56769003F1CC7 /* ParticipantsCellView.swift */,
-			);
-			path = ParticipantsCell;
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,7 +292,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1D93D222AD47CA0003F1CC7 /* Preview Assets.xcassets in Resources */,
+				D1D93DB32AF17DE8003F1CC7 /* Gilroy-Medium.ttf in Resources */,
 				D1D93D1F2AD47CA0003F1CC7 /* Assets.xcassets in Resources */,
+				D1D93DB72AF17DE8003F1CC7 /* Gilroy-Thin.ttf in Resources */,
+				D1D93DB62AF17DE8003F1CC7 /* Gilroy-Bold.ttf in Resources */,
+				D1D93DB52AF17DE8003F1CC7 /* Gilroy-SemiBold.ttf in Resources */,
+				D1D93DB42AF17DE8003F1CC7 /* Gilroy-Regular.ttf in Resources */,
+				D1D93DB82AF17DE8003F1CC7 /* Gilroy-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,28 +310,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1D93D5D2AD948FC003F1CC7 /* TournamentViewCell.swift in Sources */,
-				D1D93D7E2AE420FD003F1CC7 /* UpcomingMatchCell.swift in Sources */,
 				D1D93D682ADAAA7B003F1CC7 /* Images.swift in Sources */,
-				D1D93D8F2AE56872003F1CC7 /* ParticipantsList.swift in Sources */,
 				D1D93D3F2AD551C0003F1CC7 /* API_Key.swift in Sources */,
 				D1D93D3A2AD49C1E003F1CC7 /* APIClient.swift in Sources */,
 				D1D93D482AD6A7E6003F1CC7 /* Tournament.swift in Sources */,
 				D1D93D6A2ADACE9A003F1CC7 /* ExtensionString.swift in Sources */,
-				D1D93D8D2AE56769003F1CC7 /* ParticipantsCellView.swift in Sources */,
+				D1D93DBF2AF1A1AE003F1CC7 /* SearchField.swift in Sources */,
+				D1D93DBD2AF1898F003F1CC7 /* SeriesListView.swift in Sources */,
 				D1D93D4A2AD6B1C7003F1CC7 /* Serie.swift in Sources */,
+				D1D93DAB2AF1777A003F1CC7 /* SerieCellView.swift in Sources */,
 				D1D93D612AD95675003F1CC7 /* MainView.swift in Sources */,
-				D1D93D892AE4730A003F1CC7 /* ResultsList.swift in Sources */,
-				D1D93D662AD9B912003F1CC7 /* shimmerEffectView .swift in Sources */,
 				D1D93D782AE4157B003F1CC7 /* ExtensionDate.swift in Sources */,
 				D1D93D6D2ADB097F003F1CC7 /* DetailInfoView.swift in Sources */,
 				D1D93D832AE421D2003F1CC7 /* Opponent.swift in Sources */,
 				D1D93D7A2AE41FE6003F1CC7 /* Match.swift in Sources */,
 				D1D93D7C2AE42058003F1CC7 /* Team.swift in Sources */,
-				D1D93D562AD94523003F1CC7 /* SeriesListView.swift in Sources */,
+				D1D93D562AD94523003F1CC7 /* TournamentListView.swift in Sources */,
 				D1D93D4C2AD6B2DC003F1CC7 /* League.swift in Sources */,
-				D1D93D862AE472E8003F1CC7 /* TournamentsResultCell.swift in Sources */,
+				D1D93DBB2AF1837B003F1CC7 /* Fonts.swift in Sources */,
 				D1D93D1B2AD47C9F003F1CC7 /* GameFlowApp.swift in Sources */,
-				D1D93D802AE4210A003F1CC7 /* UpcomingMatchesList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +465,7 @@
 				DEVELOPMENT_TEAM = JTJACLKKSJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GameFlow/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -520,6 +495,7 @@
 				DEVELOPMENT_TEAM = JTJACLKKSJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GameFlow/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
