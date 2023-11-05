@@ -37,6 +37,9 @@
 		D1D93DBB2AF1837B003F1CC7 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DBA2AF1837B003F1CC7 /* Fonts.swift */; };
 		D1D93DBD2AF1898F003F1CC7 /* SeriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DBC2AF1898F003F1CC7 /* SeriesListView.swift */; };
 		D1D93DBF2AF1A1AE003F1CC7 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DBE2AF1A1AE003F1CC7 /* SearchField.swift */; };
+		D1D93DC12AF2C0AF003F1CC7 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DC02AF2C0AF003F1CC7 /* TabBarView.swift */; };
+		D1D93DC32AF2C473003F1CC7 /* OffsetReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DC22AF2C473003F1CC7 /* OffsetReader.swift */; };
+		D1D93DC52AF43A03003F1CC7 /* AnimationEndCallBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DC42AF43A03003F1CC7 /* AnimationEndCallBack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +73,9 @@
 		D1D93DBA2AF1837B003F1CC7 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		D1D93DBC2AF1898F003F1CC7 /* SeriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesListView.swift; sourceTree = "<group>"; };
 		D1D93DBE2AF1A1AE003F1CC7 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
+		D1D93DC02AF2C0AF003F1CC7 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		D1D93DC22AF2C473003F1CC7 /* OffsetReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetReader.swift; sourceTree = "<group>"; };
+		D1D93DC42AF43A03003F1CC7 /* AnimationEndCallBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationEndCallBack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +187,7 @@
 			children = (
 				D1D93D602AD95675003F1CC7 /* MainView.swift */,
 				D1D93DBE2AF1A1AE003F1CC7 /* SearchField.swift */,
+				D1D93DC02AF2C0AF003F1CC7 /* TabBarView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -190,6 +197,8 @@
 			children = (
 				D1D93D692ADACE9A003F1CC7 /* ExtensionString.swift */,
 				D1D93D772AE4157B003F1CC7 /* ExtensionDate.swift */,
+				D1D93DC22AF2C473003F1CC7 /* OffsetReader.swift */,
+				D1D93DC42AF43A03003F1CC7 /* AnimationEndCallBack.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -317,14 +326,17 @@
 				D1D93D6A2ADACE9A003F1CC7 /* ExtensionString.swift in Sources */,
 				D1D93DBF2AF1A1AE003F1CC7 /* SearchField.swift in Sources */,
 				D1D93DBD2AF1898F003F1CC7 /* SeriesListView.swift in Sources */,
+				D1D93DC52AF43A03003F1CC7 /* AnimationEndCallBack.swift in Sources */,
 				D1D93D4A2AD6B1C7003F1CC7 /* Serie.swift in Sources */,
 				D1D93DAB2AF1777A003F1CC7 /* SerieCellView.swift in Sources */,
 				D1D93D612AD95675003F1CC7 /* MainView.swift in Sources */,
+				D1D93DC32AF2C473003F1CC7 /* OffsetReader.swift in Sources */,
 				D1D93D782AE4157B003F1CC7 /* ExtensionDate.swift in Sources */,
 				D1D93D6D2ADB097F003F1CC7 /* DetailInfoView.swift in Sources */,
 				D1D93D832AE421D2003F1CC7 /* Opponent.swift in Sources */,
 				D1D93D7A2AE41FE6003F1CC7 /* Match.swift in Sources */,
 				D1D93D7C2AE42058003F1CC7 /* Team.swift in Sources */,
+				D1D93DC12AF2C0AF003F1CC7 /* TabBarView.swift in Sources */,
 				D1D93D562AD94523003F1CC7 /* TournamentListView.swift in Sources */,
 				D1D93D4C2AD6B2DC003F1CC7 /* League.swift in Sources */,
 				D1D93DBB2AF1837B003F1CC7 /* Fonts.swift in Sources */,

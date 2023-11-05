@@ -33,7 +33,7 @@ struct SeriesListView: View {
             ScrollView(.vertical) {
                 VStack() {
                     Rectangle()
-                        .frame(height: 70)
+                        .frame(height: 75)
                         .foregroundStyle(.clear)
                     
                     
