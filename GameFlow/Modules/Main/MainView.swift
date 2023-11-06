@@ -115,7 +115,6 @@ struct MainView: View {
             self.store.scope(state: \.path, action: { .path($0) })) {
                 WithViewStore(store, observe: { $0 }) { viewStore in
                     GeometryReader { geo in
-                        let width = geo.size.width
                     ZStack {
                             Color("Black", bundle: .main)
                                 .ignoresSafeArea()
@@ -200,60 +199,11 @@ struct MainView: View {
                                             .foregroundStyle(Color("Black", bundle: .main))
                                             .frame(width: 350, height: 60)
                                             .overlay(content: {
-//                                                HStack(spacing: 0) {
-//                                                    
-//                                                    Button {
-////                                                        withAnimation {
-//                                                            viewStore.send(.tabSelected(.ongoing))
-////                                                            viewStore.send(.scrollOffsetChanged(CGFloat(viewStore.currentTab.index) * geo.size.width))
-////                                                        viewStore.send(.scrollOffsetChanged(CGFloat(viewStore.currentTab.index * geo.size.width)))
-////                                                        }
-//
-//                                                    } label: {
-//                                                        Text("ONGOING")
-//                                                            .frame(width: 115)
-//                                                        
-//                                                    }
-//                                                    
-//                                                    
-//                                                    Button {
-//                                                        DispatchQueue.main.async {
-//                                                            viewStore.send(.tabSelected(.upcoming))
-//                                                            //                                                            viewStore.send(.scrollOffsetChanged(2 * 115))
-//                                                            viewStore.send(.scrollOffsetChanged(0))
-//                                                            
-//                                                        }
-////                                                        withAnimation {
-////                                                            
-////                                                            
-////                                                            viewStore.send(.tabSelected(.upcoming))
-//////                                                            viewStore.send(.scrollOffsetChanged(CGFloat(viewStore.currentTab.index) * geo.size.width))
-////                                                        }
-//                                                        
-//                                                        
-//                                                    } label: {
-//                                                        Text("UPCOMING")
-//                                                            .frame(width: 115)
-//                                                    }
-//                                                    
-//                                                    
-//                                                    Button {
-//                                                        withAnimation {
-//                                                            
-////                                                            viewStore.send(.tabSelected(.latest))
-////                                                            viewStore.send(.scrollOffsetChanged(CGFloat(viewStore.currentTab.index) * geo.size.width))
-//                                                        }
-//                                                    } label: {
-//                                                        Text("LATEST")
-//                                                            .frame(width: 115)
-//                                                        
-//                                                    }
-//                                                }
                                                 HStack {
                                                     ForEach(MainDomain.SeriesType.allCases, id: \.self) { type in
                                                         Button {
                                                             
-                                                            withAnimation(.easeInOut(duration: 0.6)) {
+                                                            withAnimation(.easeInOut(duration: 0.3)) {
                                                                 viewStore.send(.tabSelected(type))
                                                                 
                                                                 viewStore.send(.scrollOffsetChanged(-CGFloat(type.index)))
@@ -274,6 +224,7 @@ struct MainView: View {
                                                             }
                                                         }
                                                         .frame(width: 111)
+                                                        .disabled(viewStore.tapState.status ? true : false)
                                                     }
                                                     
                                                 }

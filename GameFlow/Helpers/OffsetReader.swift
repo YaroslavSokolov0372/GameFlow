@@ -24,7 +24,7 @@ extension View {
         self
             .overlay {
                 GeometryReader { geo in
-                    var size = geo.frame(in: .global)
+                    let size = geo.frame(in: .global)
                     Color.clear
                         .preference(key: TabViewScrollReader.self, value: size)
                         .onPreferenceChange(TabViewScrollReader.self, perform: { value in
