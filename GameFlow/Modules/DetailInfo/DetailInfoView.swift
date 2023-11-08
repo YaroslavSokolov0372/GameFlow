@@ -17,7 +17,10 @@ struct DetailInfoDomain: Reducer {
     enum Action: BindableAction {
         case binding(BindingAction<State>)
         case tabSelected(Int)
+        case closeButtonTapped
     }
+    
+    @Dependency(\.dismiss) var dismiss
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
@@ -25,6 +28,14 @@ struct DetailInfoDomain: Reducer {
             case .tabSelected(let tab):
                 state.currentTab = tab
                 return .none
+            case .closeButtonTapped:
+                print("Hello")
+                return .run { _ in
+////                    await self.dissmiss()
+                    await self.dismiss()
+                }
+//                return .none
+                
             default: return .none
             }
         }
@@ -58,7 +69,7 @@ struct DetailInfoView: View {
                         .overlay {
                             HStack {
                                 Button {
-                                    
+                                    viewStore.send(.closeButtonTapped)
                                 } label: {
                                     Image("Arrow", bundle: .main)
                                         .resizable()
@@ -95,8 +106,8 @@ struct DetailInfoView: View {
                                             }
                                             .frame(height: 30)
                                             
-                                            MatchListView(store: Store(initialState: MatchListDomain.State(), reducer: {
-                                                MatchListDomain()
+                                            OngoingMatchListView(store: Store(initialState: OngoingMatchListDomain.State(), reducer: {
+                                                OngoingMatchListDomain()
                                             }))
                                         }
                                         

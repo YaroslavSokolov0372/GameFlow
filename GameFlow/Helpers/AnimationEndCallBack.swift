@@ -52,7 +52,7 @@ struct AnimationEndCallBack<Value: VectorArithmetic>: Animatable, ViewModifier {
     }
     
     func checkIfAnimationFinished() {
-        print(animatableData)
+//        print(animatableData)
         if animatableData == endValaue {
             DispatchQueue.main.async {
                 onEnd()

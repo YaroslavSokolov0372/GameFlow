@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct MatchListDomain: Reducer {
+struct OngoingMatchListDomain: Reducer {
     
     struct State: Equatable {
         
@@ -27,9 +27,9 @@ struct MatchListDomain: Reducer {
     }
 }
 
-struct MatchListView: View {
+struct OngoingMatchListView: View {
     
-    var store: StoreOf<MatchListDomain>
+    var store: StoreOf<OngoingMatchListDomain>
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             
@@ -49,7 +49,7 @@ struct MatchListView: View {
 }
 
 #Preview {
-    MatchListView(store: Store(initialState: MatchListDomain.State(), reducer: {
-        MatchListDomain()
+    OngoingMatchListView(store: Store(initialState: OngoingMatchListDomain.State(), reducer: {
+        OngoingMatchListDomain()
     }))
 }

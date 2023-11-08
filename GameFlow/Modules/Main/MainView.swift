@@ -16,6 +16,9 @@ struct MainDomain: Reducer {
         @BindingState var tapState: AnimationState = .init()
         var path = StackState<Path.State>()
 //        var ongoingSeriesState = TournamentsListDomain.State(apiFetchType: .ongoingSeries)
+        
+        
+        var detailDomainInfoState = DetailInfoDomain.State()
     }
     
     enum Action: BindableAction {
@@ -25,14 +28,58 @@ struct MainDomain: Reducer {
         case binding(BindingAction<State>)
         case animationStateStarted
         case animationStateReset
+        case seriesTapped
 //        case ongoingSeriesAction(TournamentsListDomain.Action)
         
+        case detailInfoDomainAction(DetailInfoDomain.Action)
+    }
+    
+    
+    //MARK: - Navigaition Stack
+    struct Path: Reducer {
+        
+        enum State: Equatable {
+            case detailInfo(DetailInfoDomain.State)
+            case matchList(MatchesListDomain.State)
+            case ongoingMatchList(OngoingMatchListDomain.State)
+            
+        }
+        enum Action {
+            case detailInfo(DetailInfoDomain.Action)
+            case matchesList(MatchesListDomain.Action)
+            case ongoingMatchList(OngoingMatchListDomain.Action)
+        }
+        
+        var body: some Reducer<State, Action> {
+            Scope(state: /State.detailInfo, action: /Action.detailInfo) {
+                DetailInfoDomain()
+            }
+            Scope(state: /State.matchList, action: /Action.matchesList) {
+                MatchesListDomain()
+            }
+            Scope(state: /State.ongoingMatchList, action: /Action.ongoingMatchList) {
+                OngoingMatchListDomain()
+            }
+            
+//            Reduce { state, action in
+//                switch action {
+////                case .detailInfo(.closeButtonTapped):
+//                case .detailInfo(.closeButtonTapped):
+//                    
+////                    print("Yep")
+//                    
+////                    MainDomain.State.path.popLast()
+//                    return .none
+//                default: return .none
+//                }
+//            }
+        }
     }
     
     enum SeriesType: String, CaseIterable {
-        case ongoing = "Ongoing"
-        case upcoming = "Upcoming"
-        case latest = "Latest"
+        case ongoing = "ONGOING"
+        case upcoming = "UPCOMING"
+        case latest = "LATEST"
         
         var index: Int {
             return SeriesType.allCases.firstIndex(of: self) ?? 0
@@ -53,18 +100,19 @@ struct MainDomain: Reducer {
 //        Scope(state: \.ongoingSeriesState, action: /Action.ongoingSeriesAction) {
 //            TournamentsListDomain()
 //        }
-        
+//        Scope(state: \.detailDomainInfoState, action: /Action.detailInfoDomainAction) {
+//            DetailInfoDomain()
+//        }
         
         Reduce { state, action in
             switch action {
-//            case .ongoingSeriesAction(.seriesViewTapped(let serie)):
-////                print("hello")
-//                state.path.append(.detailInfo(.init(serie: serie, id: .init())))
-//                return .none
-//            case .ongoingSeriesAction(_):
-//                return .none
-            case .path(_):
-                return .none
+                //            case .ongoingSeriesAction(.seriesViewTapped(let serie)):
+                ////                print("hello")
+                //                state.path.append(.detailInfo(.init(serie: serie, id: .init())))
+                //                return .none
+                //            case .ongoingSeriesAction(_):
+                //                return .none
+
             case .tabSelected(let type):
                 state.currentTab = type
                 return .none
@@ -73,14 +121,53 @@ struct MainDomain: Reducer {
                 return .none
             case .binding(_):
                 return .none
-                
             case .animationStateStarted:
                 state.tapState.startAnimation()
                 return .none
             case .animationStateReset:
                 state.tapState.reset()
                 return .none
-                //            default: return .none
+                
+                
+                
+//            case .path(.popFrom(id: 312312)):
+//                return .none
+//            case .path(.element(id: , action: .detailInfo(.closeButtonTapped))):
+//                guard case .detailInfo(DetailInfoDomain.State()) = state.path[id: "DetailInfo"]
+//                else { return .none }
+//                print("hello world")
+//                return .none
+                
+                //            case .detailInfoDomainAction()
+//            case .detailInfoDomainAction(.closeButtonTapped):
+//                print("wtf?")
+//                return .none
+                
+            case .seriesTapped:
+                state.path.append(.detailInfo(DetailInfoDomain.State()))
+                //                state.path
+                return .none
+                
+                
+                //            case .path(.element(id: 0, action: .detailInfo(.closeButtonTapped))):
+                //                guard case .detailInfo(DetailInfoDomain.State()) = state.path[id: 0] else {
+                //                    print("Hello")
+                //                    return .none
+                //                }
+                //                state.path.pop(from: 0)
+                //                return .none
+//            case .detailInfoDomainAction(.closeButtonTapped):
+//                print("Ali luya")
+//                return .none
+                //            case .detailInfoDomainAction(.closeButtonTapped):
+                //                print("Closse button Pressed")
+                ////                state.path.removeLast()
+                //                return .none
+                
+                
+            case .path(_):
+                return .none
+            default: return .none
             }
         }
         .forEach(\.path, action: /Action.path) {
@@ -89,21 +176,7 @@ struct MainDomain: Reducer {
         BindingReducer()
     }
     
-    struct Path: Reducer {
-        
-        enum State: Equatable {
-            case detailInfo(DetailInfoDomain.State)
-        }
-        enum Action {
-            case detailInfo(DetailInfoDomain.Action)
-        }
-        
-        var body: some Reducer<State, Action> {
-            Scope(state: /State.detailInfo, action: /Action.detailInfo) {
-                DetailInfoDomain()
-            }
-        }
-    }
+
 }
 
 struct MainView: View {
@@ -131,6 +204,9 @@ struct MainView: View {
                                             SeriesListDomain()
                                         }))
                                         .tag(type)
+                                        .onTapGesture(perform: {
+                                            viewStore.send(.seriesTapped)
+                                        })
                                         
                                         .offsetX(type == viewStore.currentTab) { size in
                                             let minX = size.minX
@@ -195,7 +271,7 @@ struct MainView: View {
 //                                        TabBarView(store: Store(initialState: TabBarDomain.State(), reducer: {
 //                                            TabBarDomain()
                                         
-                                        RoundedRectangle(cornerRadius: 25)
+                                        RoundedRectangle(cornerRadius: 30)
                                             .foregroundStyle(Color("Black", bundle: .main))
                                             .frame(width: 350, height: 60)
                                             .overlay(content: {
@@ -214,16 +290,17 @@ struct MainView: View {
                                                             
                                                             
                                                         } label: {
-                                                            switch type {
-                                                            case .ongoing:
-                                                                Text("ONGOING")
-                                                            case .upcoming:
-                                                                Text("UPCOMING")
-                                                            case .latest:
-                                                                Text("LATEST")
-                                                            }
+                                                            Text(type.rawValue)
+//                                                            switch type {
+//                                                            case .ongoing:
+//                                                                Text("ONGOING")
+//                                                            case .upcoming:
+//                                                                Text("UPCOMING")
+//                                                            case .latest:
+//                                                                Text("LATEST")
+//                                                            }
                                                         }
-                                                        .frame(width: 111)
+                                                        .frame(maxWidth: 106, alignment: .center)
                                                         .disabled(viewStore.tapState.status ? true : false)
                                                     }
                                                     
@@ -233,14 +310,14 @@ struct MainView: View {
                                                 .background(
                                                     RoundedRectangle(cornerRadius: 25)
                                                         .foregroundStyle(Color("Orange", bundle: .main))
-                                                        .frame(width: 115, height: 50)
+                                                        .frame(width: 113, height: 50)
                                                         .overlay(content: {
                                                             RoundedRectangle(cornerRadius: 25)
                                                                 .foregroundStyle(Color("Orange", bundle: .main))
                                                                 .blur(radius: 10)
                                                                 .opacity(0.6)
                                                         })
-                                                        .offset(x:  -115 - (115 * viewStore.scrollProgress))
+                                                        .offset(x:  -113 - (115 * viewStore.scrollProgress))
                                                 )
                                                 .modifier(
                                                     AnimationEndCallBack(endValaue: viewStore.tapState.progress) {
@@ -262,8 +339,17 @@ struct MainView: View {
                     CaseLet(
                         /MainDomain.Path.State.detailInfo,
                          action: MainDomain.Path.Action.detailInfo,
-                         then: DetailInfoView.init(store:))
-                    
+                         then: DetailInfoView.init(store:)).navigationBarBackButtonHidden()
+                case .matchList:
+                    CaseLet(
+                        /MainDomain.Path.State.matchList,
+                         action: MainDomain.Path.Action.matchesList,
+                         then: MatchesListView.init(store:)).navigationBarBackButtonHidden()
+                case .ongoingMatchList:
+                    CaseLet(
+                        /MainDomain.Path.State.ongoingMatchList,
+                         action: MainDomain.Path.Action.ongoingMatchList,
+                         then: OngoingMatchListView.init(store:)).navigationBarBackButtonHidden()
                 }
             }
 
