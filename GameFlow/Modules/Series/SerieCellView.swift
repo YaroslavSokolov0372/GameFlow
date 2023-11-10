@@ -33,7 +33,7 @@ struct SerieCellView: View {
 //            ZStack {
                 RoundedRectangle(cornerRadius: 25)
 //                    .frame(width: geo.size.width * 0.92, height: geo.size.height * 0.35)
-                .frame(width: 350, height: 280)
+                .frame(width: 370, height: 280)
                     .foregroundStyle(Color("Gray", bundle: .main))
                     .overlay {
                         VStack {
@@ -41,7 +41,7 @@ struct SerieCellView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                             //                        .frame(width: geo.size.width * 0.84 , height: geo.size.height * 0.24)
-                                .frame(width: 310, height: 190)
+                                .frame(width: 340, height: 190)
                                 .clipShape(RoundedRectangle(cornerRadius: 25))
                             
                             Spacer()
@@ -55,7 +55,7 @@ struct SerieCellView: View {
                         .foregroundStyle(.white)
                         .font(.gilroy(.bold, size: 20))
                         .padding(.horizontal)
-                        .frame(width: 350, height: 55, alignment: .topLeading)
+                        .frame(width: 370, height: 55, alignment: .topLeading)
 //                        .frame(width: geo.size.width * 0.83, height: geo.size.height * 0.07, alignment: .topLeading)
                     HStack {
                         Text("$3M Prizepool")
@@ -81,10 +81,10 @@ struct SerieCellView: View {
                     }
                     .padding(.horizontal)
                     .padding(.bottom, 10)
-                    .frame(width: 350, height: 50)
+                    .frame(width: 370, height: 50)
                 }
                 
-                .frame(width: 350, height: 280, alignment: .bottom)
+                .frame(width: 370, height: 280, alignment: .bottom)
 
 //                .frame(width: geo.size.width * 0.85, height: geo.size.height * 0.42, alignment: .top)
 //            }

@@ -66,7 +66,7 @@ struct SearchField: View {
                     
             }
             .padding()
-            .frame(width: 350)
+            .frame(width: 370)
             .background(
                 RoundedRectangle(cornerRadius: 25)
                     .foregroundStyle(Color("Gray", bundle: .main))

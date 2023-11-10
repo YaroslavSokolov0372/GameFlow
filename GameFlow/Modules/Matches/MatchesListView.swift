@@ -11,12 +11,17 @@ import ComposableArchitecture
 struct MatchesListDomain: Reducer {
     
     struct State: Equatable {
-        
-        var currentTab: MatchType = .ongoing
-        
+        @BindingState var scrollProgress: CGFloat = .zero
+        @BindingState var currentTab: MatchType = .ongoing
+        @BindingState var tapState: AnimationState = .init()
     }
+    
     enum Action {
-        
+        case tabChanged(MatchType)
+        case scrollOffsetChanged(CGFloat)
+        case animationStateStarted
+        case animationStateReset
+
     }
     
     enum MatchType: String, CaseIterable {
@@ -36,7 +41,18 @@ struct MatchesListDomain: Reducer {
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
-            default: return .none
+            case .animationStateReset:
+                state.tapState.reset()
+                return .none
+            case .animationStateStarted:
+                state.tapState.startAnimation()
+                return .none
+            case .scrollOffsetChanged(let offset):
+                state.scrollProgress = offset
+                return .none
+            case .tabChanged(let tab):
+                state.currentTab = tab
+                return .none
             }
         }
     }
@@ -44,6 +60,7 @@ struct MatchesListDomain: Reducer {
 
 struct MatchesListView: View {
     
+    @Environment(\.dismiss) var dismiss
     var store: StoreOf<MatchesListDomain>
     
     var body: some View {
@@ -51,11 +68,15 @@ struct MatchesListView: View {
             GeometryReader { geo in
                 
                 ZStack {
+                    
+                    Color("Black", bundle: .main)
+                        .ignoresSafeArea()
+                    
                     //MARK: - Header
                     VStack {
                         HStack {
                             
-                            Text("TEAM DETAILS")
+                            Text("MATCH LIST")
                                 .multilineTextAlignment(.center)
                                 .foregroundStyle(.white)
                                 .font(.gilroy(.bold, size: 18))
@@ -64,7 +85,7 @@ struct MatchesListView: View {
                         .overlay {
                             HStack {
                                 Button {
-                                    
+                                    dismiss()
                                 } label: {
                                     Image("Arrow", bundle: .main)
                                         .resizable()
@@ -80,8 +101,8 @@ struct MatchesListView: View {
                         }
                         .padding(.vertical, 15)
                         
-                        TabView {
-                            ForEach(0..<2, id: \.self) { num in
+                        TabView(selection: viewStore.binding(get: \.currentTab, send: { .tabChanged($0) })) {
+                            ForEach(MatchesListDomain.MatchType.allCases, id: \.self) { type in
                                 ScrollView {
                                     VStack(spacing: 15) {
                                         Rectangle()
@@ -101,8 +122,21 @@ struct MatchesListView: View {
                                             .frame(width: 370, height: 55)
                                             .foregroundStyle(Color("Black", bundle: .main))
                                     }
+                                    .tag(type)
                                 }
                                 .scrollIndicators(.never)
+                                .offsetX(type == viewStore.currentTab) { size in
+                                    
+                                    let minX = size.minX
+                                    let pageOffset = minX - (geo.size.width * CGFloat(type.index))
+                                    let pageProgress = pageOffset / geo.size.width
+                                    
+
+                                    let limitation = max(min(pageProgress, 0), -CGFloat(MatchesListDomain.MatchType.allCases.count - 1))
+                                    if !viewStore.tapState.status {
+                                        viewStore.send(.scrollOffsetChanged(limitation))
+                                    }
+                                }
                             }
                         }
                         .tabViewStyle(.page(indexDisplayMode: .never))
@@ -113,36 +147,47 @@ struct MatchesListView: View {
                     VStack() {
                         
                         RoundedRectangle(cornerRadius: 30)
+                            .foregroundStyle(Color("Black", bundle: .main))
                             .frame(width: geo.size.width * 0.95, height: 60)
                             .overlay {
                                 HStack {
                                     ForEach(MatchesListDomain.MatchType.allCases, id: \.rawValue) { type in
-                                        
                                         Button {
-                                            
+                                            withAnimation(.easeInOut(duration: 0.3)) {
+                                                self.store.send(.tabChanged(type))
+                                                
+                                                self.store.send(.scrollOffsetChanged(-CGFloat(type.index)))
+                                                
+                                                self.store.send(.animationStateStarted)
+                                                
+                                            }
                                         } label: {
                                             Text(type.rawValue)
                                                 .foregroundStyle(.white)
-                                                .font(.gilroy(.bold, size: 18))
+                                                .font(.gilroy(.bold, size: 17))
                                                 .frame(width: geo.size.width / 2.2)
                                         }
+                                        .disabled(viewStore.tapState.status ? true : false)
                                     }
                                 }
                                 .background(
                                     RoundedRectangle(cornerRadius: 25)
                                         .foregroundStyle(Color("Orange", bundle: .main))
-                                        .frame(width: geo.size.width / 2.12, height: 51)
+                                        .frame(width: geo.size.width / 2.12, height: 50)
                                         .overlay(content: {
                                             RoundedRectangle(cornerRadius: 25)
                                                 .foregroundStyle(Color("Orange", bundle: .main))
                                                 .blur(radius: 10)
                                                 .opacity(0.6)
                                         })
-                                    
-                                        .offset(x: -90)
+                                        .offset(x: -90 - (180 * viewStore.scrollProgress))
+                                )
+                                .modifier(
+                                    AnimationEndCallBack(endValaue: viewStore.tapState.progress) {
+                                        viewStore.send(.animationStateReset)
+                                    }
                                 )
                             }
-                        //                                                    .offset(y: 45)
                     }
                     .frame(width: geo.size.width * 1, height: geo.size.height, alignment: .bottom)
                 }

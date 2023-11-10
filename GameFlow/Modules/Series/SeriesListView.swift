@@ -39,13 +39,31 @@ struct SeriesListView: View {
                     
                     ForEach(0..<4, id: \.self) { tournament in
                         VStack {
-                            SerieCellView(store: Store(initialState: SerieCellDomain.State(), reducer: {
-                                SerieCellDomain()
-                            }))
+//                            NavigationLink(state: MainDomain.Path.State.detailInfo(.init())) {
+                            NavigationLink {
+                                
+                                DetailInfoView(store: Store(initialState: DetailInfoDomain.State(), reducer: {
+                                    DetailInfoDomain()
+                                })).navigationBarBackButtonHidden()
+                            } label: {
+                                SerieCellView(store: Store(initialState: SerieCellDomain.State(), reducer: {
+                                    SerieCellDomain()
+                                }))
+                                
+                            }
+
+                            
+//                            }
                         }
                         .frame(height: 330)
                         
                     }
+                    
+                    
+                    //MARK: - Rectangle for TaBar not to ovelay on matches when scroll to bottom
+                    Rectangle()
+                        .frame(width: 370, height: 40)
+                        .foregroundStyle(Color("Black", bundle: .main))
                 }
             }
             .scrollIndicators(.never)

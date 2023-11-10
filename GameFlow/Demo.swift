@@ -268,71 +268,76 @@ struct ScreenAView: View {
 
   var body: some View {
     WithViewStore(self.store, observe: { $0 }) { viewStore in
-      Form {
-        Text(
+        
+            Form {
+                Text(
           """
           This screen demonstrates a basic feature hosted in a navigation stack.
-
+          
           You can also have the child feature dismiss itself, which will communicate back to the \
           root stack view to pop the feature off the stack.
           """
-        )
-
-        Section {
-          HStack {
-            Text("\(viewStore.count)")
-            Spacer()
-            Button {
-              viewStore.send(.decrementButtonTapped)
-            } label: {
-              Image(systemName: "minus")
+                )
+                
+                Section {
+                    HStack {
+                        Text("\(viewStore.count)")
+                        Spacer()
+                        Button {
+                            viewStore.send(.decrementButtonTapped)
+                        } label: {
+                            Image(systemName: "minus")
+                        }
+                        Button {
+                            viewStore.send(.incrementButtonTapped)
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                    }
+                    .buttonStyle(.borderless)
+                    
+                    Button {
+                        viewStore.send(.factButtonTapped)
+                    } label: {
+                        HStack {
+                            Text("Get fact")
+                            if viewStore.isLoading {
+                                Spacer()
+                                ProgressView()
+                            }
+                        }
+                    }
+                    
+                    if let fact = viewStore.fact {
+                        Text(fact)
+                    }
+                }
+                
+                Section {
+                    Button("Dismiss") {
+                        viewStore.send(.dismissButtonTapped)
+                    }
+                }
+                
+                Section {
+                    NavigationLink(
+                        "Go to screen A",
+                        state: NavigationDemo.Path.State.screenA(.init(count: viewStore.count))
+                    )
+                    NavigationLink(
+                        "Go to screen B",
+                        state: NavigationDemo.Path.State.screenB()
+                    )
+                    NavigationLink(
+                        "Go to screen C",
+                        state: NavigationDemo.Path.State.screenC(.init(count: viewStore.count))
+                    )
+                }
+                .background(
+                    Color.blue
+                )
             }
-            Button {
-              viewStore.send(.incrementButtonTapped)
-            } label: {
-              Image(systemName: "plus")
-            }
-          }
-          .buttonStyle(.borderless)
-
-          Button {
-            viewStore.send(.factButtonTapped)
-          } label: {
-            HStack {
-              Text("Get fact")
-              if viewStore.isLoading {
-                Spacer()
-                ProgressView()
-              }
-            }
-          }
-
-          if let fact = viewStore.fact {
-            Text(fact)
-          }
-        }
-
-        Section {
-          Button("Dismiss") {
-            viewStore.send(.dismissButtonTapped)
-          }
-        }
-
-        Section {
-          NavigationLink(
-            "Go to screen A",
-            state: NavigationDemo.Path.State.screenA(.init(count: viewStore.count))
-          )
-          NavigationLink(
-            "Go to screen B",
-            state: NavigationDemo.Path.State.screenB()
-          )
-          NavigationLink(
-            "Go to screen C",
-            state: NavigationDemo.Path.State.screenC(.init(count: viewStore.count))
-          )
-        }
-      }
+        
     }
     .navigationTitle("Screen A")
   }

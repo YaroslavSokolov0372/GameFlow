@@ -34,75 +34,82 @@ struct MatchCellView: View {
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             
-            ZStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .foregroundStyle(Color("Gray", bundle: .main))
-                    .frame(width: 370, height: 230)
-                    
-                VStack(spacing: 0) {
-                    HStack {
+            NavigationLink {
+                MatchDetailView(store: Store(initialState: MatchDetailDomain.State(), reducer: {
+                    MatchDetailDomain()
+                })).navigationBarBackButtonHidden()
+                
+            } label: {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundStyle(Color("Gray", bundle: .main))
+                        .frame(width: 370, height: 230)
                         
-                        VStack(spacing: 0) {
-                            AsyncImage(url: URL(string: "https://cdn.pandascore.co/images/team/image/129032/181px_e_dward_gaming_mobile_logo.png")) { image in
-                                image
-                                    .resizable()
-                                    .frame(width: 80, height: 80)
-                            } placeholder: {
-                                Circle()
-                                    .frame(width: 80, height: 80)
-                                    .foregroundStyle(Color("Black", bundle: .main))
-                            }
-                            .frame(width: 120, height: 100)
+                    VStack(spacing: 0) {
+                        HStack {
                             
-                            Text("Team Spirit")
-                                .textCase(.uppercase)
-                                .foregroundStyle(.white)
-                                .font(.gilroy(.bold, size: 17))
-                        }
-                        
-                        
-                        Text("VS")
-                            .foregroundStyle(.gray)
-                            .font(.gilroy(.bold, size: 17))
-                        
-                        VStack(spacing: 0) {
-                            AsyncImage(url: URL(string: "https://cdn.pandascore.co/images/team/image/129032/181px_e_dward_gaming_mobile_logo.png")) { image in
-                                image
-                                    .resizable()
-                                    .frame(width: 80, height: 80)
-                            } placeholder: {
-                                Circle()
-                                    .frame(width: 80, height: 80)
-                                    .foregroundStyle(Color("Black", bundle: .main))
+                            VStack(spacing: 0) {
+                                AsyncImage(url: URL(string: "https://cdn.pandascore.co/images/team/image/129032/181px_e_dward_gaming_mobile_logo.png")) { image in
+                                    image
+                                        .resizable()
+                                        .frame(width: 80, height: 80)
+                                } placeholder: {
+                                    Circle()
+                                        .frame(width: 80, height: 80)
+                                        .foregroundStyle(Color("Black", bundle: .main))
+                                }
+                                .frame(width: 120, height: 100)
+                                
+                                Text("Team Spirit")
+                                    .textCase(.uppercase)
+                                    .foregroundStyle(.white)
+                                    .font(.gilroy(.bold, size: 17))
                             }
-                            .frame(width: 130, height: 100)
                             
-                            Text("Team Aster")
-                                .textCase(.uppercase)
-                                .foregroundStyle(.white)
+                            
+                            Text("VS")
+                                .foregroundStyle(.gray)
                                 .font(.gilroy(.bold, size: 17))
+                            
+                            VStack(spacing: 0) {
+                                AsyncImage(url: URL(string: "https://cdn.pandascore.co/images/team/image/129032/181px_e_dward_gaming_mobile_logo.png")) { image in
+                                    image
+                                        .resizable()
+                                        .frame(width: 80, height: 80)
+                                } placeholder: {
+                                    Circle()
+                                        .frame(width: 80, height: 80)
+                                        .foregroundStyle(Color("Black", bundle: .main))
+                                }
+                                .frame(width: 130, height: 100)
+                                
+                                Text("Team Aster")
+                                    .textCase(.uppercase)
+                                    .foregroundStyle(.white)
+                                    .font(.gilroy(.bold, size: 17))
+                            }
                         }
-                    }
-                    .padding(.bottom, 24)
-                    
-                    Rectangle()
-                        .frame(width: 350, height: 1)
-                        .foregroundStyle(.gray)
-                    
-                    HStack() {
-                        Text("Oct 19. 21:00")
-                            .font(.gilroy(.medium, size: 16))
-                            .foregroundStyle(.gray)
-                      
-                        Spacer()
+                        .padding(.bottom, 24)
                         
-                        Text("Live")
+                        Rectangle()
+                            .frame(width: 350, height: 1)
+                            .foregroundStyle(.gray)
+                        
+                        HStack() {
+                            Text("Oct 19. 21:00")
+                                .font(.gilroy(.medium, size: 16))
+                                .foregroundStyle(.gray)
+                          
+                            Spacer()
+                            
+                            Text("Live")
+                        }
+                        .padding()
+                        .frame(height: 60)
+    //                    .padding(10)
                     }
-                    .padding()
-                    .frame(height: 60)
-//                    .padding(10)
+                    .frame(width: 360, height: 230, alignment: .bottom)
                 }
-                .frame(width: 360, height: 230, alignment: .bottom)
             }
         }
     }

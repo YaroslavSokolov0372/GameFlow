@@ -7,9 +7,24 @@
 
 import SwiftUI
 import ComposableArchitecture
+import Firebase
 
 @main
 struct GameFlowApp: App {
+    
+    
+    init() {
+//        
+//        let providerFactory = AppCheckDebugProviderFactory()
+//        AppCheck.setAppCheckProviderFactory(providerFactory)
+        
+        
+        FirebaseApp.configure()
+        
+        
+        
+    }
+    
     var body: some Scene {
         WindowGroup {
 //            GameList(store: Store(initialState: GameListDomain.State(),
