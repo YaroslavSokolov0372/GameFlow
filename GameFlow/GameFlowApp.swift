@@ -21,21 +21,17 @@ struct GameFlowApp: App {
         
         FirebaseApp.configure()
         
-        
-        
     }
     
     var body: some Scene {
         WindowGroup {
-//            GameList(store: Store(initialState: GameListDomain.State(),
-//                                  reducer: {
-//                                    GameListDomain()}))
-            MainView(store: Store(initialState: MainDomain.State(), reducer: {
-                MainDomain()
-            }))
-//            SeriesListView(store: Store(initialState: SeriesListDomain.State(), reducer: {
-//                SeriesListDomain()
+//            MainView(store: Store(initialState: MainDomain.State(), reducer: {
+//                MainDomain()
 //            }))
+            
+            TestWrite(store: Store(initialState: TestWriteDomain.State(), reducer: {
+                TestWriteDomain()
+            }))
         }
     }
 }

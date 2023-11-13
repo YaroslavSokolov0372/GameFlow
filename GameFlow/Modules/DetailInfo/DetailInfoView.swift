@@ -66,7 +66,6 @@ struct DetailInfoView: View {
     
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            
                 GeometryReader { geo in
                     ZStack {
                         Color("Black", bundle: .main)
@@ -88,8 +87,8 @@ struct DetailInfoView: View {
                                     Button {
                                         
                                         dismiss()
-//                                            self.store.send(.closeButtonTapped)
-//                                            viewStore.send(.closeButtonTapped)
+                                        //                                            self.store.send(.closeButtonTapped)
+                                        //                                            viewStore.send(.closeButtonTapped)
                                     } label: {
                                         Image("Arrow", bundle: .main)
                                             .resizable()
@@ -125,7 +124,7 @@ struct DetailInfoView: View {
                                                     Spacer()
                                                     
                                                     
-                                                        
+                                                    
                                                     NavigationLink {
                                                         MatchesListView(store: Store(initialState: MatchesListDomain.State(), reducer: {
                                                             MatchesListDomain()
@@ -141,30 +140,30 @@ struct DetailInfoView: View {
                                                             .padding(.trailing, 20)
                                                         
                                                     }
-
                                                     
                                                     
-//                                                    Button {
-//
-//                                                        self.store.send(.matchListTapped)
-//                                                    } label: {
-//                                                        Image("Arrow", bundle: .main)
-//                                                            .resizable()
-//                                                            .renderingMode(.template)
-//                                                            .frame(width: 30, height: 25)
-//                                                            .foregroundStyle(.white)
-//                                                            .padding(.trailing, 20)
-//                                                    }
+                                                    
+                                                    //                                                    Button {
+                                                    //
+                                                    //                                                        self.store.send(.matchListTapped)
+                                                    //                                                    } label: {
+                                                    //                                                        Image("Arrow", bundle: .main)
+                                                    //                                                            .resizable()
+                                                    //                                                            .renderingMode(.template)
+                                                    //                                                            .frame(width: 30, height: 25)
+                                                    //                                                            .foregroundStyle(.white)
+                                                    //                                                            .padding(.trailing, 20)
+                                                    //                                                    }
                                                 }
                                                 .frame(height: 35)
                                                 
                                                 
-                                                    OngoingMatchListView(store: Store(initialState: OngoingMatchListDomain.State(), reducer: {
-                                                        OngoingMatchListDomain()
-                                                    }))
-//                                                    .onTapGesture(perform: {
-//                                                        self.store.send(.ongoingMatchTapped)
-//                                                    })
+                                                OngoingMatchListView(store: Store(initialState: OngoingMatchListDomain.State(), reducer: {
+                                                    OngoingMatchListDomain()
+                                                }))
+                                                //                                                    .onTapGesture(perform: {
+                                                //                                                        self.store.send(.ongoingMatchTapped)
+                                                //                                                    })
                                             }
                                             
                                             VStack {
@@ -199,9 +198,9 @@ struct DetailInfoView: View {
                                                 PartisipantsListView(store: Store(initialState: PartisipantsListDomain.State(), reducer: {
                                                     PartisipantsListDomain()
                                                 }))
-//                                                .onTapGesture(perform: {
-//                                                    self.store.send(.teamDetailTapped)
-//                                                })
+                                                //                                                .onTapGesture(perform: {
+                                                //                                                    self.store.send(.teamDetailTapped)
+                                                //                                                })
                                                 .padding(.bottom, 7)
                                             }
                                         }
@@ -229,9 +228,9 @@ struct DetailInfoView: View {
                                     ForEach(0..<4, id: \.self) { num in
                                         VStack {
                                             Button {
-//                                                withAnimation(.easeInOut(duration: 0.3)) {
-                                                    viewStore.send(.tabSelected(num))
-//                                                }
+                                                //                                                withAnimation(.easeInOut(duration: 0.3)) {
+                                                viewStore.send(.tabSelected(num))
+                                                //                                                }
                                             } label: {
                                                 Text("Group \(num)")
                                                     .foregroundStyle(.white)
@@ -263,12 +262,6 @@ struct DetailInfoView: View {
                         }
                     }
                 }
-                
-                
-                
-            
-            
-            
         }
     }
 }

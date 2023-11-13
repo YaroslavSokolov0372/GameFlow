@@ -9,15 +9,15 @@ import Foundation
 
 
 
-struct OponentsOfMatch: Decodable {
+struct OponentsOfMatch: Codable {
     let opponents: [OpponentClass]
 }
 
-struct OpponentClass: Decodable {
+struct OpponentClass: Codable {
     let opponent: Opponent
 }
 
-struct Opponent: Decodable {
+struct Opponent: Codable {
     let acronym: String?
     let id: Int
     let image_url: String?
@@ -35,19 +35,19 @@ extension OpponentClass: Hashable {
     
 }
 
-extension Opponent {
-    func getTournamentNameFrom(tournaments: [Tournament]) -> String {
-        var name: String = ""
-        for tournament in tournaments {
-            for match in tournament.matches {
-                if self.id == match.id {
-                    name = tournament.name
-                }
-            }
-        }
-        return name
-    }
-}
+//extension Opponent {
+//    func getTournamentNameFrom(tournaments: [Tournament]) -> String {
+//        var name: String = ""
+//        for tournament in tournaments {
+//            for match in tournament.matches {
+//                if self.id == match.id {
+//                    name = tournament.name
+//                }
+//            }
+//        }
+//        return name
+//    }
+//}
 
 
 extension Opponent: Equatable {

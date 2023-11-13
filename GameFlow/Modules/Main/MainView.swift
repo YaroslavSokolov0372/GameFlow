@@ -178,7 +178,8 @@ struct MainView: View {
     
 //    @Environment(\.dismiss) var dismiss
     var store: StoreOf<MainDomain>
-    var fireStoreManager = FireStoreManager()
+//    var fireStoreManager = FirestoreManager()
+    let pandascoreManager = PandascoreManager()
 //    let date = Date().ISO8601Format()
 //    let date = Date().ISO8601Format(.iso8601(timeZone: .autoupdatingCurrent))
 //    let date = Date.ISOStringFromDate(date: Date()).ISOfotmattedString()
@@ -336,18 +337,13 @@ struct MainView: View {
                             }
                         }
                         .task({
-                            await self.fireStoreManager.getLastDateStamp()                            
+//                            await self.fireStoreManager.shouldPandascoreReq()
+                            do {
+//                                try await self.pandascoreManager.getSeries()
+                            } catch {
+                                
+                            }
                         })
-                        .onAppear {
-//                            self.fireStoreManager.checkDateStamp()
-//                            print(date)
-//                            let diffs = Calendar.current.dateComponents([.hour, .minute], from: "2023-11-09T18:07:47Z".ISOfotmattedString(), to: self.date)
-                            
-//                            print(diffs)
-//                            print(newDate)
-//                            let diffs = Calendar.current.dateComponents([.day], from: date1, to: date2)
-
-                        }
                     }
                 }
             } destination: { state in

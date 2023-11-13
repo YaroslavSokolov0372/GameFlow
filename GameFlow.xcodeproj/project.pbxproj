@@ -35,7 +35,10 @@
 		D1971DA12AFD2E9C00D0D12C /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D1971DA02AFD2E9C00D0D12C /* FirebaseRemoteConfigSwift */; };
 		D1971DA32AFD2E9C00D0D12C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D1971DA22AFD2E9C00D0D12C /* FirebaseStorage */; };
 		D1971DA52AFD2E9C00D0D12C /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = D1971DA42AFD2E9C00D0D12C /* FirebaseStorageCombine-Community */; };
-		D1971DA72AFD385300D0D12C /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1971DA62AFD385300D0D12C /* FirebaseManager.swift */; };
+		D1971DA92AFE902500D0D12C /* TestWrite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1971DA82AFE902500D0D12C /* TestWrite.swift */; };
+		D1971DAB2AFEAC5900D0D12C /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1971DAA2AFEAC5900D0D12C /* FirestoreManager.swift */; };
+		D1971DAD2AFFAEE400D0D12C /* PandascoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1971DAC2AFFAEE400D0D12C /* PandascoreManager.swift */; };
+		D1971DAF2AFFD4C900D0D12C /* ChampionShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1971DAE2AFFD4C900D0D12C /* ChampionShip.swift */; };
 		D1CFC7DA2AF7F76E00CEF15B /* MatchCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFC7D92AF7F76E00CEF15B /* MatchCellView.swift */; };
 		D1CFC7DC2AF7F79300CEF15B /* OngoingMatchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFC7DB2AF7F79300CEF15B /* OngoingMatchListView.swift */; };
 		D1CFC7DE2AF7FE2900CEF15B /* DetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFC7DD2AF7FE2900CEF15B /* DetailInfoView.swift */; };
@@ -45,7 +48,6 @@
 		D1CFC7EC2AF9306100CEF15B /* PlayerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFC7EB2AF9306100CEF15B /* PlayerCellView.swift */; };
 		D1CFC7F02AF936EC00CEF15B /* MatchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFC7EF2AF936EC00CEF15B /* MatchDetailView.swift */; };
 		D1CFC7F22AF9577300CEF15B /* MatchesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFC7F12AF9577300CEF15B /* MatchesListView.swift */; };
-		D1CFC7F42AFBE20900CEF15B /* Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFC7F32AFBE20900CEF15B /* Demo.swift */; };
 		D1D93D1B2AD47C9F003F1CC7 /* GameFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D1A2AD47C9F003F1CC7 /* GameFlowApp.swift */; };
 		D1D93D1F2AD47CA0003F1CC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1D93D1E2AD47CA0003F1CC7 /* Assets.xcassets */; };
 		D1D93D222AD47CA0003F1CC7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1D93D212AD47CA0003F1CC7 /* Preview Assets.xcassets */; };
@@ -53,15 +55,14 @@
 		D1D93D3A2AD49C1E003F1CC7 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D392AD49C1E003F1CC7 /* APIClient.swift */; };
 		D1D93D3D2AD55136003F1CC7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D1D93D3C2AD55136003F1CC7 /* Alamofire */; };
 		D1D93D3F2AD551C0003F1CC7 /* API_Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D3E2AD551C0003F1CC7 /* API_Key.swift */; };
-		D1D93D482AD6A7E6003F1CC7 /* Tournament.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D472AD6A7E6003F1CC7 /* Tournament.swift */; };
-		D1D93D4A2AD6B1C7003F1CC7 /* Serie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D492AD6B1C7003F1CC7 /* Serie.swift */; };
-		D1D93D4C2AD6B2DC003F1CC7 /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D4B2AD6B2DC003F1CC7 /* League.swift */; };
+		D1D93D4A2AD6B1C7003F1CC7 /* PandascoreSerie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D492AD6B1C7003F1CC7 /* PandascoreSerie.swift */; };
+		D1D93D4C2AD6B2DC003F1CC7 /* PandascoreLeague.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D4B2AD6B2DC003F1CC7 /* PandascoreLeague.swift */; };
 		D1D93D612AD95675003F1CC7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D602AD95675003F1CC7 /* MainView.swift */; };
 		D1D93D682ADAAA7B003F1CC7 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D672ADAAA7B003F1CC7 /* Images.swift */; };
 		D1D93D6A2ADACE9A003F1CC7 /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D692ADACE9A003F1CC7 /* ExtensionString.swift */; };
 		D1D93D782AE4157B003F1CC7 /* ExtensionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D772AE4157B003F1CC7 /* ExtensionDate.swift */; };
-		D1D93D7A2AE41FE6003F1CC7 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D792AE41FE6003F1CC7 /* Match.swift */; };
-		D1D93D7C2AE42058003F1CC7 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D7B2AE42058003F1CC7 /* Team.swift */; };
+		D1D93D7A2AE41FE6003F1CC7 /* PandascoreMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D792AE41FE6003F1CC7 /* PandascoreMatch.swift */; };
+		D1D93D7C2AE42058003F1CC7 /* PandascoreTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D7B2AE42058003F1CC7 /* PandascoreTeam.swift */; };
 		D1D93D832AE421D2003F1CC7 /* Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D822AE421D2003F1CC7 /* Opponent.swift */; };
 		D1D93DAB2AF1777A003F1CC7 /* SerieCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DAA2AF1777A003F1CC7 /* SerieCellView.swift */; };
 		D1D93DB32AF17DE8003F1CC7 /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1D93DAD2AF17DE8003F1CC7 /* Gilroy-Medium.ttf */; };
@@ -76,11 +77,18 @@
 		D1D93DC12AF2C0AF003F1CC7 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DC02AF2C0AF003F1CC7 /* TabBarView.swift */; };
 		D1D93DC32AF2C473003F1CC7 /* OffsetReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DC22AF2C473003F1CC7 /* OffsetReader.swift */; };
 		D1D93DC52AF43A03003F1CC7 /* AnimationEndCallBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DC42AF43A03003F1CC7 /* AnimationEndCallBack.swift */; };
+		D1F1E1312B012B740022C410 /* PandascoreTournament.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1E1302B012B740022C410 /* PandascoreTournament.swift */; };
+		D1F1E1332B012C5D0022C410 /* EnumErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1E1322B012C5D0022C410 /* EnumErrors.swift */; };
+		D1F1E1352B014E830022C410 /* PandascoreBrackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1E1342B014E830022C410 /* PandascoreBrackets.swift */; };
+		D1F1E1372B014E8C0022C410 /* PandascoreStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1E1362B014E8C0022C410 /* PandascoreStandings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D1971D6D2AFD2BDD00D0D12C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D1971DA62AFD385300D0D12C /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		D1971DA82AFE902500D0D12C /* TestWrite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWrite.swift; sourceTree = "<group>"; };
+		D1971DAA2AFEAC5900D0D12C /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		D1971DAC2AFFAEE400D0D12C /* PandascoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreManager.swift; sourceTree = "<group>"; };
+		D1971DAE2AFFD4C900D0D12C /* ChampionShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionShip.swift; sourceTree = "<group>"; };
 		D1CFC7D92AF7F76E00CEF15B /* MatchCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCellView.swift; sourceTree = "<group>"; };
 		D1CFC7DB2AF7F79300CEF15B /* OngoingMatchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingMatchListView.swift; sourceTree = "<group>"; };
 		D1CFC7DD2AF7FE2900CEF15B /* DetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoView.swift; sourceTree = "<group>"; };
@@ -90,22 +98,20 @@
 		D1CFC7EB2AF9306100CEF15B /* PlayerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCellView.swift; sourceTree = "<group>"; };
 		D1CFC7EF2AF936EC00CEF15B /* MatchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailView.swift; sourceTree = "<group>"; };
 		D1CFC7F12AF9577300CEF15B /* MatchesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesListView.swift; sourceTree = "<group>"; };
-		D1CFC7F32AFBE20900CEF15B /* Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demo.swift; sourceTree = "<group>"; };
 		D1D93D172AD47C9F003F1CC7 /* GameFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1D93D1A2AD47C9F003F1CC7 /* GameFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFlowApp.swift; sourceTree = "<group>"; };
 		D1D93D1E2AD47CA0003F1CC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1D93D212AD47CA0003F1CC7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D1D93D392AD49C1E003F1CC7 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		D1D93D3E2AD551C0003F1CC7 /* API_Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_Key.swift; sourceTree = "<group>"; };
-		D1D93D472AD6A7E6003F1CC7 /* Tournament.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tournament.swift; sourceTree = "<group>"; };
-		D1D93D492AD6B1C7003F1CC7 /* Serie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serie.swift; sourceTree = "<group>"; };
-		D1D93D4B2AD6B2DC003F1CC7 /* League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
+		D1D93D492AD6B1C7003F1CC7 /* PandascoreSerie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreSerie.swift; sourceTree = "<group>"; };
+		D1D93D4B2AD6B2DC003F1CC7 /* PandascoreLeague.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreLeague.swift; sourceTree = "<group>"; };
 		D1D93D602AD95675003F1CC7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D1D93D672ADAAA7B003F1CC7 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		D1D93D692ADACE9A003F1CC7 /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
 		D1D93D772AE4157B003F1CC7 /* ExtensionDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDate.swift; sourceTree = "<group>"; };
-		D1D93D792AE41FE6003F1CC7 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
-		D1D93D7B2AE42058003F1CC7 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		D1D93D792AE41FE6003F1CC7 /* PandascoreMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreMatch.swift; sourceTree = "<group>"; };
+		D1D93D7B2AE42058003F1CC7 /* PandascoreTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreTeam.swift; sourceTree = "<group>"; };
 		D1D93D822AE421D2003F1CC7 /* Opponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opponent.swift; sourceTree = "<group>"; };
 		D1D93DAA2AF1777A003F1CC7 /* SerieCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieCellView.swift; sourceTree = "<group>"; };
 		D1D93DAD2AF17DE8003F1CC7 /* Gilroy-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Medium.ttf"; sourceTree = "<group>"; };
@@ -121,6 +127,10 @@
 		D1D93DC02AF2C0AF003F1CC7 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		D1D93DC22AF2C473003F1CC7 /* OffsetReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetReader.swift; sourceTree = "<group>"; };
 		D1D93DC42AF43A03003F1CC7 /* AnimationEndCallBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationEndCallBack.swift; sourceTree = "<group>"; };
+		D1F1E1302B012B740022C410 /* PandascoreTournament.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreTournament.swift; sourceTree = "<group>"; };
+		D1F1E1322B012C5D0022C410 /* EnumErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumErrors.swift; sourceTree = "<group>"; };
+		D1F1E1342B014E830022C410 /* PandascoreBrackets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreBrackets.swift; sourceTree = "<group>"; };
+		D1F1E1362B014E8C0022C410 /* PandascoreStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreStandings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,7 +250,7 @@
 				D1D93D402AD5636D003F1CC7 /* Modules */,
 				D1D93D302AD48CB3003F1CC7 /* Model */,
 				D1D93D1A2AD47C9F003F1CC7 /* GameFlowApp.swift */,
-				D1CFC7F32AFBE20900CEF15B /* Demo.swift */,
+				D1971DA82AFE902500D0D12C /* TestWrite.swift */,
 				D1D93D1E2AD47CA0003F1CC7 /* Assets.xcassets */,
 				D1D93D202AD47CA0003F1CC7 /* Preview Content */,
 			);
@@ -258,13 +268,16 @@
 		D1D93D302AD48CB3003F1CC7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D1D93D472AD6A7E6003F1CC7 /* Tournament.swift */,
-				D1D93D492AD6B1C7003F1CC7 /* Serie.swift */,
-				D1D93D4B2AD6B2DC003F1CC7 /* League.swift */,
-				D1D93D792AE41FE6003F1CC7 /* Match.swift */,
-				D1D93D7B2AE42058003F1CC7 /* Team.swift */,
+				D1F1E1302B012B740022C410 /* PandascoreTournament.swift */,
+				D1D93D492AD6B1C7003F1CC7 /* PandascoreSerie.swift */,
+				D1D93D4B2AD6B2DC003F1CC7 /* PandascoreLeague.swift */,
+				D1D93D792AE41FE6003F1CC7 /* PandascoreMatch.swift */,
+				D1D93D7B2AE42058003F1CC7 /* PandascoreTeam.swift */,
 				D1D93D672ADAAA7B003F1CC7 /* Images.swift */,
 				D1D93D822AE421D2003F1CC7 /* Opponent.swift */,
+				D1971DAE2AFFD4C900D0D12C /* ChampionShip.swift */,
+				D1F1E1342B014E830022C410 /* PandascoreBrackets.swift */,
+				D1F1E1362B014E8C0022C410 /* PandascoreStandings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -274,7 +287,9 @@
 			children = (
 				D1D93D392AD49C1E003F1CC7 /* APIClient.swift */,
 				D1D93D3E2AD551C0003F1CC7 /* API_Key.swift */,
-				D1971DA62AFD385300D0D12C /* FirebaseManager.swift */,
+				D1971DAA2AFEAC5900D0D12C /* FirestoreManager.swift */,
+				D1971DAC2AFFAEE400D0D12C /* PandascoreManager.swift */,
+				D1F1E1322B012C5D0022C410 /* EnumErrors.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -463,34 +478,39 @@
 				D1D93D682ADAAA7B003F1CC7 /* Images.swift in Sources */,
 				D1D93D3F2AD551C0003F1CC7 /* API_Key.swift in Sources */,
 				D1D93D3A2AD49C1E003F1CC7 /* APIClient.swift in Sources */,
-				D1D93D482AD6A7E6003F1CC7 /* Tournament.swift in Sources */,
 				D1CFC7E52AF8E63F00CEF15B /* StandingsView.swift in Sources */,
 				D1CFC7F22AF9577300CEF15B /* MatchesListView.swift in Sources */,
 				D1D93D6A2ADACE9A003F1CC7 /* ExtensionString.swift in Sources */,
 				D1CFC7F02AF936EC00CEF15B /* MatchDetailView.swift in Sources */,
 				D1D93DBF2AF1A1AE003F1CC7 /* SearchField.swift in Sources */,
-				D1971DA72AFD385300D0D12C /* FirebaseManager.swift in Sources */,
-				D1CFC7F42AFBE20900CEF15B /* Demo.swift in Sources */,
 				D1D93DBD2AF1898F003F1CC7 /* SeriesListView.swift in Sources */,
 				D1CFC7EC2AF9306100CEF15B /* PlayerCellView.swift in Sources */,
 				D1CFC7DC2AF7F79300CEF15B /* OngoingMatchListView.swift in Sources */,
 				D1D93DC52AF43A03003F1CC7 /* AnimationEndCallBack.swift in Sources */,
-				D1D93D4A2AD6B1C7003F1CC7 /* Serie.swift in Sources */,
+				D1971DAF2AFFD4C900D0D12C /* ChampionShip.swift in Sources */,
+				D1F1E1332B012C5D0022C410 /* EnumErrors.swift in Sources */,
+				D1F1E1312B012B740022C410 /* PandascoreTournament.swift in Sources */,
+				D1971DAD2AFFAEE400D0D12C /* PandascoreManager.swift in Sources */,
+				D1D93D4A2AD6B1C7003F1CC7 /* PandascoreSerie.swift in Sources */,
 				D1D93DAB2AF1777A003F1CC7 /* SerieCellView.swift in Sources */,
 				D1D93D612AD95675003F1CC7 /* MainView.swift in Sources */,
+				D1F1E1372B014E8C0022C410 /* PandascoreStandings.swift in Sources */,
 				D1D93DC32AF2C473003F1CC7 /* OffsetReader.swift in Sources */,
 				D1D93D782AE4157B003F1CC7 /* ExtensionDate.swift in Sources */,
 				D1D93D832AE421D2003F1CC7 /* Opponent.swift in Sources */,
-				D1D93D7A2AE41FE6003F1CC7 /* Match.swift in Sources */,
-				D1D93D7C2AE42058003F1CC7 /* Team.swift in Sources */,
+				D1D93D7A2AE41FE6003F1CC7 /* PandascoreMatch.swift in Sources */,
+				D1D93D7C2AE42058003F1CC7 /* PandascoreTeam.swift in Sources */,
 				D1D93DC12AF2C0AF003F1CC7 /* TabBarView.swift in Sources */,
 				D1CFC7E92AF9254800CEF15B /* TeamDetailView.swift in Sources */,
 				D1CFC7E12AF8473200CEF15B /* PartisipantsListView.swift in Sources */,
-				D1D93D4C2AD6B2DC003F1CC7 /* League.swift in Sources */,
+				D1D93D4C2AD6B2DC003F1CC7 /* PandascoreLeague.swift in Sources */,
 				D1D93DBB2AF1837B003F1CC7 /* Fonts.swift in Sources */,
+				D1971DA92AFE902500D0D12C /* TestWrite.swift in Sources */,
 				D1CFC7DE2AF7FE2900CEF15B /* DetailInfoView.swift in Sources */,
 				D1CFC7DA2AF7F76E00CEF15B /* MatchCellView.swift in Sources */,
 				D1D93D1B2AD47C9F003F1CC7 /* GameFlowApp.swift in Sources */,
+				D1F1E1352B014E830022C410 /* PandascoreBrackets.swift in Sources */,
+				D1971DAB2AFEAC5900D0D12C /* FirestoreManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

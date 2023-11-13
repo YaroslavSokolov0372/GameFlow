@@ -9,7 +9,7 @@ import Foundation
 
 
 
-struct League: Decodable {
+struct PandascoreLeague: Codable {
     
     let id: Int
     let image_url: String?
@@ -23,8 +23,8 @@ struct League: Decodable {
     
 }
 
-extension League: Equatable {
-    static func == (lhs: League, rhs: League) -> Bool {
+extension PandascoreLeague: Equatable {
+    static func == (lhs: PandascoreLeague, rhs: PandascoreLeague) -> Bool {
         lhs.id == rhs.id
     }
 }

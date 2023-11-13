@@ -32,3 +32,27 @@ extension Date {
 //        return dateFormatter.date(from: string)
 //    }
 }
+
+
+extension Calendar {
+    func dateBySetting(timeZone: TimeZone, of date: Date) -> Date? {
+        var components = dateComponents(in: self.timeZone, from: date)
+        components.timeZone = timeZone
+        return self.date(from: components)
+    }
+}
+
+extension ISO8601DateFormatter {
+    convenience init(_ formatOptions: Options) {
+        self.init()
+        self.formatOptions = formatOptions
+    }
+}
+
+extension Formatter {
+    static let iso8601 = ISO8601DateFormatter([.withInternetDateTime])
+}
+
+extension Date {
+    var iso8601: String { return Formatter.iso8601.string(from: self) }
+}

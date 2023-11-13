@@ -13,6 +13,8 @@ import Alamofire
 fileprivate let baseURL = "https://api.pandascore.co"
 
 
+
+
 //MARK: - Basic fetch for pandascore
 /// fetch upcomingSeries
 /// fetch runningSeries
@@ -25,18 +27,17 @@ fileprivate let baseURL = "https://api.pandascore.co"
 //So, firstly I make request to firebase to check last dateStamp to know when last time was fetching pandascor
 // if last time was more than 1 hour, then go fetch daata from pandascore and rewrite to firebase, if less, then fetch from firebase
 
-
 //Exception:
 // if there is a match which will start in 15 minutes or less, then fetch from pandascore to check if it was reschedule or not
-//
 
 struct APIClient {
     
+//    var fireBaseManager = FirestoreManager()
     
-    var fetchOngoingSeries: @Sendable () async throws -> [Serie]
-    var fetchUpcomingSeries: @Sendable () async throws -> [Serie]
-    var fetchSeriesTournaments: @Sendable (Serie) async throws -> [Tournament]
-    var fetchTeamsForUpcomingGame: @Sendable (Match) async throws -> [OpponentClass]
+    var fetchOngoingSeries: @Sendable () async throws -> [PandascoreSerie]
+    var fetchUpcomingSeries: @Sendable () async throws -> [PandascoreSerie]
+//    var fetchSeriesTournaments: @Sendable (Serie) async throws -> [Tournament]
+    var fetchTeamsForUpcomingGame: @Sendable (PandascoreMatch) async throws -> [OpponentClass]
 }
 
 extension DependencyValues {
@@ -57,7 +58,7 @@ extension APIClient: DependencyKey {
         //MARK: - Fetch Games
         return try await withCheckedThrowingContinuation { continuation in
             AF.request("\(baseURL)/dota2/series/running", method: .get, headers: ["accept": "application/json", "Authorization": "Bearer \(Secrets.apiKey)"])
-                .responseDecodable(of: [Serie].self) { response in
+                .responseDecodable(of: [PandascoreSerie].self) { response in
                     switch response.result {
                     case .success(let series):
 //                        print(series.count)
@@ -72,7 +73,7 @@ extension APIClient: DependencyKey {
 //        let baseURL = "https://api.pandascore.co"
         return try await withCheckedThrowingContinuation { continuation in
             AF.request("\(baseURL)/dota2/series/upcoming", method: .get, headers: ["accept": "application/json", "Authorization": "Bearer \(Secrets.apiKey)"])
-                .responseDecodable(of: [Serie].self) { response in
+                .responseDecodable(of: [PandascoreSerie].self) { response in
                     switch response.result {
                     case .success(let series):
                         continuation.resume(returning: series)
@@ -82,40 +83,42 @@ extension APIClient: DependencyKey {
                     }
                 }
         }
-    } fetchSeriesTournaments: { serie in
-        let baseURL = "https://api.pandascore.co"
-        
-        
-        
-        var tournaments: [Tournament] = []
-        try await withThrowingTaskGroup(of: Tournament.self) { taskGroup in
-            for tournament in serie.tournaments {
-                taskGroup.addTask {
-                     try await fetchSeriesTournament(tournamentId: tournament.id)
-                }
-            }
-            
-            for try await result in taskGroup {
-                tournaments.append(result)
-            }
-        }
-        return tournaments
-            
-        @Sendable func fetchSeriesTournament(tournamentId: Int) async throws -> Tournament {
-            return try await withCheckedThrowingContinuation { continuation in
-                AF.request("\(baseURL)/tournaments/\(String(tournamentId))", method: .get, headers: ["accept": "application/json", "Authorization": "Bearer \(Secrets.apiKey)"])
-                    .responseDecodable(of: Tournament.self) { response in
-                        switch response.result {
-                        case .success(let tournaments):
-                            continuation.resume(returning: tournaments)
-                        case .failure(let error):
-                            continuation.resume(throwing: error)
-                        }
-                    }
-            }
-        }
-    } fetchTeamsForUpcomingGame: { matche in
+    }
+//fetchSeriesTournaments: { serie in
+//        let baseURL = "https://api.pandascore.co"
 //        
+//        
+//        
+//        var tournaments: [Tournament] = []
+//        try await withThrowingTaskGroup(of: Tournament.self) { taskGroup in
+//            for tournament in serie.tournaments {
+//                taskGroup.addTask {
+//                     try await fetchSeriesTournament(tournamentId: tournament.id)
+//                }
+//            }
+//            
+//            for try await result in taskGroup {
+//                tournaments.append(result)
+//            }
+//        }
+//        return tournaments
+//            
+//        @Sendable func fetchSeriesTournament(tournamentId: Int) async throws -> Tournament {
+//            return try await withCheckedThrowingContinuation { continuation in
+//                AF.request("\(baseURL)/tournaments/\(String(tournamentId))", method: .get, headers: ["accept": "application/json", "Authorization": "Bearer \(Secrets.apiKey)"])
+//                    .responseDecodable(of: Tournament.self) { response in
+//                        switch response.result {
+//                        case .success(let tournaments):
+//                            continuation.resume(returning: tournaments)
+//                        case .failure(let error):
+//                            continuation.resume(throwing: error)
+//                        }
+//                    }
+//            }
+//        }
+//    }
+fetchTeamsForUpcomingGame: { matche in
+//
 //        var oponents: [Oponents] = []
 //        
 //        try await withThrowingTaskGroup(of: [Oponents].self) { taskGroup in
@@ -148,8 +151,7 @@ extension APIClient: DependencyKey {
                         }
                     }
             }
-        }
-//    }
+    }
 }
 
 

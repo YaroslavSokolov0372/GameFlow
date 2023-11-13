@@ -8,24 +8,27 @@
 import Foundation
 
 
-struct Serie: Decodable, Equatable, Hashable {
+struct PandascoreSerie: Codable, Equatable, Hashable {
     
+    //MARK: Codable properties
     let begin_at: String?
     let end_at: String?
     let full_name: String
     let id: Int
-    let league: League
+    let league: PandascoreLeague
     let league_id: Int
     let modified_at: String
     let name: String?
     let season: String?
     let slug: String
-    let tournaments: [Self.Tournament]
+    let tournaments: [Self.PandascoreTournament]
     let winner_type: String?
     let year: Int?
     
     
-    struct Tournament: Decodable, Identifiable, Equatable {
+    
+    
+    struct PandascoreTournament: Codable, Identifiable, Equatable {
         
         let begin_at: String?
         let detailed_stats: Bool
@@ -52,10 +55,14 @@ struct Serie: Decodable, Equatable, Hashable {
         
 
     }
+ 
+    
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
+    
+    
 
     
 }

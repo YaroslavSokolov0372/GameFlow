@@ -1,19 +1,14 @@
 //
-//  Tournaments.swift
+//  PandascoreTournament.swift
 //  GameFlow
 //
-//  Created by Yaroslav Sokolov on 11/10/2023.
+//  Created by Yaroslav Sokolov on 12/11/2023.
 //
 
 import Foundation
 
 
-//struct GameCell: Equatable {
-//    let games: Game
-//    let tournaments: [Tournament]
-//}
-
-struct Tournament: Decodable, Identifiable {
+struct PandascoreTournament: Codable, Identifiable {
     
     let begin_at: String?
 //    let detailed_stats: Bool
@@ -23,29 +18,42 @@ struct Tournament: Decodable, Identifiable {
 //    let league: League
     let league_id: Int
     let live_supported: Bool
-    let matches: [Match]
+    let matches: [PandascoreMatch]
     let modified_at: String
     let name: String
     let prizepool: String?
-//    let serie: Serie
+    let serie: Self.PandascoreSerie
     let serie_id: Int
     let slug: String
-    let teams: [Team]
+    let teams: [PandascoreTeam]
     let tier: String?
 //    let videogame: Dictionary<String, StringOrIntType>
 //    let videogame_title: VideoGameTitle?
     let winner_type: String?
     
-
+    
+    struct PandascoreSerie: Codable {
+        let begin_at: String?
+        let end_at: String?
+        let full_name: String
+        let id: Int
+        let league_id: Int
+        let modified_at: String
+        let name: String?
+        let season: String?
+        let slug: String
+        let winner_type: String?
+        let year: Int?
+    }
 }
 
-extension Tournament: Equatable {
-    static func == (lhs: Tournament, rhs: Tournament) -> Bool {
+extension PandascoreTournament: Equatable {
+    static func == (lhs: PandascoreTournament, rhs: PandascoreTournament) -> Bool {
         lhs.id == rhs.id
     }
 }
 
-extension Tournament: Hashable {
+extension PandascoreTournament: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
@@ -91,6 +99,4 @@ enum VideoGame: Decodable {
     case name(String)
     case slug(String)
 }
-
-
 

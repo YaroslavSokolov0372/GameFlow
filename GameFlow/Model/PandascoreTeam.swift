@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Team: Decodable {
+struct PandascoreTeam: Codable {
+    
     let acronym: String?
     let id: Int
     let image_url: String?
@@ -18,7 +19,7 @@ struct Team: Decodable {
     
 }
 
-extension Team: Hashable {
+extension PandascoreTeam: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
