@@ -29,8 +29,12 @@ struct GameFlowApp: App {
 //                MainDomain()
 //            }))
             
-            TestWrite(store: Store(initialState: TestWriteDomain.State(), reducer: {
-                TestWriteDomain()
+//            TestWrite(store: Store(initialState: TestWriteDomain.State(), reducer: {
+//                TestWriteDomain()
+//            }))
+            
+            MainResketch(store: Store(initialState: MainResketchDomain.State(), reducer: {
+                MainResketchDomain()
             }))
         }
     }

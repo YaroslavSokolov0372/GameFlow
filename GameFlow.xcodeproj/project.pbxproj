@@ -77,10 +77,18 @@
 		D1D93DC12AF2C0AF003F1CC7 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DC02AF2C0AF003F1CC7 /* TabBarView.swift */; };
 		D1D93DC32AF2C473003F1CC7 /* OffsetReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DC22AF2C473003F1CC7 /* OffsetReader.swift */; };
 		D1D93DC52AF43A03003F1CC7 /* AnimationEndCallBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DC42AF43A03003F1CC7 /* AnimationEndCallBack.swift */; };
+		D1DFEF4C2B038F9A00A71C4F /* SeriesListViewResketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFEF4B2B038F9A00A71C4F /* SeriesListViewResketch.swift */; };
+		D1DFEF4E2B03906100A71C4F /* SerieCellResketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFEF4D2B03906100A71C4F /* SerieCellResketch.swift */; };
+		D1DFEF512B03BBC900A71C4F /* DetailInfoResketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFEF502B03BBC900A71C4F /* DetailInfoResketchView.swift */; };
+		D1DFEF532B03C20000A71C4F /* PartisipantsResketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFEF522B03C20000A71C4F /* PartisipantsResketchView.swift */; };
+		D1DFEF552B03E7F900A71C4F /* TeamDetailResketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFEF542B03E7F900A71C4F /* TeamDetailResketchView.swift */; };
+		D1DFEF572B03F1AD00A71C4F /* PlayerResketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFEF562B03F1AD00A71C4F /* PlayerResketchView.swift */; };
+		D1DFEF5A2B0509EC00A71C4F /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = D1DFEF592B0509EC00A71C4F /* SwiftSoup */; };
 		D1F1E1312B012B740022C410 /* PandascoreTournament.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1E1302B012B740022C410 /* PandascoreTournament.swift */; };
 		D1F1E1332B012C5D0022C410 /* EnumErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1E1322B012C5D0022C410 /* EnumErrors.swift */; };
 		D1F1E1352B014E830022C410 /* PandascoreBrackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1E1342B014E830022C410 /* PandascoreBrackets.swift */; };
 		D1F1E1372B014E8C0022C410 /* PandascoreStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1E1362B014E8C0022C410 /* PandascoreStandings.swift */; };
+		D1F1E1392B02BD040022C410 /* MainResketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1E1382B02BD040022C410 /* MainResketch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,10 +135,17 @@
 		D1D93DC02AF2C0AF003F1CC7 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		D1D93DC22AF2C473003F1CC7 /* OffsetReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetReader.swift; sourceTree = "<group>"; };
 		D1D93DC42AF43A03003F1CC7 /* AnimationEndCallBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationEndCallBack.swift; sourceTree = "<group>"; };
+		D1DFEF4B2B038F9A00A71C4F /* SeriesListViewResketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesListViewResketch.swift; sourceTree = "<group>"; };
+		D1DFEF4D2B03906100A71C4F /* SerieCellResketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieCellResketch.swift; sourceTree = "<group>"; };
+		D1DFEF502B03BBC900A71C4F /* DetailInfoResketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoResketchView.swift; sourceTree = "<group>"; };
+		D1DFEF522B03C20000A71C4F /* PartisipantsResketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartisipantsResketchView.swift; sourceTree = "<group>"; };
+		D1DFEF542B03E7F900A71C4F /* TeamDetailResketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailResketchView.swift; sourceTree = "<group>"; };
+		D1DFEF562B03F1AD00A71C4F /* PlayerResketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerResketchView.swift; sourceTree = "<group>"; };
 		D1F1E1302B012B740022C410 /* PandascoreTournament.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreTournament.swift; sourceTree = "<group>"; };
 		D1F1E1322B012C5D0022C410 /* EnumErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumErrors.swift; sourceTree = "<group>"; };
 		D1F1E1342B014E830022C410 /* PandascoreBrackets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreBrackets.swift; sourceTree = "<group>"; };
 		D1F1E1362B014E8C0022C410 /* PandascoreStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreStandings.swift; sourceTree = "<group>"; };
+		D1F1E1382B02BD040022C410 /* MainResketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainResketch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +182,7 @@
 				D1971D7F2AFD2E9C00D0D12C /* FirebaseAuthCombine-Community in Frameworks */,
 				D1971DA52AFD2E9C00D0D12C /* FirebaseStorageCombine-Community in Frameworks */,
 				D1971D932AFD2E9C00D0D12C /* FirebaseInAppMessaging-Beta in Frameworks */,
+				D1DFEF5A2B0509EC00A71C4F /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,14 +284,14 @@
 		D1D93D302AD48CB3003F1CC7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D1D93D672ADAAA7B003F1CC7 /* Images.swift */,
+				D1D93D822AE421D2003F1CC7 /* Opponent.swift */,
+				D1971DAE2AFFD4C900D0D12C /* ChampionShip.swift */,
 				D1F1E1302B012B740022C410 /* PandascoreTournament.swift */,
 				D1D93D492AD6B1C7003F1CC7 /* PandascoreSerie.swift */,
 				D1D93D4B2AD6B2DC003F1CC7 /* PandascoreLeague.swift */,
 				D1D93D792AE41FE6003F1CC7 /* PandascoreMatch.swift */,
 				D1D93D7B2AE42058003F1CC7 /* PandascoreTeam.swift */,
-				D1D93D672ADAAA7B003F1CC7 /* Images.swift */,
-				D1D93D822AE421D2003F1CC7 /* Opponent.swift */,
-				D1971DAE2AFFD4C900D0D12C /* ChampionShip.swift */,
 				D1F1E1342B014E830022C410 /* PandascoreBrackets.swift */,
 				D1F1E1362B014E8C0022C410 /* PandascoreStandings.swift */,
 			);
@@ -313,6 +329,7 @@
 		D1D93D5F2AD95662003F1CC7 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				D1DFEF4F2B03906800A71C4F /* Resketch */,
 				D1D93D602AD95675003F1CC7 /* MainView.swift */,
 				D1D93DBE2AF1A1AE003F1CC7 /* SearchField.swift */,
 				D1D93DC02AF2C0AF003F1CC7 /* TabBarView.swift */,
@@ -362,6 +379,20 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		D1DFEF4F2B03906800A71C4F /* Resketch */ = {
+			isa = PBXGroup;
+			children = (
+				D1F1E1382B02BD040022C410 /* MainResketch.swift */,
+				D1DFEF4B2B038F9A00A71C4F /* SeriesListViewResketch.swift */,
+				D1DFEF4D2B03906100A71C4F /* SerieCellResketch.swift */,
+				D1DFEF502B03BBC900A71C4F /* DetailInfoResketchView.swift */,
+				D1DFEF522B03C20000A71C4F /* PartisipantsResketchView.swift */,
+				D1DFEF542B03E7F900A71C4F /* TeamDetailResketchView.swift */,
+				D1DFEF562B03F1AD00A71C4F /* PlayerResketchView.swift */,
+			);
+			path = Resketch;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -408,6 +439,7 @@
 				D1971DA02AFD2E9C00D0D12C /* FirebaseRemoteConfigSwift */,
 				D1971DA22AFD2E9C00D0D12C /* FirebaseStorage */,
 				D1971DA42AFD2E9C00D0D12C /* FirebaseStorageCombine-Community */,
+				D1DFEF592B0509EC00A71C4F /* SwiftSoup */,
 			);
 			productName = GameFlow;
 			productReference = D1D93D172AD47C9F003F1CC7 /* GameFlow.app */;
@@ -441,6 +473,7 @@
 				D1D93D2B2AD48AD4003F1CC7 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				D1D93D3B2AD55136003F1CC7 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				D1971D6F2AFD2E9C00D0D12C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D1DFEF582B0509EC00A71C4F /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = D1D93D182AD47C9F003F1CC7 /* Products */;
 			projectDirPath = "";
@@ -480,13 +513,16 @@
 				D1D93D3A2AD49C1E003F1CC7 /* APIClient.swift in Sources */,
 				D1CFC7E52AF8E63F00CEF15B /* StandingsView.swift in Sources */,
 				D1CFC7F22AF9577300CEF15B /* MatchesListView.swift in Sources */,
+				D1DFEF552B03E7F900A71C4F /* TeamDetailResketchView.swift in Sources */,
 				D1D93D6A2ADACE9A003F1CC7 /* ExtensionString.swift in Sources */,
 				D1CFC7F02AF936EC00CEF15B /* MatchDetailView.swift in Sources */,
 				D1D93DBF2AF1A1AE003F1CC7 /* SearchField.swift in Sources */,
 				D1D93DBD2AF1898F003F1CC7 /* SeriesListView.swift in Sources */,
 				D1CFC7EC2AF9306100CEF15B /* PlayerCellView.swift in Sources */,
+				D1DFEF512B03BBC900A71C4F /* DetailInfoResketchView.swift in Sources */,
 				D1CFC7DC2AF7F79300CEF15B /* OngoingMatchListView.swift in Sources */,
 				D1D93DC52AF43A03003F1CC7 /* AnimationEndCallBack.swift in Sources */,
+				D1DFEF532B03C20000A71C4F /* PartisipantsResketchView.swift in Sources */,
 				D1971DAF2AFFD4C900D0D12C /* ChampionShip.swift in Sources */,
 				D1F1E1332B012C5D0022C410 /* EnumErrors.swift in Sources */,
 				D1F1E1312B012B740022C410 /* PandascoreTournament.swift in Sources */,
@@ -497,13 +533,16 @@
 				D1F1E1372B014E8C0022C410 /* PandascoreStandings.swift in Sources */,
 				D1D93DC32AF2C473003F1CC7 /* OffsetReader.swift in Sources */,
 				D1D93D782AE4157B003F1CC7 /* ExtensionDate.swift in Sources */,
+				D1F1E1392B02BD040022C410 /* MainResketch.swift in Sources */,
 				D1D93D832AE421D2003F1CC7 /* Opponent.swift in Sources */,
 				D1D93D7A2AE41FE6003F1CC7 /* PandascoreMatch.swift in Sources */,
+				D1DFEF572B03F1AD00A71C4F /* PlayerResketchView.swift in Sources */,
 				D1D93D7C2AE42058003F1CC7 /* PandascoreTeam.swift in Sources */,
 				D1D93DC12AF2C0AF003F1CC7 /* TabBarView.swift in Sources */,
 				D1CFC7E92AF9254800CEF15B /* TeamDetailView.swift in Sources */,
 				D1CFC7E12AF8473200CEF15B /* PartisipantsListView.swift in Sources */,
 				D1D93D4C2AD6B2DC003F1CC7 /* PandascoreLeague.swift in Sources */,
+				D1DFEF4C2B038F9A00A71C4F /* SeriesListViewResketch.swift in Sources */,
 				D1D93DBB2AF1837B003F1CC7 /* Fonts.swift in Sources */,
 				D1971DA92AFE902500D0D12C /* TestWrite.swift in Sources */,
 				D1CFC7DE2AF7FE2900CEF15B /* DetailInfoView.swift in Sources */,
@@ -511,6 +550,7 @@
 				D1D93D1B2AD47C9F003F1CC7 /* GameFlowApp.swift in Sources */,
 				D1F1E1352B014E830022C410 /* PandascoreBrackets.swift in Sources */,
 				D1971DAB2AFEAC5900D0D12C /* FirestoreManager.swift in Sources */,
+				D1DFEF4E2B03906100A71C4F /* SerieCellResketch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,6 +784,14 @@
 				minimumVersion = 5.8.0;
 			};
 		};
+		D1DFEF582B0509EC00A71C4F /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -891,6 +939,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D1D93D3B2AD55136003F1CC7 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		D1DFEF592B0509EC00A71C4F /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D1DFEF582B0509EC00A71C4F /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -52,6 +52,7 @@ struct SerieCellView: View {
                 
                 VStack {
                     Text("dksoadksoa")
+//                    Text("ESL One " + "Kuala Lumpur Western Europe Open Qualifier 1 2023")
                         .foregroundStyle(.white)
                         .font(.gilroy(.bold, size: 20))
                         .padding(.horizontal)

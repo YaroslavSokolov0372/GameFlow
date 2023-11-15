@@ -18,7 +18,7 @@ struct PandascoreManager {
         
         guard let url = URL(string: "\(baseURL)/dota2/series/running") else {
             print("Invalid URL")
-//            throw RequestError.invalidURL
+            //            throw RequestError.invalidURL
             return []
         }
         
@@ -61,7 +61,7 @@ struct PandascoreManager {
             } catch {
                 print(error)
                 print("Failed to load tournaments for a serie")
-//                throw RequestError.fetchingFailed
+                //                throw RequestError.fetchingFailed
             }
         }
         print("Tournaments count -", tournaments.count)
@@ -92,7 +92,7 @@ struct PandascoreManager {
             return tournaments
             
         } catch {
-//            print("Failed to load all tournaments")
+            //            print("Failed to load all tournaments")
             throw RequestError.fetchingFailed
             
         }
@@ -107,7 +107,7 @@ struct PandascoreManager {
             
             print("Invalid url for fetching teams")
             throw RequestError.invalidURL
-            }
+        }
         
         do {
             
@@ -120,11 +120,11 @@ struct PandascoreManager {
             print("teams count, - ", teams.count)
             let tournament = Tournament(tournament: tournament, teams: teams)
             return tournament
-        
+            
         } catch {
             print("Failed to fetch teams and create a tournament")
             throw RequestError.fetchingFailed
-//            return []
+            //            return []
         }
         
         
@@ -139,13 +139,11 @@ struct PandascoreManager {
             try await withThrowingTaskGroup(of: Tournament.self) { taskGroup in
                 for tournament in tournaments {
                     taskGroup.addTask {
-//                        try await getPandaTournamentTeams(tournament)
                         try await getPandaTournamentTeams(tournament)
                     }
                 }
                 
                 for try await result in taskGroup {
-//                    teams.append(contentsOf: result)
                     touramentsTeams.append(result)
                 }
             }
@@ -162,7 +160,7 @@ struct PandascoreManager {
         guard let url = URL(string: "\(baseURL)/tournaments/\(tournament.tournament.id)/matches") else {
             print("Failed to load mathes for a tournaments")
             throw RequestError.invalidURL
-//            return []
+            //            return []
         }
         
         do {
@@ -170,16 +168,15 @@ struct PandascoreManager {
             
             let (data, _) = try await URLSession.shared.data(for: urlReq)
             
-            let matches = try JSONDecoder().decode([PandascoreMatch].self, from: data)
+            let matches = try? JSONDecoder().decode([PandascoreMatch].self, from: data)
             
-            print("matches count -", matches.count)
+            print("matches count - \(matches?.count ?? 0)")
             var tournament = tournament
             tournament.matches = matches
             return tournament
         } catch {
             print("Failed to fetch matches")
             throw RequestError.fetchingFailed
-//            return []
         }
         
         
@@ -197,11 +194,11 @@ struct PandascoreManager {
                     }
                 }
                 for try await result in taskGroup {
-//                    teams.append(contentsOf: result)
                     tournamentsMatches.append(result)
                     
                 }
             }
+            
             
             return tournamentsMatches
         } catch {
@@ -210,15 +207,15 @@ struct PandascoreManager {
         }
     }
     
-
     
     
     
-   @Sendable func getTournamentStandings(_ tournament: Tournament) async throws -> Tournament {
+    
+    @Sendable func getTournamentStandings(_ tournament: Tournament) async throws -> Tournament {
         
         if 
-//            tournament.tournament.has_bracket != nil ||
-                tournament.tournament.has_bracket != true {
+            //            tournament.tournament.has_bracket != nil ||
+            tournament.tournament.has_bracket != true {
             
             guard let url = URL(string: "\(baseURL)/tournaments/\(tournament.tournament.id)/standings") else {
                 
@@ -228,23 +225,44 @@ struct PandascoreManager {
             
             do {
                 
-                let urlReq = try URLRequest(url: url, method: .get, headers: [.authorization(bearerToken: Secrets.apiKey), .accept("application/json")])
+                let urlReq = try URLRequest(url: url, method: .get, headers: [.authorization(bearerToken: Secrets.apiKey)])
                 
-                let (data, _) = try await URLSession.shared.data(for: urlReq)
+                let (data, response) = try await URLSession.shared.data(for: urlReq)
+                
+                if let httpResponse = response as? HTTPURLResponse {
+//                    print("statusCode: \(httpResponse.statusCode)")
+                    
+                    switch httpResponse.statusCode {
+                    case 200 ... 299:
+                        let standings = try JSONDecoder().decode([PandascoreStandings].self, from: data)
+                        var tournament = tournament
+                        tournament.standings = standings
+                        return tournament
+                        
+                    case 404:
+                        return tournament
+                    default:
+                        throw RequestError.fetchingFailed
+                    }
+                } else {
+//                    var tournament = tournament
+//                    tournament.standings = nil
+//                    return tournament
+                    throw RequestError.fetchingFailed
+                }
                 
                 
-//                print(String(data: response, encoding: .utf8) as Any)
-//                print(response)
-//                print(String(decoding: urlReq.httpBody ?? Data(), as: .utf8))
                 
+                //                print(data.prettyPrintedJSONString!)
+                //                print(String(data: response, encoding: .utf8) as Any)
+                //                print(response)
+                //                print(String(decoding: urlReq.httpBody ?? Data(), as: .utf8))
+                //                print(standings)
+                //                print("Standings count - \(String(describing: standings?.count ?? nil))")
+                //                var tournament = tournament
+                //                tournament.standings = standings
+                //                return tournament
                 
-                let standings = try? JSONDecoder().decode([PandascoreStandings].self, from: data)
-                
-                
-                print("Standings count - ", standings as Any)
-                var tournament = tournament
-                tournament.standings = standings
-                return tournament
                 
             } catch {
                 
@@ -259,7 +277,7 @@ struct PandascoreManager {
     }
     
     @Sendable func getTournamentsStandings(_ tournaments: [Tournament]) async throws -> [Tournament] {
-     
+        
         var tournamentsStandings: [Tournament] = []
         
         do {
@@ -274,6 +292,7 @@ struct PandascoreManager {
                     tournamentsStandings.append(result)
                 }
             }
+//            print("Standings count - ", tournamentsStandings.count)
             return tournamentsStandings
         } catch {
             print("Failed fetch all standings")
@@ -295,6 +314,7 @@ struct PandascoreManager {
                 let urlReq = try URLRequest(url: url, method: .get, headers: [.authorization(bearerToken: Secrets.apiKey)])
                 
                 let (data, _) = try await URLSession.shared.data(for: urlReq)
+                
                 
                 let brackets = try JSONDecoder().decode([PandascoreBrackets].self, from: data)
                 
@@ -325,11 +345,12 @@ struct PandascoreManager {
                         try await getTournamentBrackets(tournament)
                     }
                 }
-
+                
                 for try await result in groupTask {
                     tournamentsBrackets.append(result)
                 }
             }
+            print("Tournament's brackets count -", tournamentsBrackets.count)
             return tournamentsBrackets
         } catch {
             print("Failed fetch all brackets")
@@ -350,11 +371,10 @@ struct PandascoreManager {
                 taskGroup.addTask {
                     let tournaments = try await getPandaSerieTournaments(pandaSerie)
                     let tournamentsWithTeams = try await getPandaTournamentsTeams(tournaments)
-//                    let tournamentsWithMathes = try await getTournamentsMatches(tournamentsWithTeams)
-//                    let tournamentsWithBrackets = try await getTournamentsBrackets(tournamentsWithMathes)
-//                    let tournamentsWithStandings = try await getTournamentsStandings(tournamentsWithBrackets)
-                    let tournamentsWithStandings = try await getTournamentsStandings(tournamentsWithTeams)
-                    return Serie(serie: pandaSerie, tournaments: tournamentsWithStandings)
+                    let tournamentsWithMathes = try await getTournamentsMatches(tournamentsWithTeams)
+                    let tournamentsWithStandings = try await getTournamentsStandings(tournamentsWithMathes)
+                    let tournamentsWithBrackets = try await getTournamentsBrackets(tournamentsWithStandings)
+                    return Serie(serie: pandaSerie, tournaments: tournamentsWithBrackets)
                 }
                 
             }
@@ -366,5 +386,16 @@ struct PandascoreManager {
         print("ChampionShip's series count, -", championShips.series.count)
         return championShips
     }
-
     
+}
+
+
+extension Data {
+    var prettyPrintedJSONString: NSString? { /// NSString gives us a nice sanitized debugDescription
+        guard let object = try? JSONSerialization.jsonObject(with: self, options: []),
+              let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]),
+              let prettyPrintedString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else { return nil }
+
+        return prettyPrintedString
+    }
+}

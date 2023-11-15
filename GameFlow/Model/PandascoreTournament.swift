@@ -45,6 +45,17 @@ struct PandascoreTournament: Codable, Identifiable {
         let winner_type: String?
         let year: Int?
     }
+    
+    struct PandascoreTeam: Codable {
+        
+        let acronym: String?
+        let id: Int
+        let image_url: String?
+        let location: String?
+        let modified_at: String
+        let name: String
+        let slug: String?
+    }
 }
 
 extension PandascoreTournament: Equatable {

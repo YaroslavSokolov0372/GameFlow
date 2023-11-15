@@ -71,9 +71,28 @@ struct TestWrite: View {
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             VStack {
-                
-                ForEach(viewStore.state.series, id: \.self) { serie in
-                    Text(serie.full_name)
+                ScrollView(.vertical) {
+                    if championShip != nil {
+                        ForEach(championShip!.series, id: \.self) { serie in
+                            ForEach(serie.tournaments, id: \.self) { tournament in
+                                VStack {
+                                    Text("Standings")
+                                    Text(String(describing: tournament.standings?.count ?? nil))
+                                    
+                                }
+                                VStack {
+                                    Text("Teams")
+                                    Text(String(describing: tournament.teams?.count ?? 0))
+                                }
+                            }
+                        }
+                        
+                        
+                        
+                        
+                        
+                        
+                    }
                 }
             }
             .task {
@@ -81,7 +100,7 @@ struct TestWrite: View {
 //                if await self.firestoreManager.shouldPandascoreReq() {
                     
 //                    championShip = try? await pandascoreManager.getAllData()
-                    
+//                    
 //                    if championShip != nil {
 //                        
 //                        for serie in championShip!.series {
@@ -94,8 +113,23 @@ struct TestWrite: View {
                 
                 
                 //MARK: - use this to fetch all data needed from pandascore
-                    championShip = try? await pandascoreManager.getAllData()
-                
+                    
+                do {
+//                    championShip = try await pandascoreManager.getAllData() 
+//                    if let championShip = championShip {
+//                    try await firestoreManager.writeData(championShip: championShip)
+//                    }
+                    
+                    
+//                    championShip = try await self.firestoreManager.getData()
+                    
+                    
+//                    let series = try await self.firestoreManager.getSeries()
+//                    print(series)
+                } catch {
+                    
+                    print(error)
+                }
                 
 //                    print(championShip?.series.count)
                     
