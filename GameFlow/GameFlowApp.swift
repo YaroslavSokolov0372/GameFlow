@@ -12,16 +12,11 @@ import Firebase
 @main
 struct GameFlowApp: App {
     
-    
     init() {
-//        
-//        let providerFactory = AppCheckDebugProviderFactory()
-//        AppCheck.setAppCheckProviderFactory(providerFactory)
-        
-        
         FirebaseApp.configure()
-        
     }
+    
+    
     
     var body: some Scene {
         WindowGroup {
@@ -36,6 +31,11 @@ struct GameFlowApp: App {
             MainResketch(store: Store(initialState: MainResketchDomain.State(), reducer: {
                 MainResketchDomain()
             }))
+            
+//             SerieLoadingCellView()
+            
+            
+//            TestWrite()
         }
     }
 }

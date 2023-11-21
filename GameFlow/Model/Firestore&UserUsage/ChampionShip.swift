@@ -7,27 +7,29 @@
 
 import SwiftUI
 
-struct ChampionShip {
+//struct ChampionShip {
+//
+//    var series: [Serie]
+//    
+//    init(series: [Serie]) {
+//        self.series = series
+//    }
+//}
 
-    var series: [Serie]
-    
-    init(series: [Serie]) {
-        self.series = series
-    }
-}
-
-extension ChampionShip: Equatable {
-}
+//extension ChampionShip: Equatable {
+//}
 
 
 struct Serie {
     
-    var serie: PandascoreSerie
+    var liquipediaSerie: LiquipediaSerie?
+    let serie: PandascoreSerie
     var tournaments: [Tournament]
     
-    init(serie: PandascoreSerie, tournaments: [Tournament]) {
+    init(serie: PandascoreSerie, tournaments: [Tournament], liquipeadiaSerie: LiquipediaSerie?) {
         self.serie = serie
         self.tournaments = tournaments
+        self.liquipediaSerie = liquipeadiaSerie
     }
     
 }
@@ -45,11 +47,81 @@ extension Serie: Equatable {
     }
 }
 
+extension [Serie] {
+    
+    var ongoing: [Serie] {
+        
+        var ongoingSeries = [Serie]()
+        
+        for serie in self {
+            
+            if let beginDate = serie.serie.begin_at, let endDate = serie.serie.end_at {
+                
+                let formattedBegin = beginDate.ISOfotmattedString()
+                let formattedEnd = endDate.ISOfotmattedString()
+                let currentDate = Date().iso8601.ISOfotmattedString()
+                
+                if currentDate.isBetween(formattedBegin, and: formattedEnd) {
+                    ongoingSeries.append(serie)
+                }
+            }
+        }
+        
+        return ongoingSeries
+    }
+    
+    var upcoming: [Serie] {
+        
+        var upcomingSeries = [Serie]()
+        
+        for serie in self {
+            
+            if let beginDate = serie.serie.begin_at {
+                
+                let formattedBegin = beginDate.ISOfotmattedString()
+                let currentDate = Date().iso8601.ISOfotmattedString()
+                
+                
+                if currentDate < formattedBegin {
+                    upcomingSeries.append(serie)
+                }
+            }
+        }
+        return upcomingSeries
+    }
+    
+    var latest: [Serie] {
+        
+        var latestSeries = [Serie]()
+        
+        for serie in self {
+            if let endDate = serie.serie.end_at {
+                let formattedEnd = endDate.ISOfotmattedString()
+                let currentDate = Date().iso8601.ISOfotmattedString()
+                
+                
+                if currentDate > formattedEnd {
+                    latestSeries.append(serie)
+                }
+            }
+        }
+        
+        return latestSeries
+    }
+    
+}
+
 extension Serie {
+    
+    static let sample = [
+        Serie(serie: PandascoreSerie(begin_at: "2023-11-18T21:00:00Z", end_at: "2023-11-18T21:00:00Z", full_name: "America season 8 2023", id: 4884, league: PandascoreLeague(id: 4884, image_url: nil, modified_at: "", name: "EPL World Series", slug: "dota-2-epl-world-series", url: nil ), league_id: 4884, modified_at: "", name: "America", season: "8", slug: "dota-2-epl-world-series-america-8-2023", tournaments: [], winner_type: "", year: 2023), tournaments: [], liquipeadiaSerie: LiquipediaSerie(name: "EPL World Series: America Season 8", prizepool: "$10,000", teams: [], tier: "Tier 3")),
+        Serie(serie: PandascoreSerie(begin_at: "2023-11-18T21:00:00Z", end_at: "2023-11-18T21:00:00Z", full_name: "America season 8 2023", id: 4884, league: PandascoreLeague(id: 4884, image_url: nil, modified_at: "", name: "EPL World Series", slug: "dota-2-epl-world-series", url: nil ), league_id: 4884, modified_at: "", name: "America", season: "8", slug: "dota-2-epl-world-series-america-8-2023", tournaments: [], winner_type: "", year: 2023), tournaments: [], liquipeadiaSerie: LiquipediaSerie(name: "EPL World Series: America Season 8", prizepool: "$10,000", teams: [], tier: "Tier 3"))
+    ]
     
     var fullName: String {
             return "\(serie.league.name + " " + serie.full_name)"
     }
+    
     
     var tier: String? {
         

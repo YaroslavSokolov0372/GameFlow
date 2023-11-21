@@ -13,24 +13,15 @@ struct DetailInfoResketchDomain: Reducer {
     
     struct State: Equatable {
         
-        var serie: Serie?
-        
         @BindingState var currentTab = 0
+        var serie: Serie
     }
     
     enum Action: BindableAction {
         case binding(BindingAction<State>)
         case tabSelected(Int)
-        
-        case closeButtonTapped
-//        case ongoingMatchTapped
-//        case teamDetailTapped
-//        case matchListTapped
     }
     
-//    @Dependency(\.dismiss) var dismiss
-    
-//    @Environment(\.isPresented) var isPresented
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
@@ -39,26 +30,8 @@ struct DetailInfoResketchDomain: Reducer {
                 state.currentTab = tab
                 return .none
                 
-            case .closeButtonTapped:
-                print("Close button tapped")
-                return .run { _ in
-//                    await self.dismiss()
-                }
-//            case .ongoingMatchTapped:
-//                return .run { _ in
-//
-//                }
-//            case .teamDetailTapped:
-//                return .run { send in
-//
-//                }
-//            case .matchListTapped:
-//                return .run { send in
-//
-//                }
             default: return .none
             }
-            
         }
         BindingReducer()
     }
@@ -71,7 +44,6 @@ struct DetailInfoResketchView: View {
     
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-//            NavigationView(content: {
                 
                 GeometryReader { geo in
                     ZStack {
@@ -83,8 +55,7 @@ struct DetailInfoResketchView: View {
                             //MARK: - Header
                             HStack {
                                 
-                                                            Text("The International")
-//                                Text(viewStore.serie.serie.league.name)
+                                Text(viewStore.serie.serie.league.name)
                                     .multilineTextAlignment(.center)
                                     .foregroundStyle(.white)
                                     .font(.gilroy(.bold, size: 18))
@@ -93,10 +64,9 @@ struct DetailInfoResketchView: View {
                             .overlay {
                                 HStack {
                                     Button {
-//                                        self.store.send(.closeButtonTapped)
+                                        
                                         dismiss()
-                                        //                                            self.store.send(.closeButtonTapped)
-                                        //                                            viewStore.send(.closeButtonTapped)
+
                                     } label: {
                                         Image("Arrow", bundle: .main)
                                             .resizable()
@@ -116,11 +86,10 @@ struct DetailInfoResketchView: View {
                             
                             
                             TabView(selection: viewStore.binding(get: \.currentTab, send: { .tabSelected($0) } )) {
-//                                if let serie = viewStore.serie {
-                                ForEach(viewStore.serie!.sortedTournamentsByBegin.indices, id: \.self) { num in
+                                ForEach(viewStore.serie.sortedTournamentsByBegin.indices, id: \.self) { num in
                                         ScrollView {
+                                            
                                             VStack(spacing: 25) {
-                                                
                                                 
                                                 VStack {
                                                     HStack {
@@ -131,14 +100,12 @@ struct DetailInfoResketchView: View {
                                                             .foregroundStyle(.white)
                                                         
                                                         Spacer()
-                                                        
-                                                        
-                                                        
+
                                                         NavigationLink {
                                                             MatchesListView(store: Store(initialState: MatchesListDomain.State(), reducer: {
                                                                 MatchesListDomain()
                                                             })).navigationBarBackButtonHidden()
-                                                            
+//                                                            
                                                         } label: {
                                                             
                                                             Image("Arrow", bundle: .main)
@@ -147,7 +114,7 @@ struct DetailInfoResketchView: View {
                                                                 .frame(width: 30, height: 25)
                                                                 .foregroundStyle(.white)
                                                                 .padding(.trailing, 20)
-                                                            
+   
                                                         }
                                                         
                                                         
@@ -170,9 +137,6 @@ struct DetailInfoResketchView: View {
                                                     OngoingMatchListView(store: Store(initialState: OngoingMatchListDomain.State(), reducer: {
                                                         OngoingMatchListDomain()
                                                     }))
-                                                    //                                                    .onTapGesture(perform: {
-                                                    //                                                        self.store.send(.ongoingMatchTapped)
-                                                    //                                                    })
                                                 }
                                                 
                                                 VStack {
@@ -204,40 +168,10 @@ struct DetailInfoResketchView: View {
                                                     }
                                                     .frame(height: 30)
                                                     
-                                                    //                                            if let teams = viewStore.serie.sortedTournamentsByBegin[num].teams {
-                                                    
-                                                    //                                                if !teams.isEmpty {
-                                                    PartisipantsResketchView(store: Store(initialState: PartisipantsResketchDomain.State(teams: viewStore.serie!.sortedTournamentsByBegin[num].teams), reducer: {
+                                                    PartisipantsResketchView(store: Store(initialState: PartisipantsResketchDomain.State(teams: viewStore.serie.sortedTournamentsByBegin[num].teams), reducer: {
                                                         PartisipantsResketchDomain()
                                                     }))
                                                     .padding(.bottom, 7)
-                                                    //                                                    .onAppear {
-                                                    //                                                        print(viewStore.serie.serie.league.name, "\(teams.count)")
-                                                    //                                                    }
-                                                    //                                                }
-                                                    //                                            } else {
-                                                    //                                                ScrollView {
-                                                    //                                                    HStack {
-                                                    //                                                        ForEach(0..<10, id: \.self) { num in
-                                                    //                                                            VStack {
-                                                    //                                                                Circle()
-                                                    //                                                                    .foregroundStyle(Color("Gray", bundle: .main))
-                                                    //                                                                    .frame(width: 70, height: 70)
-                                                    //                                                                    .overlay {
-                                                    //                                                                        Text("?")
-                                                    //                                                                            .font(.gilroy(.regular, size: 25))
-                                                    //                                                                            .foregroundStyle(.white)
-                                                    //
-                                                    //                                                                    }
-                                                    //                                                                Text("TBD")
-                                                    //                                                                    .font(.gilroy(.regular, size: 16))
-                                                    //                                                                    .foregroundStyle(.white)
-                                                    //                                                            }
-                                                    //                                                        }
-                                                    //                                                    }
-                                                    //                                                }
-                                                    //                                                .padding(.bottom, 7)
-                                                    //                                            }
                                                 }
                                             }
                                             .padding(.vertical, 10)
@@ -249,8 +183,6 @@ struct DetailInfoResketchView: View {
                                         .scrollIndicators(.never)
                                         .tag(num)
                                     }
-//                                }
-                                
                             }
                             .tabViewStyle(.page(indexDisplayMode: .never))
                             .ignoresSafeArea()
@@ -260,14 +192,16 @@ struct DetailInfoResketchView: View {
                             ScrollView(.horizontal) {
                                 
                                 HStack(spacing: 0) {
-                                    ForEach(viewStore.serie!.sortedTournamentsByBegin.indices, id: \.self) { num in
+                                    ForEach(viewStore.serie.sortedTournamentsByBegin.indices, id: \.self) { num in
                                         VStack {
                                             Button {
-                                                //                                                withAnimation(.easeInOut(duration: 0.3)) {
+                                                
                                                 viewStore.send(.tabSelected(num))
-                                                //                                                }
+                                                
                                             } label: {
-                                                switch viewStore.serie!.sortedTournamentsByBegin[num].tournament.name {
+                                                
+                                                switch viewStore.serie.sortedTournamentsByBegin[num].tournament.name {
+                                                    
                                                 case "Group Stage":
                                                     Text("Group Stage")
                                                         .foregroundStyle(.white)
@@ -293,8 +227,8 @@ struct DetailInfoResketchView: View {
                                         }
                                         
                                         .frame(width:
-                                                viewStore.serie!.tournaments.count == 2 ? geo.size.width / 2 :
-                                                viewStore.serie!.tournaments.count == 1 ? geo.size.width / 1 :
+                                                viewStore.serie.tournaments.count == 2 ? geo.size.width / 2 :
+                                                viewStore.serie.tournaments.count == 1 ? geo.size.width / 1 :
                                                 geo.size.width / 3)
                                         .frame(maxHeight: 50, alignment: .bottom)
                                         .overlay {
@@ -319,8 +253,6 @@ struct DetailInfoResketchView: View {
                         }
                     }
                 }
-//            })
-
         }
     }
 }

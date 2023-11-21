@@ -106,7 +106,7 @@ struct MainDomain: Reducer {
         
     }
     
-    @Dependency(\.apiClient) var apiClient
+//    @Dependency(\.apiClient) var apiClient
     
     var body: some Reducer<State, Action> {
         

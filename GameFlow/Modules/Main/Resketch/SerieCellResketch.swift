@@ -11,6 +11,8 @@ import ComposableArchitecture
 struct SerieCellResketchDomain: Reducer {
     
     struct State: Equatable {
+        
+        @BindingState var isFetching: Bool
         var serie: Serie
     }
     
@@ -35,15 +37,20 @@ struct SerieCellResketch: View {
             
             ZStack() {
                 RoundedRectangle(cornerRadius: 25)
-                    .frame(width: 370, height: 280)
+                    .frame(width: 360, height: 270)
                     .foregroundStyle(Color("Gray", bundle: .main))
                     .overlay {
                         VStack {
                             Image("Image1", bundle: .main)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 340, height: 190)
+                                .frame(width: 330, height: 180)
                                 .clipShape(RoundedRectangle(cornerRadius: 25))
+                            
+                                .redactCondition(condition: viewStore.isFetching)
+//                                .foregroundStyle(.white)
+//                                .redacted(reason: .placeholder)
+                            
                             
                             Spacer()
                             
@@ -56,85 +63,76 @@ struct SerieCellResketch: View {
                         .foregroundStyle(.white)
                         .font(.gilroy(.bold, size: 20))
                         .padding(.horizontal)
-                        .frame(width: 370, height: 55, alignment: .topLeading)
+                        .frame(width: 360, height: 55, alignment: .topLeading)
                         .multilineTextAlignment(.leading)
+                    
+//                        .redacted(reason: .placeholder)
+                        .redactCondition(condition: viewStore.isFetching)
+                    
                     
                     HStack {
                         
-                        if let tier = viewStore.serie.tier {
+                        if let liquiInfo = viewStore.serie.liquipediaSerie {
                             
-                            Text(tier.capitalized + " Tier")
-                            .font(.gilroy(.medium, size: 13))
-                            .foregroundStyle(.white)
-                            .padding(7)
-                            .padding(.vertical, 1)
-                            .background(
-                                RoundedRectangle(cornerRadius: 7)
-                                    .foregroundStyle(Color("Orange", bundle: .main))
-                                    .overlay(content: {
-                                        RoundedRectangle(cornerRadius: 5)
-                                            .foregroundStyle(Color("Orange", bundle: .main))
-                                            .blur(radius: 10)
-                                            .opacity(0.5)
-                                    })
-                            )
+                            Text(liquiInfo.tier)
+                                .font(.gilroy(.medium, size: 13))
+                                .foregroundStyle(.white)
+                                .padding(7)
+                                .padding(.vertical, 1)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 7)
+                                        .foregroundStyle(Color("Orange", bundle: .main))
+                                        .overlay(content: {
+                                            RoundedRectangle(cornerRadius: 5)
+                                                .foregroundStyle(Color("Orange", bundle: .main))
+                                                .blur(radius: 10)
+                                                .opacity(0.5)
+                                        })
+                                )
                             
-                        }
-                        
-                        if let prizepool = viewStore.serie.prizepool {
-                            //                        Text("$3M Prizepool")
-                            Text(prizepool)
-                            .font(.gilroy(.medium, size: 13))
-                            .foregroundStyle(.white)
-                            .padding(7)
-                            .padding(.vertical, 1)
-                            .background(
-                                RoundedRectangle(cornerRadius: 7)
-                                    .foregroundStyle(Color("Orange", bundle: .main))
-                                    .overlay(content: {
-                                        RoundedRectangle(cornerRadius: 5)
+//                                .redacted(reason: .placeholder)
+                                .redactCondition(condition: viewStore.isFetching)
+                            
+
+                            if liquiInfo.prizepool != "" {
+                                Text(liquiInfo.prizepool)
+                                    .font(.gilroy(.medium, size: 13))
+                                    .foregroundStyle(.white)
+                                    .padding(7)
+                                    .padding(.vertical, 1)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 7)
                                             .foregroundStyle(Color("Orange", bundle: .main))
-                                            .blur(radius: 10)
-                                            .opacity(0.5)
-                                    })
-                            )
+                                            .overlay(content: {
+                                                RoundedRectangle(cornerRadius: 5)
+                                                    .foregroundStyle(Color("Orange", bundle: .main))
+                                                    .blur(radius: 10)
+                                                    .opacity(0.5)
+                                            })
+                                    )
+                                
+//                                    .redacted(reason: .placeholder)
+                                    .redactCondition(condition: viewStore.isFetching)
+                                
+                            }
                         }
-                        
-                        
-                        
-//                        Text(viewStore.serie.tier)
-//                            .font(.gilroy(.medium, size: 13))
-//                            .foregroundStyle(.white)
-//                            .padding(7)
-//                            .padding(.vertical, 1)
-//                            .background(
-//                                RoundedRectangle(cornerRadius: 7)
-//                                    .foregroundStyle(Color("Orange", bundle: .main))
-//                                    .overlay(content: {
-//                                        RoundedRectangle(cornerRadius: 5)
-//                                            .foregroundStyle(Color("Orange", bundle: .main))
-//                                            .blur(radius: 10)
-//                                            .opacity(0.5)
-//                                    })
-//                            )
-                        
                         Spacer()
                         
-//                        Text("Oct 10 - Dec 19")
                         Text(viewStore.serie.duration)
                             .font(.gilroy(.light, size: 12))
                             .foregroundStyle(.gray)
+                        
+//                            .redacted(reason: .placeholder)
+                            .redactCondition(condition: viewStore.isFetching)
+                        
                     }
                     .padding(.horizontal)
-                    .padding(.bottom, 10)
-                    .frame(width: 370, height: 50)
+                    .padding(.bottom, 20)
+                    .frame(width: 360, height: 50)
                 }
-                .frame(width: 370, height: 280, alignment: .bottom)
+                .frame(width: 360, height: 280, alignment: .bottom)
                 
-                //                .frame(width: geo.size.width * 0.85, height: geo.size.height * 0.42, alignment: .top)
-                //            }
-                //            .frame(maxWidth: geo.size.width)
-                //            }
+
                 
             }
         }

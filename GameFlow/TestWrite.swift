@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ComposableArchitecture
+import SwiftSoup
 
 struct TestWriteDomain: Reducer {
     
@@ -22,7 +23,7 @@ struct TestWriteDomain: Reducer {
         
     }
     
-    @Dependency(\.apiClient) var apiClient
+//    @Dependency(\.apiClient) var apiClient
 //    var firestoreManager = FirestoreManager()
     
     var body: some Reducer<State, Action> {
@@ -61,102 +62,386 @@ struct TestWriteDomain: Reducer {
 }
 struct TestWrite: View {
     
-    var store: StoreOf<TestWriteDomain>
+//    var store: StoreOf<TestWriteDomain>
     
-    @State var championShip : ChampionShip? = ChampionShip(series: [])
+    
+    let apiClient = ApiClient()
+//    @State var championShip : ChampionShip = ChampionShip(series: [])
     var pandascoreManager = PandascoreManager()
     var firestoreManager = FirestoreManager()
+    var liquiManager = LiqupediaWebScraper()
+    @State var pandaSeries: [PandascoreSerie] = []
+//    @State var tournamentLink = try? parseHTML()
+    @State var liquipediaInfo: [Serie] = []
+    
     
     
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
+        ScrollView {
+            
+        
             VStack {
-                ScrollView(.vertical) {
-                    if championShip != nil {
-                        ForEach(championShip!.series, id: \.self) { serie in
-                            ForEach(serie.tournaments, id: \.self) { tournament in
-                                VStack {
-                                    Text("Standings")
-                                    Text(String(describing: tournament.standings?.count ?? nil))
-                                    
-                                }
-                                VStack {
-                                    Text("Teams")
-                                    Text(String(describing: tournament.teams?.count ?? 0))
-                                }
-                            }
+                Button {
+                    
+                    print("pressed")
+                    
+                    do {
+//                        try parseHTML(series: championShip.series)
+//                        try getTeams()
+//                        for serie in pandaSeries {
+//                            championShip.series.append(Serie(serie: serie, tournaments: [], liquipeadiaSerie: nil))
+//                        }
+                        
+                        
+                        
+                        
+//                        let series = try await self.apiClient.fetchRelevantSeries()
+//                         let liquiSerie = try await self.apiClient.getRelevantLiquiSerie()
+//                         let filteredSerie = try await self.apiClient.filteredSeries(liquiSeries: liquiSerie, pandaSeries: series)
+//                        try await self.apiClient.writeDataToFirestore(filteredSerie)
+                        
+                        
+                        
+                        
+//                        liquipediaInfo =  try liquiManager.getLiquiData(series: championShip.series)
+                         
+                    } catch {
+                        print(error)
+                    }
+                    
+                } label: {
+                    Text("Run SwiftSoup")
+                }
+                
+                Text("FirestoreFetch")
+
+                ForEach(liquipediaInfo, id: \.self) { serie in
+                    VStack {
+//                        Text(serie.fullName)
+//                        Text(String(serie.fullName.sorted()))
+//                        Text("unsorter")
+//                        Text(String(serie.fullName.sorted())
+                        
+//                        Text("sorted")
+                        
+                        ForEach(serie.liquipediaSerie?.teams ?? [], id: \.self) { team in
+                            Text(team.name ?? "")
                         }
-                        
-                        
-                        
-                        
-                        
-                        
                     }
                 }
+ 
             }
-            .task {
+        }
+        .task {
+            do {
                 
-//                if await self.firestoreManager.shouldPandascoreReq() {
-                    
-//                    championShip = try? await pandascoreManager.getAllData()
-//                    
-//                    if championShip != nil {
-//                        
-//                        for serie in championShip!.series {
-//                            print(serie.tournaments.count)
-//                        }
-////                        firestoreManager.wr
-//                    }
-                    
+//                try await self.apiClient.getFirestoreSeries()
                 
+//                let series = try await self.apiClient.fetchRelevantPandaSeries()
+//                 let liquiSerie = try await self.apiClient.getRelevantLiquiSeries()
+//                 let filteredSerie = try await self.apiClient.filteredSeries(liquiSeries: liquiSerie, pandaSeries: series)
+//                try await self.apiClient.writeDataToFirestore(filteredSerie)
+            
+                print("successfully loaded data to firestore")
                 
-                
-                //MARK: - use this to fetch all data needed from pandascore
-                    
-                do {
-//                    championShip = try await pandascoreManager.getAllData() 
-//                    if let championShip = championShip {
-//                    try await firestoreManager.writeData(championShip: championShip)
-//                    }
-                    
-                    
-//                    championShip = try await self.firestoreManager.getData()
-                    
-                    
-//                    let series = try await self.firestoreManager.getSeries()
-//                    print(series)
-                } catch {
-                    
-                    print(error)
-                }
-                
-//                    print(championShip?.series.count)
-                    
-//                }
-                
-//                self.store.send(.checkStamp)
-                
-                
-                
-//                do {
-//                     let series = try await pandascoreManager.getSeries()
-//                    
-//                    for index in series.indices {
-//                        championShip.series.append(FireStoreSerie(serie: series[index], tournaments: []))
-//                    }
-//                    
-//                    print(championShip.series.count)
-//                } catch {
-//                    
-//                }
+//                try await self.pandascoreManager.getPandaSeries(fetchType: .upciming)
+//                championShip = try await firestoreManager.getData()
+//                pandaSeries = try await self.pandascoreManager.getPandaSeries(fetchType: .ongoing)
+//                print(pandaSeries.count)
+//                try await liquiManager.getTierLinks()
+//                try await liquiManager.getTierLinks()
+//                try await liquiManager.getAllTournaments()
+//                try await self.pandascoreManager.fetchRelevantSeries()
+            } catch {
+                print(error )
             }
         }
     }
+//    func getTeams() async throws {
+//        
+////        let tournamentHeader = try element.getElementsByClass("gridCell Tournament Header")
+//        
+////        try tournamentHeader.select("span").remove()
+//        
+////        let tournamentLink = try tournamentHeader.select("a")
+//        
+////        guard let url = URL(string: try tournamentLink.attr("href")) else {
+////            throw RequestError.parsigError
+////        }
+//        
+//        let tournDetail = try await liquiManager.parseHTML(url: "https://liquipedia.net/dota2/ESL_One/Kuala_Lumpur/2023/Southeast_Asia/Open_Qualifier/2")
+//        
+//        let teamsInfo = try tournDetail.getElementsByClass("template-box")
+//        
+//        for teamInfo in teamsInfo {
+//            
+//            let teamPartisipants = try teamInfo.getElementsByClass("wikitable wikitable-bordered list")
+//            
+//            for player in try teamPartisipants.select("tr") {
+//                let playerPosition = try player.select("th").text()
+////                print("playerPosition -", playerPosition)
+//                let playerNickname = try player.select("a").text()
+////                print("playerPosition -", playerNickname)
+//                let playerCountry = try player.select("img").attr("src")
+////                print("player flag -", playerCountry)
+//            }
+////            print(try teamPartisipants.select("tr").outerHtml())
+//            
+//
+//            let teamLogo = try teamInfo.getElementsByClass("wikitable wikitable-bordered logo")
+//            let teamImage = try teamLogo.select("img").attr("src")
+//            let teamName = try teamInfo.select("center").text()
+////            print(try teamName.text())
+////            let team = team
+////            print("team logo -", teamImage)
+//            
+//        }
+//        
+//        
+//    //         try tournamentLink.attr("href")
+//        //            let tournamentLink = try tournamentHeader.attr("href")
+//        
+//    //        print(try tournamentLink.attr("href"))
+//        
+////        return Serie(serie: serie.serie, tournaments: serie.tournaments, liquipeadiaSerie: LiquipediaSerie(prizepool: serie.liquipediaSerie?.prizepool, teams: nil, tier: serie.liquipediaSerie?.tier))
+//        
+//    }
 }
 
 #Preview {
-    TestWrite(store: Store(initialState: TestWriteDomain.State(), reducer: {
-        TestWriteDomain()
-    }))
+//    TestWrite(store: Store(initialState: TestWriteDomain.State(), reducer: {
+//        TestWriteDomain()
+//    }))
+    TestWrite()
 }
+
+
+
+
+//func parseHTML(series: [Serie]) throws -> String {
+//    
+//    guard let url = URL(string: "https://liquipedia.net/dota2/Portal:Tournaments") else {
+//        print("error")
+//        return "FailedURL"
+//    }
+//    
+//    let htmlString = try String(contentsOf: url)
+//    
+//    let document: Document = try SwiftSoup.parse(htmlString)
+//    
+////    let body = document.body()
+//    
+//    let grids = try document.getElementsByClass("gridTable tournamentCard NoGameIcon")
+//    
+//    for grid in grids {
+//        
+//        let liquiTournaments = try grid.getElementsByClass("gridRow")
+//        
+//        for liquiTournament in liquiTournaments {
+//            
+//            let tournamentHeader = try liquiTournament.getElementsByClass("gridCell Tournament Header")
+//            
+//            var tournamentsName = try tournamentHeader.text()
+//            let sameTourn = sameTournamentsOnLiq(series, tournamentName: tournamentsName)
+//            
+//            let tournamentPrizepool = try liquiTournament.getElementsByClass("gridCell EventDetails Prize Header")
+//            
+////            let tournWithLiqPrizeppol = getTournamentPrizepoolFor(series: sameTourn, prizepool: try tournamentPrizepool.text())
+//            
+//            
+////            let tournamentTier = try tournament.getElementsByClass("gridCell Tier Header")
+//            
+//            
+////            for serie in series {
+////                
+////                tournamentsName = tournamentsName.replacingOccurrences(of: "#", with: "")
+////                tournamentsName = tournamentsName.replacingOccurrences(of: ":", with: "")
+////                tournamentsName = tournamentsName.replacingOccurrences(of: " ", with: "")
+////                
+////                tournamentsName = tournamentsName.uppercased()
+////                tournamentsName = String(tournamentsName.sorted())
+////                
+////                
+////                
+////                var fireStoreTournament = serie.fullName
+//////                var fireStoreTournament = "ESL One Kuala Lumpur Western Europe Open Qualifier 1 2023"
+////                fireStoreTournament = fireStoreTournament.replacingOccurrences(of: " ", with: "")
+////                fireStoreTournament = fireStoreTournament.uppercased()
+////                
+////                fireStoreTournament = String(fireStoreTournament.sorted())
+////                
+//////                print("Firestore tournament -", fireStoreTournament.uppercased())
+////                let difference = zip(tournamentsName, fireStoreTournament).filter{$0 != $1}
+////                
+////                if difference.count == 0 {
+////                    print("match")
+////                    print(serie.serie.id)
+////                } else {
+////                    fireStoreTournament = serie.fullName
+////                    fireStoreTournament = fireStoreTournament.replacingOccurrences(of: "2023", with: "")
+////                    fireStoreTournament = fireStoreTournament.replacingOccurrences(of: " ", with: "")
+////                    fireStoreTournament = fireStoreTournament.uppercased()
+////                    fireStoreTournament = String(fireStoreTournament.sorted())
+////                    
+////                    let difference = zip(tournamentsName, fireStoreTournament).filter{$0 != $1}
+////                    if difference.count <= 2 {
+////                        print("New match")
+////                        print(serie.serie.id)
+////                    }
+////                }
+////            }
+//            
+////            EPL World Series: America Season 8
+////            EPL World Series America season 8 2023
+//
+//            
+////            if tournamentsName == fireStoreTournament {
+////                print("match")
+////            } else {
+////                
+////                
+////                
+////                print("difference -", difference)
+////            }
+//            
+////            if let serie = championChip.series.first(where: { String($0.fullName.replacingOccurrences(of: " ", with: "").sorted()) == String(tournamentsName.replacingOccurrences(of: " ", with: "").sorted()) }) {
+////                
+////                print("match")
+////            } else {
+////                print("no match")
+////
+////                print(String(tournamentsName.sorted()))
+////                print(tournamentsName)
+////            }
+//
+//            
+//            
+//            
+//            try tournamentHeader.select("span").remove()
+//            
+////            let tournamentLink = try tournamentHeader.attr("href")
+//            
+//            var tournamentLink = try tournamentHeader.select("a")
+//            
+//            print(try tournamentLink.attr("href"))
+//            
+////            print(try tournamentHeader.outerHtml())
+//            
+////            print(try tournamentLink.outerHtml())
+////            print(try tournamentLink)
+//            
+//            
+////            let tournamentLink = try tournamentName.attr("href")
+////            let tournamentLinks = try tournamentName.select("a")
+//            
+////            try tournamentLinks.select("span").remove()
+//            
+////            if tournamentLinks.array().count == 2 {
+////                
+////                
+////                
+////            }
+////            try tournamentLinks.removeClass("league-icon-small-image")
+////            print("a count -", tournamentLinks.array().count)
+//            
+////            print(try tournamentLinks.outerHtml())
+//            
+//            
+//            let tournamentDuration = try liquiTournament.getElementsByClass("gridCell EventDetails Date Header")
+//            
+//            
+////            print("name:\(try tournamentName.text()) duration: \(try tournamentDuration.text()) prizepool: \(try tournamentPrizepool.text())")
+//        }
+//    }
+//    
+//    return "Finished parsing"
+//}
+
+//MARK: - check if there are tournaments that i have in firestore
+func sameTournamentsOnLiq(_ series: [Serie], tournamentName: String) -> [Serie] {
+    
+    var result: [Serie] = []
+    
+    var tournamentName = tournamentName
+    tournamentName = tournamentName.replacingOccurrences(of: "#", with: "")
+    tournamentName = tournamentName.replacingOccurrences(of: ":", with: "")
+    tournamentName = tournamentName.replacingOccurrences(of: " ", with: "")
+    tournamentName = tournamentName.uppercased()
+    tournamentName = String(tournamentName.sorted())
+    
+    for serie in series {
+        
+        var fireStoreTournament = serie.fullName
+        fireStoreTournament = fireStoreTournament.replacingOccurrences(of: " ", with: "")
+        fireStoreTournament = fireStoreTournament.uppercased()
+        fireStoreTournament = String(fireStoreTournament.sorted())
+        
+        let difference = zip(tournamentName, fireStoreTournament).filter{$0 != $1}
+        
+        if difference.count == 0 {
+            print("match")
+            print(serie.serie.id)
+            result.append(serie)
+        } else {
+            
+            fireStoreTournament = serie.fullName
+            fireStoreTournament = fireStoreTournament.replacingOccurrences(of: "2023", with: "")
+            fireStoreTournament = fireStoreTournament.replacingOccurrences(of: " ", with: "")
+            fireStoreTournament = fireStoreTournament.uppercased()
+            fireStoreTournament = String(fireStoreTournament.sorted())
+            
+            let difference = zip(tournamentName, fireStoreTournament).filter{$0 != $1}
+            
+            if difference.count <= 2 {
+                print("New match")
+                print(serie.serie.id)
+                result.append(serie)
+            }
+        }
+        
+    }
+    
+    return result
+    
+}
+
+
+
+func getTournamentPrizepoolFor( series: [Serie], prizepool: String) -> [Serie] {
+    
+    for serie in series {
+        
+    }
+    
+    return []
+    
+}
+
+func getTournamentTier() async throws {
+    
+}
+
+func parseTeams(tournamentURL: String) throws {
+    
+    
+    guard let url = URL(string: tournamentURL) else {
+        return
+    }
+    
+    let htmlString = try String(contentsOf: url)
+    
+    let document = try SwiftSoup.parse(htmlString)
+    
+    let teams = try document.getElementsByClass("template-box")
+    
+    for team in teams {
+        
+        let link = try team.select("a")
+        print(link)
+        
+    }
+}
+ 
+
+
+
