@@ -135,12 +135,18 @@ struct TestWrite: View {
         .task {
             do {
                 
+//                let series = try await self.pandascoreManager.getPandaSeries(fetchType: .ongoing)
+//                if let serie = series.first {
+//                    let serieTournaments = try await self.pandascoreManager.getPandaSerieTournaments(serie)
+//                    let serieMatches = try await self.pandascoreManager.setupTournamentsFrom(serie)
+//                }
+                
 //                try await self.apiClient.getFirestoreSeries()
                 
-//                let series = try await self.apiClient.fetchRelevantPandaSeries()
-//                 let liquiSerie = try await self.apiClient.getRelevantLiquiSeries()
-//                 let filteredSerie = try await self.apiClient.filteredSeries(liquiSeries: liquiSerie, pandaSeries: series)
-//                try await self.apiClient.writeDataToFirestore(filteredSerie)
+                let series = try await self.apiClient.fetchRelevantPandaSeries()
+                 let liquiSerie = try await self.apiClient.getRelevantLiquiSeries()
+                 let filteredSerie = try await self.apiClient.filteredSeries(liquiSeries: liquiSerie, pandaSeries: series)
+                try await self.apiClient.writeDataToFirestore(filteredSerie)
             
                 print("successfully loaded data to firestore")
                 

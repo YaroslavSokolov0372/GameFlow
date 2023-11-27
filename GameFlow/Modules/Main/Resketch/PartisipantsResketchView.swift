@@ -12,6 +12,7 @@ struct PartisipantsResketchDomain: Reducer {
     
     struct State: Equatable {
         let teams: [PandascoreTeam]?
+        let liquiTeams: [LiquipediaSerie.LiquipediaTeam]
     }
     
     enum Action {

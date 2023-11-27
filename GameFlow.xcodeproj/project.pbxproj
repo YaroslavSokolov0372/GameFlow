@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D122D1352B14C2F70070B927 /* NoUpcomingMatchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122D1342B14C2F70070B927 /* NoUpcomingMatchesView.swift */; };
+		D122D1372B1510380070B927 /* MatchDetailResketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122D1362B1510380070B927 /* MatchDetailResketchView.swift */; };
 		D149C2BA2B0A374500E5F260 /* SerieLoadingCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149C2B92B0A374500E5F260 /* SerieLoadingCellView.swift */; };
 		D149C2C12B0A4F2E00E5F260 /* FetchingPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149C2C02B0A4F2E00E5F260 /* FetchingPlaceholder.swift */; };
 		D149C2C52B0A804E00E5F260 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149C2C42B0A804E00E5F260 /* Network.swift */; };
 		D149C2C92B0CCF6400E5F260 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149C2C82B0CCF6400E5F260 /* CustomTabBar.swift */; };
 		D149C2CB2B0D0C4B00E5F260 /* SeriesType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149C2CA2B0D0C4B00E5F260 /* SeriesType.swift */; };
 		D149C2CF2B0D1E3C00E5F260 /* ShakeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149C2CE2B0D1E3C00E5F260 /* ShakeModifier.swift */; };
+		D149C2D52B0D4DFD00E5F260 /* OngoingMatchListViewResketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149C2D42B0D4DFD00E5F260 /* OngoingMatchListViewResketch.swift */; };
+		D149C2D72B0D4E5D00E5F260 /* MatchCellResketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149C2D62B0D4E5D00E5F260 /* MatchCellResketchView.swift */; };
 		D15AC5562B09646C00ABB7AE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D15AC5552B09646C00ABB7AE /* Alamofire */; };
 		D1971D6E2AFD2BDD00D0D12C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1971D6D2AFD2BDD00D0D12C /* GoogleService-Info.plist */; };
 		D1971D712AFD2E9C00D0D12C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D1971D702AFD2E9C00D0D12C /* FirebaseAnalytics */; };
@@ -91,7 +95,7 @@
 		D1DFEF552B03E7F900A71C4F /* TeamDetailResketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFEF542B03E7F900A71C4F /* TeamDetailResketchView.swift */; };
 		D1DFEF572B03F1AD00A71C4F /* PlayerResketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFEF562B03F1AD00A71C4F /* PlayerResketchView.swift */; };
 		D1DFEF5A2B0509EC00A71C4F /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = D1DFEF592B0509EC00A71C4F /* SwiftSoup */; };
-		D1DFEF5C2B050A7E00A71C4F /* webScrapingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFEF5B2B050A7E00A71C4F /* webScrapingManager.swift */; };
+		D1DFEF5C2B050A7E00A71C4F /* WebScrapingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFEF5B2B050A7E00A71C4F /* WebScrapingManager.swift */; };
 		D1F1E1312B012B740022C410 /* PandascoreTournament.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1E1302B012B740022C410 /* PandascoreTournament.swift */; };
 		D1F1E1352B014E830022C410 /* PandascoreBrackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1E1342B014E830022C410 /* PandascoreBrackets.swift */; };
 		D1F1E1372B014E8C0022C410 /* PandascoreStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1E1362B014E8C0022C410 /* PandascoreStandings.swift */; };
@@ -99,12 +103,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D122D1342B14C2F70070B927 /* NoUpcomingMatchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoUpcomingMatchesView.swift; sourceTree = "<group>"; };
+		D122D1362B1510380070B927 /* MatchDetailResketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailResketchView.swift; sourceTree = "<group>"; };
 		D149C2B92B0A374500E5F260 /* SerieLoadingCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieLoadingCellView.swift; sourceTree = "<group>"; };
 		D149C2C02B0A4F2E00E5F260 /* FetchingPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchingPlaceholder.swift; sourceTree = "<group>"; };
 		D149C2C42B0A804E00E5F260 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		D149C2C82B0CCF6400E5F260 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		D149C2CA2B0D0C4B00E5F260 /* SeriesType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesType.swift; sourceTree = "<group>"; };
 		D149C2CE2B0D1E3C00E5F260 /* ShakeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeModifier.swift; sourceTree = "<group>"; };
+		D149C2D42B0D4DFD00E5F260 /* OngoingMatchListViewResketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingMatchListViewResketch.swift; sourceTree = "<group>"; };
+		D149C2D62B0D4E5D00E5F260 /* MatchCellResketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCellResketchView.swift; sourceTree = "<group>"; };
 		D1971D6D2AFD2BDD00D0D12C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D1971DA82AFE902500D0D12C /* TestWrite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWrite.swift; sourceTree = "<group>"; };
 		D1971DAA2AFEAC5900D0D12C /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
@@ -155,7 +163,7 @@
 		D1DFEF522B03C20000A71C4F /* PartisipantsResketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartisipantsResketchView.swift; sourceTree = "<group>"; };
 		D1DFEF542B03E7F900A71C4F /* TeamDetailResketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailResketchView.swift; sourceTree = "<group>"; };
 		D1DFEF562B03F1AD00A71C4F /* PlayerResketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerResketchView.swift; sourceTree = "<group>"; };
-		D1DFEF5B2B050A7E00A71C4F /* webScrapingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = webScrapingManager.swift; sourceTree = "<group>"; };
+		D1DFEF5B2B050A7E00A71C4F /* WebScrapingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebScrapingManager.swift; sourceTree = "<group>"; };
 		D1F1E1302B012B740022C410 /* PandascoreTournament.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreTournament.swift; sourceTree = "<group>"; };
 		D1F1E1342B014E830022C410 /* PandascoreBrackets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreBrackets.swift; sourceTree = "<group>"; };
 		D1F1E1362B014E8C0022C410 /* PandascoreStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreStandings.swift; sourceTree = "<group>"; };
@@ -354,7 +362,7 @@
 				D1D93D392AD49C1E003F1CC7 /* APIClient.swift */,
 				D1971DAA2AFEAC5900D0D12C /* FirestoreManager.swift */,
 				D1971DAC2AFFAEE400D0D12C /* PandascoreManager.swift */,
-				D1DFEF5B2B050A7E00A71C4F /* webScrapingManager.swift */,
+				D1DFEF5B2B050A7E00A71C4F /* WebScrapingManager.swift */,
 			);
 			path = "ApiClient&Managers";
 			sourceTree = "<group>";
@@ -434,6 +442,7 @@
 		D1DFEF4F2B03906800A71C4F /* Resketch */ = {
 			isa = PBXGroup;
 			children = (
+				D122D1362B1510380070B927 /* MatchDetailResketchView.swift */,
 				D1F1E1382B02BD040022C410 /* MainResketch.swift */,
 				D1DFEF4B2B038F9A00A71C4F /* SeriesListViewResketch.swift */,
 				D1DFEF4D2B03906100A71C4F /* SerieCellResketch.swift */,
@@ -442,6 +451,9 @@
 				D1DFEF542B03E7F900A71C4F /* TeamDetailResketchView.swift */,
 				D1DFEF562B03F1AD00A71C4F /* PlayerResketchView.swift */,
 				D149C2C82B0CCF6400E5F260 /* CustomTabBar.swift */,
+				D149C2D42B0D4DFD00E5F260 /* OngoingMatchListViewResketch.swift */,
+				D149C2D62B0D4E5D00E5F260 /* MatchCellResketchView.swift */,
+				D122D1342B14C2F70070B927 /* NoUpcomingMatchesView.swift */,
 			);
 			path = Resketch;
 			sourceTree = "<group>";
@@ -575,8 +587,11 @@
 				D1D93DBF2AF1A1AE003F1CC7 /* SearchField.swift in Sources */,
 				D1D93DBD2AF1898F003F1CC7 /* SeriesListView.swift in Sources */,
 				D1CFC7EC2AF9306100CEF15B /* PlayerCellView.swift in Sources */,
+				D122D1352B14C2F70070B927 /* NoUpcomingMatchesView.swift in Sources */,
 				D1DFEF512B03BBC900A71C4F /* DetailInfoResketchView.swift in Sources */,
+				D149C2D72B0D4E5D00E5F260 /* MatchCellResketchView.swift in Sources */,
 				D1CFC7DC2AF7F79300CEF15B /* OngoingMatchListView.swift in Sources */,
+				D122D1372B1510380070B927 /* MatchDetailResketchView.swift in Sources */,
 				D149C2C52B0A804E00E5F260 /* Network.swift in Sources */,
 				D1D93DC52AF43A03003F1CC7 /* AnimationEndCallBack.swift in Sources */,
 				D1DFEF532B03C20000A71C4F /* PartisipantsResketchView.swift in Sources */,
@@ -602,9 +617,10 @@
 				D1CFC7E12AF8473200CEF15B /* PartisipantsListView.swift in Sources */,
 				D1D93D4C2AD6B2DC003F1CC7 /* PandascoreLeague.swift in Sources */,
 				D1DFEF4C2B038F9A00A71C4F /* SeriesListViewResketch.swift in Sources */,
-				D1DFEF5C2B050A7E00A71C4F /* webScrapingManager.swift in Sources */,
+				D1DFEF5C2B050A7E00A71C4F /* WebScrapingManager.swift in Sources */,
 				D1D93DBB2AF1837B003F1CC7 /* Fonts.swift in Sources */,
 				D1971DA92AFE902500D0D12C /* TestWrite.swift in Sources */,
+				D149C2D52B0D4DFD00E5F260 /* OngoingMatchListViewResketch.swift in Sources */,
 				D1CFC7DE2AF7FE2900CEF15B /* DetailInfoView.swift in Sources */,
 				D1CFC7DA2AF7F76E00CEF15B /* MatchCellView.swift in Sources */,
 				D1D93D1B2AD47C9F003F1CC7 /* GameFlowApp.swift in Sources */,

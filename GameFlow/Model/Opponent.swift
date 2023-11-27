@@ -9,8 +9,9 @@ import Foundation
 
 
 
-struct OponentsOfMatch: Codable {
-    let opponents: [OpponentClass]
+struct PandascoreOpponents: Codable, Equatable {
+    let opponent: Opponent
+    let type: String
 }
 
 struct OpponentClass: Codable {
@@ -59,3 +60,4 @@ extension Opponent: Hashable {
         hasher.combine(id)
     }
 }
+

@@ -34,6 +34,10 @@ class FirestoreManager {
     
     private let db = Firestore.firestore()
     
+    func delete() async throws {
+        
+    }
+    
     //MARK: - Function to know whether I need to make Pandascore request or not
     
     private func getLastDateStamp() async throws -> String {
@@ -414,6 +418,7 @@ class FirestoreManager {
 
         } catch {
             print(error)
+            print("Match failed")
             throw FirestoreError.failedFetchingData
         }
     }
@@ -487,7 +492,6 @@ class FirestoreManager {
                         let pandaMatches = try await self.getPandaTournamentMatches(tournament, from: serie)
                         let pandaStandings = try await self.getPandaTournamentStandings(tournament, from:serie)
                         let pandaBrackets = try await self.getPandaTournamntBrackets(tournament, from: serie)
-                        
                         return Tournament(tournament: tournament, teams: pandaTeams, matches: pandaMatches, standings: pandaStandings, brackets: pandaBrackets)
                         
                     }

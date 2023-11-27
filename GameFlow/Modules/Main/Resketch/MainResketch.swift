@@ -31,7 +31,7 @@ struct MainResketchDomain: Reducer {
         case scrollOffsetChanged(CGFloat)
         case animationStateStarted
         case animationStateReset
-        case startFetchFirestoreData
+        case startFetchData
         case fetchFirestoreDataResult(TaskResult<[Serie]>)
         case tapped
         case timeOutGesture
@@ -95,7 +95,7 @@ struct MainResketchDomain: Reducer {
                 return .none
                 
                 
-            case .startFetchFirestoreData:
+            case .startFetchData:
                 state.isFetching = true
                 return .run { send in
                     await send(.tabBarAction(.startFetching))
@@ -111,7 +111,7 @@ struct MainResketchDomain: Reducer {
             case .fetchFirestoreDataResult(let error):
                 print(error)
                 return .run { send in
-                    await send(.tabBarAction(.showErrorMessage(error as! Error)))
+//                    await send(.tabBarAction(.showErrorMessage(error as! Error)))
                     await send(.tabBarAction(.stopFetching))
                 }
             case .binding:
@@ -247,7 +247,7 @@ struct MainResketch: View {
                 
             })
             .task {
-                self.store.send(.startFetchFirestoreData)
+                self.store.send(.startFetchData)
             }
         }
     }

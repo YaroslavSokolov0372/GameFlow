@@ -83,7 +83,6 @@ struct SeriesListViewResketch: View {
                                             SerieCellResketch(store: Store(initialState: SerieCellResketchDomain.State(isFetching: viewStore.isFetching, serie: serie), reducer: {
                                                 SerieCellResketchDomain()
                                             }))
-
                                         }
                                         .disabled(viewStore.isFetching)
 

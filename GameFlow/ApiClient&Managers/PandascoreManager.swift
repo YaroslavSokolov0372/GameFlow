@@ -120,12 +120,13 @@ class PandascoreManager {
             
             let (data, _) = try await URLSession.shared.data(for: urlReq)
             
-            let matches = try? JSONDecoder().decode([PandascoreMatch].self, from: data)
+            let matches = try JSONDecoder().decode([PandascoreMatch].self, from: data)
             
-            print("matches count - \(matches?.count ?? 0)")
+//            print("matches count - \(matches?.count ?? 0)")
             return matches
             
         } catch {
+//            print(error)
             print("Failed to fetch matches")
             throw PandascoreError.pandaFetchingFailed
         }
@@ -225,7 +226,7 @@ class PandascoreManager {
                     let standings = try await self.getTournamentStandings(tournament)
                     let brackets = try await self.getTournamentBrackets(tournament)
                     let teams: [PandascoreTeam]? = try await self.getPandaTournamentTeams(tournament)
-                    
+                    print("matches count - ", matches?.count)
                     return Tournament(tournament: tournament, teams: teams, matches: matches, standings: standings, brackets: brackets)
                 }
             }

@@ -62,9 +62,14 @@ extension Date {
 extension Date {
     
     func shortFormat() -> String {
-        
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM d"
+        return formatter.string(from: self)
+    }
+    
+    func matchFormat() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d, HH:mm"
         return formatter.string(from: self)
     }
 }

@@ -67,7 +67,7 @@ extension [Serie] {
             }
         }
         
-        return ongoingSeries
+        return ongoingSeries.sorted(by: { $0.serie.begin_at! > $1.serie.begin_at! })
     }
     
     var upcoming: [Serie] {
@@ -87,7 +87,7 @@ extension [Serie] {
                 }
             }
         }
-        return upcomingSeries
+        return upcomingSeries.sorted(by: { $0.serie.begin_at! > $1.serie.begin_at!})
     }
     
     var latest: [Serie] {
@@ -96,17 +96,21 @@ extension [Serie] {
         
         for serie in self {
             if let endDate = serie.serie.end_at {
+                let calendar = Calendar(identifier: .iso8601)
                 let formattedEnd = endDate.ISOfotmattedString()
                 let currentDate = Date().iso8601.ISOfotmattedString()
                 
+                let limit = calendar.date(byAdding: .month, value: -1, to: currentDate)
                 
-                if currentDate > formattedEnd {
-                    latestSeries.append(serie)
+//                if currentDate > formattedEnd {
+                    if formattedEnd.isBetween(limit!, and: currentDate) {
+                        latestSeries.append(serie)
+//                    }
                 }
             }
         }
         
-        return latestSeries
+        return latestSeries.sorted(by: { $0.serie.end_at! > $1.serie.end_at! })
     }
     
 }
