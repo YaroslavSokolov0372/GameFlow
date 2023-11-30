@@ -1,24 +1,11 @@
 //
-//  ChampionShip.swift
+//  Serie.swift
 //  GameFlow
 //
-//  Created by Yaroslav Sokolov on 11/11/2023.
+//  Created by Yaroslav Sokolov on 28/11/2023.
 //
 
-import SwiftUI
-
-//struct ChampionShip {
-//
-//    var series: [Serie]
-//    
-//    init(series: [Serie]) {
-//        self.series = series
-//    }
-//}
-
-//extension ChampionShip: Equatable {
-//}
-
+import Foundation
 
 struct Serie {
     
@@ -182,58 +169,12 @@ extension Serie {
     
     
     var sortedTournamentsByBegin: [Tournament] {
-        
         let tournaments = self.tournaments.sorted(by: {
-            $0.tournament.begin_at?.ISOfotmattedString() ?? Date() <
-            $1.tournament.begin_at?.ISOfotmattedString() ?? Date()})
+            ($0.tournament.begin_at?.ISOfotmattedString() ?? Date(), $0.tournament.name) < ($1.tournament.begin_at?.ISOfotmattedString() ?? Date(), $1.tournament.name)})
+        
+//        let tournaments = self.tournaments.sorted(by: {
+//            $0.tournament.begin_at?.ISOfotmattedString() ?? Date() < $1.tournament.begin_at?.ISOfotmattedString() ?? Date()})
         
         return tournaments
     }
 }
-
-
-
-struct Tournament {
-    
-    var tournament: PandascoreTournament
-    var teams: [PandascoreTeam]?
-    var matches: [PandascoreMatch]?
-    var standings: [PandascoreStandings]?
-    var brackets: [PandascoreBrackets]?
-    
-    init(tournament: PandascoreTournament, teams: [PandascoreTeam]? = nil, matches: [PandascoreMatch]? = nil, standings: [PandascoreStandings]? = nil, brackets: [PandascoreBrackets]? = nil) {
-        self.tournament = tournament
-        self.teams = teams
-        self.matches = matches
-        self.standings = standings
-        self.brackets = brackets
-    }
-    
-}
-
-extension Tournament {
-        
-    
-    func getIndexOf(_ tournament: Tournament, from: [Tournament]) -> Int {
-        return from.firstIndex(where: { $0.tournament.id == tournament.tournament.id }) ?? 0
-    }
-}
-
-
-
-extension Tournament: Hashable {
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(tournament.id)
-    }
-}
-
-
-extension Tournament: Equatable {
-    
-    static func == (lhs: Tournament, rhs: Tournament) -> Bool {
-        lhs.tournament.id == rhs.tournament.id
-    }
-}
-
-

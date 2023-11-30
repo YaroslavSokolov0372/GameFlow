@@ -41,7 +41,7 @@ struct OngoingMatchListViewResketch: View {
                 ScrollView(.horizontal) {
                     HStack(spacing: 20) {
                         ForEach(viewStore.matches, id: \.self) { match in
-                            MatchCellResketchView(store: Store(initialState: MatchCellResketchDomain.State(match: match, liquiTeams: viewStore.liquiInfo), reducer: {
+                            MatchCellResketchView(store: Store(initialState: MatchCellResketchDomain.State(match: match, liquiTeams: viewStore.liquiInfo, isStarted: match.isMatchStarted()), reducer: {
                                 MatchCellResketchDomain()
                             }))
                         }

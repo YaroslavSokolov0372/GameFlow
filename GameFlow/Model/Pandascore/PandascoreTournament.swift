@@ -90,19 +90,6 @@ struct PandascoreTournament: Codable, Identifiable {
 
     }
 
-//    extension PandascoreMatch: Equatable {
-//        
-//        static func == (lhs: PandascoreMatch, rhs: PandascoreMatch) -> Bool {
-//            lhs.id == rhs.id
-//        }
-//    }
-
-//    extension PandascoreMatch: Hashable {
-//        func hash(into hasher: inout Hasher) {
-//            hasher.combine(id)
-//        }
-//    }
-
 }
 
 extension PandascoreTournament: Equatable {
@@ -160,7 +147,7 @@ enum VideoGame: Decodable {
 
 
 
-struct StreamsList: Codable {
+struct StreamsList: Codable, Hashable {
     let embed_url: String?
     let language: String
     let main: Bool

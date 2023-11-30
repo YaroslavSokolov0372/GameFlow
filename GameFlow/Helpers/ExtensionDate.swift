@@ -33,7 +33,6 @@ extension Date {
 //    }
 }
 
-
 extension Calendar {
     func dateBySetting(timeZone: TimeZone, of date: Date) -> Date? {
         var components = dateComponents(in: self.timeZone, from: date)
@@ -56,8 +55,6 @@ extension Formatter {
 extension Date {
     var iso8601: String { return Formatter.iso8601.string(from: self) }
 }
-
-
 
 extension Date {
     

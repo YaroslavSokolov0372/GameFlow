@@ -1,17 +1,18 @@
 //
-//  PlayerView.swift
+//  PlayerViewResketch.swift
 //  GameFlow
 //
-//  Created by Yaroslav Sokolov on 06/11/2023.
+//  Created by Yaroslav Sokolov on 28/11/2023.
 //
 
 import SwiftUI
 import ComposableArchitecture
 
-struct PlayerCellDomain: Reducer {
+struct PlayerViewResketchDomain: Reducer  {
     
     struct State: Equatable {
         let rotated: Bool
+        let liquiPlayer: LiquipediaSerie.LiquipediaPlayer
     }
     
     enum Action {
@@ -19,7 +20,6 @@ struct PlayerCellDomain: Reducer {
     }
     
     var body: some Reducer<State, Action> {
-        
         Reduce { state, action in
             switch action {
             default: return .none
@@ -28,13 +28,11 @@ struct PlayerCellDomain: Reducer {
     }
 }
 
-struct PlayerCellView: View {
+struct PlayerViewResketch: View {
     
-    var store: StoreOf<PlayerCellDomain>
-    
+    var store: StoreOf<PlayerViewResketchDomain>
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            
             if viewStore.rotated {
                 RoundedRectangle(cornerRadius: 20)
                     .foregroundStyle(Color("Gray", bundle: .main))
@@ -43,7 +41,7 @@ struct PlayerCellView: View {
                         HStack {
                             HStack {
                                 Text("Position")
-                                Text("4")
+                                Text(viewStore.liquiPlayer.position)
                             }
                             .padding(10)
                             .foregroundStyle(.white)
@@ -60,82 +58,68 @@ struct PlayerCellView: View {
                                     })
                             )
                             
+                            
                             Spacer()
                             
                             VStack(alignment: .trailing) {
-                                Text("Mira")
+                                Text(viewStore.liquiPlayer.nickname)
                                     .foregroundStyle(.white)
                                     .font(.gilroy(.medium, size: 17))
                                 
-                                
-                                Text("Miroslaw Kolpakov")
-                                    .foregroundStyle(.gray)
-                                    .font(.gilroy(.regular, size: 14))
+//
+//                                Text("Miroslaw Kolpakov")
+//                                    .foregroundStyle(.gray)
+//                                    .font(.gilroy(.regular, size: 14))
                                 
                             }
                             
-                            AsyncImage(url: URL(string: "https://cdn.pandascore.co/images/player/image/26725/mira_2023_team_spirit.png")) { image in
+                            AsyncImage(url: URL(string: "https://liquipedia.net/\(viewStore.liquiPlayer.flagURL)")) { image in
                                 image
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 75, height: 75)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 15)
-                                            .foregroundStyle(.white)
-                                    )
+                                    .frame(width: 40, height: 40)
                             } placeholder: {
                                 RoundedRectangle(cornerRadius: 15)
-                                    .frame(width: 75, height: 75)
-                                    .foregroundStyle(.white)
+                                    .frame(width: 40, height: 40)
+                                    .foregroundStyle(Color("Gray2", bundle: .main))
                             }
-                            .offset(y: -10)
+//                            .offset(y: -10)
                         }
-                        //                    .font(.gilroy(.medium, size: 17))
                         .padding(.horizontal, 20)
-                        
                     }
-                
             } else {
                 RoundedRectangle(cornerRadius: 20)
                     .foregroundStyle(Color("Gray", bundle: .main))
                     .frame(width: 370, height: 75)
                     .overlay {
                         HStack {
-                            AsyncImage(url: URL(string: "https://cdn.pandascore.co/images/player/image/26725/mira_2023_team_spirit.png")) { image in
+                            
+                            AsyncImage(url: URL(string: "https://liquipedia.net/\(viewStore.liquiPlayer.flagURL)")) { image in
                                 image
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 75, height: 75)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 15)
-                                            .foregroundStyle(.white)
-                                    )
+                                    .frame(width: 40, height: 40)
                             } placeholder: {
                                 RoundedRectangle(cornerRadius: 15)
-                                    .frame(width: 75, height: 75)
-                                    .foregroundStyle(.white)
+                                    .frame(width: 40, height: 40)
+                                    .foregroundStyle(Color("Gray2", bundle: .main))
                             }
+//                            .offset(y: -10)
                             
-                            .offset(y: -10)
                             
-                            VStack(alignment: .leading) {
-                                Text("Mira")
+                            
+                            VStack(alignment: .trailing) {
+                                Text(viewStore.liquiPlayer.nickname)
                                     .foregroundStyle(.white)
                                     .font(.gilroy(.medium, size: 17))
-                                
-                                
-                                Text("Miroslaw Kolpakov")
-                                    .foregroundStyle(.gray)
-                                    .font(.gilroy(.regular, size: 14))
-                                
                             }
                             
                             Spacer()
                             
+                            
                             HStack {
                                 Text("Position")
-                                Text("4")
-                                
+                                Text(viewStore.liquiPlayer.position)
                             }
                             .padding(10)
                             .foregroundStyle(.white)
@@ -151,24 +135,20 @@ struct PlayerCellView: View {
                                         
                                     })
                             )
+                            
+                            
+
+
                         }
-                        //                    .font(.gilroy(.medium, size: 17))
                         .padding(.horizontal, 20)
-                        
                     }
-                
             }
         }
     }
 }
 
-#Preview {
-    PlayerCellView(store: Store(initialState: PlayerCellDomain.State(rotated: false), reducer: {
-        PlayerCellDomain()
-    }))
-    .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background {
-        Color("Black", bundle: .main)
-            .ignoresSafeArea()
-    }
-}
+//#Preview {
+//    PlayerViewResketch(store: Store(initialState: PlayerViewResketchDomain.State(rotated: false), reducer: {
+//        PlayerViewResketchDomain()
+//    }))
+//}

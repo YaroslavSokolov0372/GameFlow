@@ -29,8 +29,10 @@ struct MatchCellResketchDomain: Reducer {
         Reduce { state, action in
             switch action {
             case .stopTick:
+                print("stortick")
                 return .cancel(id: state.match.id)
             case .checkTime:
+                print("check time")
                 state.isStarted = state.match.isMatchStarted()
                 return .none
             case .tick:
@@ -38,7 +40,8 @@ struct MatchCellResketchDomain: Reducer {
                     send in for await _ in self.clock.timer(interval: .seconds(5)) {
                         await send(.checkTime)
                     }
-                }.cancellable(id: state.match.id)
+                }
+                .cancellable(id: state.match.id)
             }
         }
     }
@@ -52,27 +55,18 @@ struct MatchCellResketchView: View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             
             NavigationLink {
-//                MatchDetailView(store: Store(initialState: MatchDetailDomain.State(), reducer: {
-//                    MatchDetailDomain()
-                //                    }))
                 MatchDetailResketchView(store: Store(initialState: MatchDetailResketchDomain.State(isStarted: viewStore.isStarted, match: viewStore.match, liquiTeams: viewStore.liquiTeams), reducer: {
                         MatchDetailResketchDomain()
                 })).navigationBarBackButtonHidden()
                 
             } label: {
-                
                 ZStack {
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundStyle(Color("Gray", bundle: .main))
                         .frame(width: 370, height: 230)
                     
-                    
-                    
                     VStack(spacing: 0) {
                         HStack(spacing: 0) {
-                            
-                            
-                                
                             if viewStore.match.opponents.count >= 1 {
                                 let firstLiquiTeam = viewStore.liquiTeams.getLiquiTeam(by: viewStore.match.opponents.first!.opponent.name)
                                 
@@ -153,11 +147,13 @@ struct MatchCellResketchView: View {
                                         }
                                     }
                                     
-                                    Text(firstLiquiTeam == nil ? viewStore.match.opponents.first!.opponent.name : firstLiquiTeam!.name.teamFormatted())
+//                                    Text(firstLiquiTeam == nil ? viewStore.match.opponents.first!.opponent.name : firstLiquiTeam!.name.teamFormatted())
+                                    Text(firstLiquiTeam == nil ? viewStore.match.opponents[1].opponent.name.teamFormatterName() : firstLiquiTeam!.name.teamFormatterName())
                                         .textCase(.uppercase)
                                         .foregroundStyle(.white)
                                         .font(.gilroy(.bold, size: 12))
-                                        .frame(width: 130, height: 20)
+                                        .frame(width: 130, height: 30)
+//                                        .frame(width: 130, height: 40)
                                     
                                 }
                                 .frame(width: 150, height: 100, alignment: .center)
@@ -238,9 +234,6 @@ struct MatchCellResketchView: View {
                                                     Circle()
                                                         .frame(width: 80, height: 80)
                                                         .foregroundStyle(Color("Black", bundle: .main))
-    //                                                    .overlay(alignment: .center) {
-    //                                                        Text("Loading")
-    //                                                    }
                                                 }
                                                 .frame(width: 150, height: 90, alignment: .center)
                                             } else {
@@ -258,11 +251,11 @@ struct MatchCellResketchView: View {
                                             }
                                         }
                                         
-                                        Text(firstLiquiTeam == nil ? viewStore.match.opponents[1].opponent.name.teamFormatted() : secondLiquiTeam!.name.teamFormatted())
+                                        Text(secondLiquiTeam == nil ? viewStore.match.opponents[1].opponent.name.teamFormatterName() : secondLiquiTeam!.name.teamFormatterName())
                                             .textCase(.uppercase)
                                             .foregroundStyle(.white)
                                             .font(.gilroy(.bold, size: 12))
-                                            .frame(width: 130, height: 20)
+                                            .frame(width: 130, height: 30)
                                         
                                     }
                                     .frame(width: 150, height: 100, alignment: .center)
@@ -286,14 +279,15 @@ struct MatchCellResketchView: View {
                                             .textCase(.uppercase)
                                             .foregroundStyle(.white)
                                             .font(.gilroy(.bold, size: 12))
+                                            .frame(width: 130, height: 20)
                                     }
                                     .frame(width: 150, height: 100, alignment: .center)
                                     
                                 }
                                     
                             } else {
-                                //IF DIDN'T FIND MATCHES
-                                VStack(alignment: .center) {
+                                //IF HAVEN'T GOT INFO YET
+                                VStack(alignment: .center, spacing: 16) {
                                     VStack {
                                         Circle()
                                             .frame(width: 80, height: 80)
@@ -304,12 +298,13 @@ struct MatchCellResketchView: View {
                                                     .font(.gilroy(.medium, size: 30))
                                             }
                                     }
-                                    .frame(width: 150, height: 95, alignment: .center)
                                     
                                     Text("TBD")
                                         .textCase(.uppercase)
                                         .foregroundStyle(.white)
                                         .font(.gilroy(.bold, size: 12))
+                                        .frame(width: 130, height: 20)
+
                                 }
                                 .frame(width: 150, height: 100, alignment: .center)
                                 
@@ -320,7 +315,7 @@ struct MatchCellResketchView: View {
                                     .frame(width: 60)
                                 
                                 
-                                VStack(alignment: .center) {
+                                VStack(alignment: .center, spacing: 16) {
                                     VStack {
                                         Circle()
                                             .frame(width: 80, height: 80)
@@ -331,19 +326,16 @@ struct MatchCellResketchView: View {
                                                     .font(.gilroy(.medium, size: 30))
                                             }
                                     }
-                                    .frame(width: 150, height: 95, alignment: .center)
                                     
                                     Text("TBD")
                                         .textCase(.uppercase)
                                         .foregroundStyle(.white)
                                         .font(.gilroy(.bold, size: 12))
+                                        .frame(width: 130, height: 20)
+
                                 }
                                 .frame(width: 150, height: 100, alignment: .center)
                             }
-                            
-                                
-
-
                         }
                         .padding(.bottom, 24)
                         
@@ -354,7 +346,6 @@ struct MatchCellResketchView: View {
                         
                         HStack() {
                             Text(viewStore.match.matchTime())
-//                            Text("Oct 19. 21:00")
                                 .font(.gilroy(.medium, size: 16))
                                 .foregroundStyle(.gray)
                             
@@ -362,6 +353,7 @@ struct MatchCellResketchView: View {
                             
                             Text("Live")
                                 .foregroundStyle(.white)
+                                .font(.gilroy(.medium, size: 16))
                                 .padding(4)
                                 .padding(.horizontal, 3)
                                 .background(
@@ -374,19 +366,22 @@ struct MatchCellResketchView: View {
                                                 .opacity(0.5)
                                         })
                                 )
-                                .opacity(viewStore.isStarted ? 1 : 0)
-                                .animation(.easeInOut(duration: 0.3), value: viewStore.isStarted)
+                                .opacity(viewStore.isStarted == true ? 1 : 0)
+                                .animation(.easeInOut(duration: 0.1), value: viewStore.isStarted)
+
                         }
                         .padding()
                         .frame(height: 60)
-                        //                    .padding(10)
+
+                        
                     }
                     .frame(width: 360, height: 230, alignment: .bottom)
                 }
-                .onAppear {
-                    self.store.send(.checkTime)
+                .task({
+                  try? await Task.sleep(for: .seconds(5))
                     self.store.send(.tick)
-                }
+                    print("tick started")
+                })
                 .onDisappear {
                     self.store.send(.stopTick)
                 }

@@ -102,8 +102,12 @@ struct DetailInfoResketchView: View {
                                                 Spacer()
                                                 
                                                 NavigationLink {
-                                                    MatchesListView(store: Store(initialState: MatchesListDomain.State(), reducer: {
-                                                        MatchesListDomain()
+                                                    MatchesListReskatchView(store: Store(
+                                                        initialState: MatchesListResketchDomain.State(
+                                                            liquiInfo: viewStore.serie.liquipediaSerie!.teams,
+                                                            tournament: viewStore.serie.tournaments[num]
+                                                        ), reducer: {
+                                                        MatchesListResketchDomain()
                                                     })).navigationBarBackButtonHidden()
                                                     
                                                 } label: {
@@ -122,12 +126,13 @@ struct DetailInfoResketchView: View {
                                             
                                             OngoingMatchListViewResketch(store: Store(
                                                 initialState: OngoingMatchListResketchDomain.State(
-                                                    matches: viewStore.serie.tournaments[num].matches!.upToWeek,
+                                                    matches: viewStore.serie.tournaments[num].matches!.upciming,
                                                     liquiInfo: viewStore.serie.liquipediaSerie!.teams),
                                                 reducer: { OngoingMatchListResketchDomain() }))
                                         }
                                         
                                         VStack {
+                                            if viewStore.serie.tournaments[num].tournament.name != "Playoffs" {
                                             HStack {
                                                 Text("Standings")
                                                     .frame(width: geo.size.width / 3)
@@ -138,9 +143,32 @@ struct DetailInfoResketchView: View {
                                             }
                                             .frame(height: 30)
                                             
-                                            StandingsView(store: Store(initialState: StandingsDomain.State(), reducer: {
-                                                StandingsDomain()
-                                            }))
+//                                                StandingsView(store: Store(initialState: StandingsDomain.State(), reducer: {
+//                                                    StandingsDomain()
+//                                                }))
+                                                StandingsResketch(store: Store(
+                                                    initialState: StandingsResketchDomain.State(
+                                                        liquiTeams: viewStore.serie.liquipediaSerie!.teams,
+                                                        standings: viewStore.serie.tournaments[num].standings!,
+                                                        newStandings: viewStore.serie.tournaments[num].matches!.getStandings(
+                                                            liquiInfo: viewStore.serie.liquipediaSerie! , tournament: viewStore.serie.tournaments[num])
+                                                    ), reducer: {
+                                                        StandingsResketchDomain()
+                                                    }))
+                                            } else {
+                                                HStack {
+                                                    Text("Brackets")
+                                                        .frame(width: geo.size.width / 3)
+                                                        .font(.gilroy(.bold, size: 18))
+                                                        .foregroundStyle(.white)
+                                                    
+                                                    Spacer()
+                                                    
+                                                    //IF NOT STATED, SHOW TBD
+//                                                    if viewStore.tournaments[num].tournament.begin_at
+                                                }
+                                                .frame(height: 30)
+                                            }
                                         }
                                         
                                         
@@ -154,17 +182,17 @@ struct DetailInfoResketchView: View {
                                                 
                                                 Spacer()
                                             }
+                                            
                                             .frame(height: 30)
                                             
                                             PartisipantsResketchView(store: Store(
                                                 initialState: PartisipantsResketchDomain.State(
-                                                    teams: viewStore.serie.sortedTournamentsByBegin[num].teams, liquiTeams: viewStore.serie.liquipediaSerie!.getTournamentTeams(viewStore.serie.tournaments[num])
-//                                                    liquiTeams: viewStore.serie.liquipediaSerie!.getTournamentTeams(viewStore.serie.tournaments[num]))
-                                                    
-                                                ),
+                                                    teams: viewStore.serie.tournaments[num].teams,
+                                                    liquiTeams: viewStore.serie.liquipediaSerie!.getTournamentTeams(viewStore.serie.tournaments[num])),
                                                 reducer: { PartisipantsResketchDomain() }))
                                             .padding(.bottom, 7)
                                         }
+                                        .padding(.horizontal, 13)
                                     }
                                     .padding(.vertical, 10)
 
@@ -232,7 +260,6 @@ struct DetailInfoResketchView: View {
                                 ForEach(viewStore.serie.sortedTournamentsByBegin.indices, id: \.self) { num in
                                     VStack {
                                         Button {
-                                            
                                             viewStore.send(.tabSelected(num))
                                             
                                         } label: {

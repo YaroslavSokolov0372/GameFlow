@@ -73,6 +73,7 @@ struct TestWrite: View {
     @State var pandaSeries: [PandascoreSerie] = []
 //    @State var tournamentLink = try? parseHTML()
     @State var liquipediaInfo: [Serie] = []
+    @State var liquiSerie = [LiquipediaSerie.LiquipediaTeam]()
     
     
     
@@ -96,7 +97,7 @@ struct TestWrite: View {
                         
                         
 //                        let series = try await self.apiClient.fetchRelevantSeries()
-//                         let liquiSerie = try await self.apiClient.getRelevantLiquiSerie()
+                         
 //                         let filteredSerie = try await self.apiClient.filteredSeries(liquiSeries: liquiSerie, pandaSeries: series)
 //                        try await self.apiClient.writeDataToFirestore(filteredSerie)
                         
@@ -113,19 +114,16 @@ struct TestWrite: View {
                     Text("Run SwiftSoup")
                 }
                 
-                Text("FirestoreFetch")
-
-                ForEach(liquipediaInfo, id: \.self) { serie in
+                ForEach(liquiSerie, id: \.self) { team in
                     VStack {
-//                        Text(serie.fullName)
-//                        Text(String(serie.fullName.sorted()))
-//                        Text("unsorter")
-//                        Text(String(serie.fullName.sorted())
+                        Text(team.name)
+                            .bold()
                         
-//                        Text("sorted")
-                        
-                        ForEach(serie.liquipediaSerie?.teams ?? [], id: \.self) { team in
-                            Text(team.name ?? "")
+                        ForEach(team.players, id: \.self) { player in
+                            HStack {
+                                Text(player.nickname)
+                                Text(player.position)
+                            }
                         }
                     }
                 }
@@ -143,10 +141,16 @@ struct TestWrite: View {
                 
 //                try await self.apiClient.getFirestoreSeries()
                 
-                let series = try await self.apiClient.fetchRelevantPandaSeries()
-                 let liquiSerie = try await self.apiClient.getRelevantLiquiSeries()
-                 let filteredSerie = try await self.apiClient.filteredSeries(liquiSeries: liquiSerie, pandaSeries: series)
-                try await self.apiClient.writeDataToFirestore(filteredSerie)
+//                let series = try await self.apiClient.fetchRelevantPandaSeries()
+//                 let liquiSerie = try await self.apiClient.getRelevantLiquiSeries()
+//                 let filteredSerie = try await self.apiClient.filteredSeries(liquiSeries: liquiSerie, pandaSeries: series)
+//                try await self.apiClient.writeDataToFirestore(filteredSerie)
+                
+                
+                
+//                liquiSerie = try await getTeams()
+                
+                
             
                 print("successfully loaded data to firestore")
                 
@@ -451,3 +455,110 @@ func parseTeams(tournamentURL: String) throws {
 
 
 
+private let base = "https://liquipedia.net"
+
+
+ func getTeamPlayers(teamInfoElement: Element) async throws -> [LiquipediaSerie.LiquipediaPlayer] {
+    
+    var teamPlayers: [LiquipediaSerie.LiquipediaPlayer] = []
+     
+//     var teamPartisipants = try teamInfoElement.getElementsByClass("teamcard-inner")
+     var teamPartisipants = try teamInfoElement.getElementsByClass("wikitable wikitable-bordered list").filter({ try $0.attr("data-toggle-area-content") == "1" })
+     
+     print("team part count -", teamPartisipants.count)
+//         .filter({ try $0.attr("data-toggle-area-content") != "1"})
+//     print(try teamPartisipants.select("data-toggle-area-content"))
+//     for element in try 
+     for element in teamPartisipants {
+//         if try element.attr("data-toggle-area-content") == "1" {
+             
+             print(try element.attr("data-toggle-area-content"))
+//         }
+//         print(try element.attr("data-toggle-area-content").filter({ $0 == "1"}))
+     }
+//     {
+//         print(try element.text())
+//     }
+//     print(try teamPartisipants.html())
+     
+    
+    try await withThrowingTaskGroup(of: LiquipediaSerie.LiquipediaPlayer.self) { taskGroup in
+        for player in try teamPartisipants.first!.select("tr").prefix(5) {
+            taskGroup.addTask {
+                
+                
+                let playerPosition = try player.select("th").text()
+                
+                let playerNickname = try player.select("a").text()
+                
+                let playerCountry = try player.select("img").attr("src")
+                
+                return LiquipediaSerie.LiquipediaPlayer(nickname: playerNickname, flagURL: playerCountry, position: playerPosition)
+            }
+        }
+        
+        for try await result in taskGroup {
+            teamPlayers.append(result)
+        }
+    }
+    return teamPlayers
+}
+
+ func getTeams() async throws -> [LiquipediaSerie.LiquipediaTeam] {
+    
+    var liquipediaTeams: [LiquipediaSerie.LiquipediaTeam] = []
+     
+     
+    
+//    let tournamentHeader = try liqTourn.getElementsByClass("gridCell Tournament Header")
+//    
+//    try tournamentHeader.select("span").remove()
+//    
+//    let tournamentLink = try tournamentHeader.select("a")
+//    
+//    let tournDetailLink = try await parseHTMLFrom("\(base)\(try tournamentLink.attr("href"))")
+    
+     let tournDetailLink = try await parseHTMLFrom("https://liquipedia.net/dota2/Pinnacle_25_Year_Anniversary_Show")
+    
+    
+//        let teamsInfo = try tournDetailLink.getElementsByClass("template-box")
+    let teamsInfo = try tournDetailLink.getElementsByClass("teamcard toggle-area toggle-area-1")
+    
+    
+    try await withThrowingTaskGroup(of: LiquipediaSerie.LiquipediaTeam.self) { taskGroup in
+        for teamInfo in teamsInfo {
+            
+            taskGroup.addTask {
+                
+                let teamLogo = try teamInfo.getElementsByClass("wikitable wikitable-bordered logo").select("img").attr("src")
+                
+                let teamName = try teamInfo.select("center").text()
+                
+                let players = try await getTeamPlayers(teamInfoElement: teamInfo)
+                
+                return LiquipediaSerie.LiquipediaTeam(imageURL: teamLogo, name: teamName, players: players)
+            }
+        }
+        
+        for try await result in taskGroup {
+            liquipediaTeams.append(result)
+        }
+    }
+    
+    return liquipediaTeams
+}
+
+private func parseHTMLFrom(_ customUrl: String?) async throws -> Document {
+    
+    guard let url = URL(string: customUrl == nil ? "https://liquipedia.net/dota2/Portal:Tournaments" : customUrl!) else {
+        throw WebScrapingError.invalidURL
+    }
+    
+    let urlData = try Data(contentsOf: url)
+    let htmlString = String(data: urlData, encoding: .ascii)
+    
+    let document: Document = try SwiftSoup.parse(htmlString!)
+
+    return document
+    
+}

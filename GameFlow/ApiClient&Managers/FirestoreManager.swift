@@ -237,7 +237,6 @@ class FirestoreManager {
                             .collection("Teams")
                             .document("\(team.id)")
                             .setData(from: team.self)
-                        
                     }
                 }
             }

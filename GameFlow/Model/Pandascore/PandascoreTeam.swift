@@ -45,3 +45,18 @@ extension PandascoreTeam: Hashable {
     }
 }
 
+extension [PandascoreTeam] {
+    
+    func sameLiquiTeam(_ liquiTeams: [LiquipediaSerie.LiquipediaTeam]) -> [PandascoreTeam] {
+        
+        var sortedLiquiTeam = [PandascoreTeam]()
+        
+        for team in liquiTeams {
+            if let pandaTeam = self.first(where: { $0.name.teamFormatted() == team.name.teamFormatted() }) {
+                sortedLiquiTeam.append(pandaTeam)
+            }
+        }
+        return sortedLiquiTeam
+    }
+}
+

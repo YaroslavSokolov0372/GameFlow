@@ -18,7 +18,7 @@ struct LiquipediaSerie: Codable, Hashable {
         
         let imageURL: String
         let name: String
-        let players: [LiquipediaPlayer]?
+        let players: [LiquipediaPlayer]
         
     }
     
@@ -33,6 +33,7 @@ struct LiquipediaSerie: Codable, Hashable {
     }
 }
 extension LiquipediaSerie {
+    
     func getTournamentTeams(_ tournament: Tournament) -> [Self.LiquipediaTeam] {
         
         var liquiTeams: [Self.LiquipediaTeam] = []
@@ -50,6 +51,7 @@ extension LiquipediaSerie {
 }
 
 extension LiquipediaSerie.LiquipediaTeam {
+    
     var hasTeamImage: Bool {
         if self.imageURL == "/commons/images/thumb/1/16/Dota2_logo.png/148px-Dota2_logo.png" {
             return false
@@ -60,16 +62,14 @@ extension LiquipediaSerie.LiquipediaTeam {
 }
 
 extension [LiquipediaSerie.LiquipediaTeam] {
+    
     func getLiquiTeam(by name: String) -> LiquipediaSerie.LiquipediaTeam? {
         return self.first(where: { $0.name.teamFormatted() == name.teamFormatted() }) ?? nil
     }
 }
 
-
-
-
-
 extension String {
+    
     func teamFormatted() -> Self {
         if self == "The dudley boyz" {
             return "The dudley boys".filter({ !$0.isWhitespace }).uppercased()
@@ -82,6 +82,16 @@ extension String {
                 .replacingOccurrences(of: "CIS2", with: "")
                 .replacingOccurrences(of: regex, with: "", options: .regularExpression)
                 .replacingOccurrences(of: "[0-9]+", with: "", options: .regularExpression)
+        }
+    }
+    
+    func teamFormatterName() -> Self {
+        let regex = "\\[[^\\]]*\\]"
+        if self == "The dudley boyz" {
+            return "The dudley boys".filter({ !$0.isWhitespace }).uppercased()
+        } else {
+            return self
+                .replacingOccurrences(of: regex, with: "", options: .regularExpression)
         }
     }
 }

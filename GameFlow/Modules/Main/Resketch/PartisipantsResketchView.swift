@@ -34,99 +34,87 @@ struct PartisipantsResketchView: View {
     
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-//            NavigationView(content: {
-                
-                ScrollView(.horizontal) {
-                    HStack(spacing: 20) {
-                        if let teams = viewStore.teams {
-                            if teams.count > 0 {
-                                ForEach(teams, id: \.self) { team in
-                                    NavigationLink {
-                                        
-                                        //                                    TeamDetailView(store: Store(initialState: TeamDetailDomain.State(), reducer: {
-                                        //                                        TeamDetailDomain()
-                                        //                                    })).navigationBarBackButtonHidden()
-                                        TeamDetailResketchView(store: Store(initialState: TeamDetailResketchDomain.State(team: team), reducer: {
+            //            NavigationView(content: {
+            ScrollView(.horizontal) {
+                HStack(spacing: 20) {
+                    if let teams = viewStore.teams {
+                        if teams.count > 0 {
+                            ForEach(teams.sameLiquiTeam(viewStore.liquiTeams), id: \.self) { team in
+                                NavigationLink {
+                                    
+                                    TeamDetailResketchView(store: Store(
+                                        initialState: TeamDetailResketchDomain.State(team: viewStore.liquiTeams.getLiquiTeam(by: team.name)!), reducer: {
                                             TeamDetailResketchDomain()
                                         })).navigationBarBackButtonHidden()
-                                        
-                                    } label: {
-                                        
-                                        VStack {
-                                            //                                AsyncImage(url: URL(string: "https://cdn.pandascore.co/images/team/image/129041/190px_talent_gaming_logo.png")) { image in
-                                            if let imageURL = team.image_url {
-                                                AsyncImage(url: URL(string: imageURL)) { image in
-                                                    image
-                                                        .resizable()
-                                                        .scaledToFit()
-                                                    //                                            .renderingMode(.template)
-                                                    //                                            .foregroundStyle(.white)
-                                                        .frame(width: 40, height: 40)
-                                                        .padding(15)
-                                                        .background(
-                                                            Circle()
-                                                                .foregroundStyle(Color("Gray", bundle: .main))
-                                                        )
-                                                } placeholder: {
-                                                    Circle()
-                                                        .foregroundStyle(Color("Gray", bundle: .main))
-                                                        .frame(width: 70, height: 70)
+                                    
+                                } label: {
+                                    
+                                    VStack {
+                                        if let imageURL = team.image_url {
+                                            AsyncImage(url: URL(string: imageURL)) { image in
+                                                image
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 40, height: 40)
+                                                    .padding(15)
+                                                    .background(
+                                                        Circle()
+                                                            .foregroundStyle(Color("Gray", bundle: .main))
+                                                    )
+                                            } placeholder: {
+                                                Circle()
+                                                    .foregroundStyle(Color("Gray", bundle: .main))
+                                                    .frame(width: 70, height: 70)
+                                                
+                                            }
+                                        } else {
+                                            Circle()
+                                                .foregroundStyle(Color("Gray", bundle: .main))
+                                                .frame(width: 70, height: 70)
+                                                .overlay {
+                                                    Text("?")
+                                                        .font(.gilroy(.regular, size: 25))
+                                                        .foregroundStyle(.white)
                                                     
                                                 }
-                                            } else {
-                                                Circle()
-                                                    .foregroundStyle(Color("Gray", bundle: .main))
-                                                    .frame(width: 70, height: 70)
-                                                    .overlay {
-                                                        Text("?")
-                                                            .font(.gilroy(.regular, size: 25))
-                                                            .foregroundStyle(.white)
-                                                        
-                                                    }
-                                            }
-                                            Text(team.acronym == nil ? team.name : team.acronym!)
+                                        }
+                                        Text(team.acronym == nil ? team.name : team.acronym!)
+                                            .font(.gilroy(.regular, size: 16))
+                                            .foregroundStyle(.white)
+                                    }
+                                }
+                                
+                                
+                            }
+                        } else {
+                            ScrollView {
+                                HStack(spacing: 20) {
+                                    ForEach(0..<10, id: \.self) { num in
+                                        VStack {
+                                            Circle()
+                                                .foregroundStyle(Color("Gray", bundle: .main))
+                                                .frame(width: 70, height: 70)
+                                                .overlay {
+                                                    Text("?")
+                                                        .font(.gilroy(.regular, size: 25))
+                                                        .foregroundStyle(.white)
+                                                    
+                                                }
+                                            Text("TBD")
                                                 .font(.gilroy(.regular, size: 16))
                                                 .foregroundStyle(.white)
-                                        }
-                                    }
-                                    
-                                    
-                                }
-                            } else {
-                                ScrollView {
-                                    HStack {
-                                        ForEach(0..<10, id: \.self) { num in
-                                            VStack {
-                                                Circle()
-                                                    .foregroundStyle(Color("Gray", bundle: .main))
-                                                    .frame(width: 70, height: 70)
-                                                    .overlay {
-                                                        Text("?")
-                                                            .font(.gilroy(.regular, size: 25))
-                                                            .foregroundStyle(.white)
-                                                        
-                                                    }
-                                                Text("TBD")
-                                                    .font(.gilroy(.regular, size: 16))
-                                                    .foregroundStyle(.white)
-                                            }
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                    .padding(.horizontal, 11)
-                    .onAppear {
-                        if viewStore.teams == nil {
-                            print("Teams nil")
-                        } else {
-                            print("\(viewStore.teams!.count)")
-                        }
-                    }
                 }
-                .scrollIndicators(.never)
-//            })
+                .padding(.horizontal, 11)
+                .onAppear {
+                }
+            }
+            .scrollIndicators(.never)
         }
     }
 }

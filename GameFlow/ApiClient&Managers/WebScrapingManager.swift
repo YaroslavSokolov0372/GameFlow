@@ -120,30 +120,34 @@ class LiqupediaWebScraper {
         
         var teamPlayers: [LiquipediaSerie.LiquipediaPlayer] = []
         
-        let teamPartisipants = try teamInfoElement.getElementsByClass("wikitable wikitable-bordered list")
-        
-        try await withThrowingTaskGroup(of: LiquipediaSerie.LiquipediaPlayer.self) { taskGroup in
-            for player in try teamPartisipants.select("tr") {
-                taskGroup.addTask {
-                    
-                    let playerPosition = try player.select("th").text()
-                    
-                    let playerNickname = try player.select("a").text()
-                    
-                    let playerCountry = try player.select("img").attr("src")
-                    
-                    return LiquipediaSerie.LiquipediaPlayer(nickname: playerNickname, flagURL: playerCountry, position: playerPosition)
+        let teamPartisipants = try teamInfoElement.getElementsByClass("wikitable wikitable-bordered list").filter({ try $0.attr("data-toggle-area-content") == "1" })
+
+        if let filteredPartisipantes = teamPartisipants.first {
+            try await withThrowingTaskGroup(of: LiquipediaSerie.LiquipediaPlayer.self) { taskGroup in
+                for player in try filteredPartisipantes.select("tr").prefix(5) {
+                    taskGroup.addTask {
+                        
+                        let playerPosition = try player.select("th").text()
+                        
+                        let playerNickname = try player.select("a").text()
+                        
+                        let playerCountry = try player.select("img").attr("src")
+                        
+                        return LiquipediaSerie.LiquipediaPlayer(nickname: playerNickname, flagURL: playerCountry, position: playerPosition)
+                    }
+                }
+                
+                for try await result in taskGroup {
+                    teamPlayers.append(result)
                 }
             }
-            
-            for try await result in taskGroup {
-                teamPlayers.append(result)
-            }
+        } else {
+            throw WebScrapingError.parsingError
         }
         return teamPlayers
     }
     
-    private func getTeams(from liqTourn: Element) async throws -> [LiquipediaSerie.LiquipediaTeam] {
+     private func getTeams(from liqTourn: Element) async throws -> [LiquipediaSerie.LiquipediaTeam] {
         
         var liquipediaTeams: [LiquipediaSerie.LiquipediaTeam] = []
         
@@ -229,7 +233,7 @@ class LiqupediaWebScraper {
                             from: tourn)
                         
                         let teams = try await self.getTeams(from: tourn)
-                        //
+                        
                         return LiquipediaSerie(name: liquiTournName, prizepool: prizepool, teams: teams, tier: tier)
                         //                    detectedTour = try getTeams(from: liquiTourn, for: detectedTour)
                         

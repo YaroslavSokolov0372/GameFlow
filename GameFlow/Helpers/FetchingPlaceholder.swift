@@ -12,8 +12,7 @@ import SwiftUI
 struct RedactCondition: ViewModifier {
     
     let condition: Bool
-    
-    
+
     func body(content: Content) -> some View {
         if condition {
             content
@@ -24,7 +23,6 @@ struct RedactCondition: ViewModifier {
         }
     }
 }
-
 
 extension View {
     func redactCondition(condition: Bool) -> some View {

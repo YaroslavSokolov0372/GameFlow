@@ -47,13 +47,13 @@ class ApiClient {
         
         var series: [Serie] = []
         let ongoingSeries = try await self.pandascoreManager.getPandaSeries(fetchType: .ongoing)
-        let upcomingSeries = try await self.pandascoreManager.getPandaSeries(fetchType: .upciming)
-        let pastSeries = try await self.pandascoreManager.getPandaSeries(fetchType: .past)
+//        let upcomingSeries = try await self.pandascoreManager.getPandaSeries(fetchType: .upciming)
+//        let pastSeries = try await self.pandascoreManager.getPandaSeries(fetchType: .past)
         //        let liquiSeries = try await self.webScrapingManager.
         
         var allRelevant = ongoingSeries
-        allRelevant.append(contentsOf: upcomingSeries)
-        allRelevant.append(contentsOf: pastSeries)
+//        allRelevant.append(contentsOf: upcomingSeries)
+//        allRelevant.append(contentsOf: pastSeries)
         
         
         try await withThrowingTaskGroup(of: Serie.self) { taskGroup in

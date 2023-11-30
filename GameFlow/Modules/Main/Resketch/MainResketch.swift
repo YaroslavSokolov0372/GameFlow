@@ -226,7 +226,6 @@ struct MainResketch: View {
                             .tabViewStyle(.page(indexDisplayMode: .never))
                             .ignoresSafeArea(edges: [.bottom])
                             .onTapGesture {
-                                print("Gesture")
                                 self.store.send(.timeOutGesture)
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {

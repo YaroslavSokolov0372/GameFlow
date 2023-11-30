@@ -9,11 +9,9 @@ import Foundation
 
 struct PandascoreStandings: Codable {
     
-//    let standings: [PandascoreStandings]
     let losses: Int
     let rank: Int
     let team: Self.PandascoreTeam
-//    let ties: Int
     let total: Int
     let wins: Int
     
@@ -31,17 +29,19 @@ struct PandascoreStandings: Codable {
     
 }
 
-//struct PandaScoreSMTHBetween { 
-//    
-//    let group
+//struct PandascoreGroupStangins: Codable {
+//    let losses: Int
+//    let rank: Int
+//    let team: PandascoreTeam
+//    let ties: Int
+//    let total: Int
+//    let wins: Int
 //}
 
-
-struct PandascoreGroupStangins: Codable {
-    let losses: Int
-    let rank: Int
-    let team: PandascoreTeam
-    let ties: Int
-    let total: Int
-    let wins: Int
+extension PandascoreStandings: Equatable {
+    static func == (lhs: PandascoreStandings, rhs: PandascoreStandings) -> Bool {
+        return lhs.team.id == rhs.team.id
+    }
+    
+    
 }

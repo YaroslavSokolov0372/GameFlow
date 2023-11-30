@@ -7,8 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D1204B942B18AE2C001BEFEB /* Standings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1204B932B18AE2C001BEFEB /* Standings.swift */; };
+		D1204B962B18B29E001BEFEB /* BracketsResketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1204B952B18B29E001BEFEB /* BracketsResketchView.swift */; };
+		D1204B982B18E079001BEFEB /* BracketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1204B972B18E079001BEFEB /* BracketCell.swift */; };
+		D1204B9A2B18E7EE001BEFEB /* BracketsColumnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1204B992B18E7EE001BEFEB /* BracketsColumnCell.swift */; };
 		D122D1352B14C2F70070B927 /* NoUpcomingMatchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122D1342B14C2F70070B927 /* NoUpcomingMatchesView.swift */; };
 		D122D1372B1510380070B927 /* MatchDetailResketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122D1362B1510380070B927 /* MatchDetailResketchView.swift */; };
+		D122D13B2B1612CD0070B927 /* PlayerViewResketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122D13A2B1612CD0070B927 /* PlayerViewResketch.swift */; };
+		D122D13D2B1625170070B927 /* Serie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122D13C2B1625170070B927 /* Serie.swift */; };
+		D122D13F2B16252C0070B927 /* Tournament.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122D13E2B16252C0070B927 /* Tournament.swift */; };
+		D122D1412B1625B30070B927 /* PandascoreOpponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122D1402B1625B30070B927 /* PandascoreOpponents.swift */; };
+		D122D1432B163B0F0070B927 /* MatchesListReskatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122D1422B163B0F0070B927 /* MatchesListReskatchView.swift */; };
+		D122D1452B163D250070B927 /* MatchListTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122D1442B163D250070B927 /* MatchListTabBar.swift */; };
+		D122D1472B163ED50070B927 /* MatchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122D1462B163ED50070B927 /* MatchType.swift */; };
+		D122D1492B166F620070B927 /* PlayerEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122D1482B166F620070B927 /* PlayerEmptyView.swift */; };
+		D122D14B2B176E2B0070B927 /* StandingsResketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122D14A2B176E2B0070B927 /* StandingsResketch.swift */; };
 		D149C2BA2B0A374500E5F260 /* SerieLoadingCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149C2B92B0A374500E5F260 /* SerieLoadingCellView.swift */; };
 		D149C2C12B0A4F2E00E5F260 /* FetchingPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149C2C02B0A4F2E00E5F260 /* FetchingPlaceholder.swift */; };
 		D149C2C52B0A804E00E5F260 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149C2C42B0A804E00E5F260 /* Network.swift */; };
@@ -49,7 +62,6 @@
 		D1971DA92AFE902500D0D12C /* TestWrite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1971DA82AFE902500D0D12C /* TestWrite.swift */; };
 		D1971DAB2AFEAC5900D0D12C /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1971DAA2AFEAC5900D0D12C /* FirestoreManager.swift */; };
 		D1971DAD2AFFAEE400D0D12C /* PandascoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1971DAC2AFFAEE400D0D12C /* PandascoreManager.swift */; };
-		D1971DAF2AFFD4C900D0D12C /* ChampionShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1971DAE2AFFD4C900D0D12C /* ChampionShip.swift */; };
 		D1CFC7DA2AF7F76E00CEF15B /* MatchCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFC7D92AF7F76E00CEF15B /* MatchCellView.swift */; };
 		D1CFC7DC2AF7F79300CEF15B /* OngoingMatchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFC7DB2AF7F79300CEF15B /* OngoingMatchListView.swift */; };
 		D1CFC7DE2AF7FE2900CEF15B /* DetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFC7DD2AF7FE2900CEF15B /* DetailInfoView.swift */; };
@@ -73,7 +85,6 @@
 		D1D93D782AE4157B003F1CC7 /* ExtensionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D772AE4157B003F1CC7 /* ExtensionDate.swift */; };
 		D1D93D7A2AE41FE6003F1CC7 /* PandascoreMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D792AE41FE6003F1CC7 /* PandascoreMatch.swift */; };
 		D1D93D7C2AE42058003F1CC7 /* PandascoreTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D7B2AE42058003F1CC7 /* PandascoreTeam.swift */; };
-		D1D93D832AE421D2003F1CC7 /* Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D822AE421D2003F1CC7 /* Opponent.swift */; };
 		D1D93DAB2AF1777A003F1CC7 /* SerieCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DAA2AF1777A003F1CC7 /* SerieCellView.swift */; };
 		D1D93DB32AF17DE8003F1CC7 /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1D93DAD2AF17DE8003F1CC7 /* Gilroy-Medium.ttf */; };
 		D1D93DB42AF17DE8003F1CC7 /* Gilroy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1D93DAE2AF17DE8003F1CC7 /* Gilroy-Regular.ttf */; };
@@ -93,7 +104,6 @@
 		D1DFEF512B03BBC900A71C4F /* DetailInfoResketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFEF502B03BBC900A71C4F /* DetailInfoResketchView.swift */; };
 		D1DFEF532B03C20000A71C4F /* PartisipantsResketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFEF522B03C20000A71C4F /* PartisipantsResketchView.swift */; };
 		D1DFEF552B03E7F900A71C4F /* TeamDetailResketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFEF542B03E7F900A71C4F /* TeamDetailResketchView.swift */; };
-		D1DFEF572B03F1AD00A71C4F /* PlayerResketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFEF562B03F1AD00A71C4F /* PlayerResketchView.swift */; };
 		D1DFEF5A2B0509EC00A71C4F /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = D1DFEF592B0509EC00A71C4F /* SwiftSoup */; };
 		D1DFEF5C2B050A7E00A71C4F /* WebScrapingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFEF5B2B050A7E00A71C4F /* WebScrapingManager.swift */; };
 		D1F1E1312B012B740022C410 /* PandascoreTournament.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1E1302B012B740022C410 /* PandascoreTournament.swift */; };
@@ -103,8 +113,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D1204B932B18AE2C001BEFEB /* Standings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standings.swift; sourceTree = "<group>"; };
+		D1204B952B18B29E001BEFEB /* BracketsResketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BracketsResketchView.swift; sourceTree = "<group>"; };
+		D1204B972B18E079001BEFEB /* BracketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BracketCell.swift; sourceTree = "<group>"; };
+		D1204B992B18E7EE001BEFEB /* BracketsColumnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BracketsColumnCell.swift; sourceTree = "<group>"; };
 		D122D1342B14C2F70070B927 /* NoUpcomingMatchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoUpcomingMatchesView.swift; sourceTree = "<group>"; };
 		D122D1362B1510380070B927 /* MatchDetailResketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailResketchView.swift; sourceTree = "<group>"; };
+		D122D13A2B1612CD0070B927 /* PlayerViewResketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewResketch.swift; sourceTree = "<group>"; };
+		D122D13C2B1625170070B927 /* Serie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serie.swift; sourceTree = "<group>"; };
+		D122D13E2B16252C0070B927 /* Tournament.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tournament.swift; sourceTree = "<group>"; };
+		D122D1402B1625B30070B927 /* PandascoreOpponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreOpponents.swift; sourceTree = "<group>"; };
+		D122D1422B163B0F0070B927 /* MatchesListReskatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesListReskatchView.swift; sourceTree = "<group>"; };
+		D122D1442B163D250070B927 /* MatchListTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchListTabBar.swift; sourceTree = "<group>"; };
+		D122D1462B163ED50070B927 /* MatchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchType.swift; sourceTree = "<group>"; };
+		D122D1482B166F620070B927 /* PlayerEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEmptyView.swift; sourceTree = "<group>"; };
+		D122D14A2B176E2B0070B927 /* StandingsResketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsResketch.swift; sourceTree = "<group>"; };
 		D149C2B92B0A374500E5F260 /* SerieLoadingCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieLoadingCellView.swift; sourceTree = "<group>"; };
 		D149C2C02B0A4F2E00E5F260 /* FetchingPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchingPlaceholder.swift; sourceTree = "<group>"; };
 		D149C2C42B0A804E00E5F260 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -117,7 +140,6 @@
 		D1971DA82AFE902500D0D12C /* TestWrite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWrite.swift; sourceTree = "<group>"; };
 		D1971DAA2AFEAC5900D0D12C /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		D1971DAC2AFFAEE400D0D12C /* PandascoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreManager.swift; sourceTree = "<group>"; };
-		D1971DAE2AFFD4C900D0D12C /* ChampionShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionShip.swift; sourceTree = "<group>"; };
 		D1CFC7D92AF7F76E00CEF15B /* MatchCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCellView.swift; sourceTree = "<group>"; };
 		D1CFC7DB2AF7F79300CEF15B /* OngoingMatchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingMatchListView.swift; sourceTree = "<group>"; };
 		D1CFC7DD2AF7FE2900CEF15B /* DetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoView.swift; sourceTree = "<group>"; };
@@ -141,7 +163,6 @@
 		D1D93D772AE4157B003F1CC7 /* ExtensionDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDate.swift; sourceTree = "<group>"; };
 		D1D93D792AE41FE6003F1CC7 /* PandascoreMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreMatch.swift; sourceTree = "<group>"; };
 		D1D93D7B2AE42058003F1CC7 /* PandascoreTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreTeam.swift; sourceTree = "<group>"; };
-		D1D93D822AE421D2003F1CC7 /* Opponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opponent.swift; sourceTree = "<group>"; };
 		D1D93DAA2AF1777A003F1CC7 /* SerieCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieCellView.swift; sourceTree = "<group>"; };
 		D1D93DAD2AF17DE8003F1CC7 /* Gilroy-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Medium.ttf"; sourceTree = "<group>"; };
 		D1D93DAE2AF17DE8003F1CC7 /* Gilroy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Regular.ttf"; sourceTree = "<group>"; };
@@ -162,7 +183,6 @@
 		D1DFEF502B03BBC900A71C4F /* DetailInfoResketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoResketchView.swift; sourceTree = "<group>"; };
 		D1DFEF522B03C20000A71C4F /* PartisipantsResketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartisipantsResketchView.swift; sourceTree = "<group>"; };
 		D1DFEF542B03E7F900A71C4F /* TeamDetailResketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailResketchView.swift; sourceTree = "<group>"; };
-		D1DFEF562B03F1AD00A71C4F /* PlayerResketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerResketchView.swift; sourceTree = "<group>"; };
 		D1DFEF5B2B050A7E00A71C4F /* WebScrapingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebScrapingManager.swift; sourceTree = "<group>"; };
 		D1F1E1302B012B740022C410 /* PandascoreTournament.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreTournament.swift; sourceTree = "<group>"; };
 		D1F1E1342B014E830022C410 /* PandascoreBrackets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreBrackets.swift; sourceTree = "<group>"; };
@@ -221,6 +241,7 @@
 				D1D93D7B2AE42058003F1CC7 /* PandascoreTeam.swift */,
 				D1F1E1342B014E830022C410 /* PandascoreBrackets.swift */,
 				D1F1E1362B014E8C0022C410 /* PandascoreStandings.swift */,
+				D122D1402B1625B30070B927 /* PandascoreOpponents.swift */,
 			);
 			path = Pandascore;
 			sourceTree = "<group>";
@@ -236,8 +257,12 @@
 		D149C2B82B0A207A00E5F260 /* Firestore&UserUsage */ = {
 			isa = PBXGroup;
 			children = (
+				D122D1462B163ED50070B927 /* MatchType.swift */,
+				D149C2CA2B0D0C4B00E5F260 /* SeriesType.swift */,
 				D1D93D672ADAAA7B003F1CC7 /* Images.swift */,
-				D1971DAE2AFFD4C900D0D12C /* ChampionShip.swift */,
+				D122D13C2B1625170070B927 /* Serie.swift */,
+				D122D13E2B16252C0070B927 /* Tournament.swift */,
+				D1204B932B18AE2C001BEFEB /* Standings.swift */,
 			);
 			path = "Firestore&UserUsage";
 			sourceTree = "<group>";
@@ -349,8 +374,6 @@
 				D149C2B82B0A207A00E5F260 /* Firestore&UserUsage */,
 				D149C2B72B0A207000E5F260 /* Liquipedia */,
 				D149C2B62B0A206A00E5F260 /* Pandascore */,
-				D1D93D822AE421D2003F1CC7 /* Opponent.swift */,
-				D149C2CA2B0D0C4B00E5F260 /* SeriesType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -397,8 +420,8 @@
 		D1D93D622AD9AFFC003F1CC7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				D1D93D692ADACE9A003F1CC7 /* ExtensionString.swift */,
 				D1D93D772AE4157B003F1CC7 /* ExtensionDate.swift */,
+				D1D93D692ADACE9A003F1CC7 /* ExtensionString.swift */,
 				D1D93DC22AF2C473003F1CC7 /* OffsetReader.swift */,
 				D1D93DC42AF43A03003F1CC7 /* AnimationEndCallBack.swift */,
 				D149C2C02B0A4F2E00E5F260 /* FetchingPlaceholder.swift */,
@@ -442,18 +465,25 @@
 		D1DFEF4F2B03906800A71C4F /* Resketch */ = {
 			isa = PBXGroup;
 			children = (
+				D122D14A2B176E2B0070B927 /* StandingsResketch.swift */,
 				D122D1362B1510380070B927 /* MatchDetailResketchView.swift */,
+				D122D1482B166F620070B927 /* PlayerEmptyView.swift */,
+				D122D13A2B1612CD0070B927 /* PlayerViewResketch.swift */,
 				D1F1E1382B02BD040022C410 /* MainResketch.swift */,
 				D1DFEF4B2B038F9A00A71C4F /* SeriesListViewResketch.swift */,
 				D1DFEF4D2B03906100A71C4F /* SerieCellResketch.swift */,
 				D1DFEF502B03BBC900A71C4F /* DetailInfoResketchView.swift */,
 				D1DFEF522B03C20000A71C4F /* PartisipantsResketchView.swift */,
 				D1DFEF542B03E7F900A71C4F /* TeamDetailResketchView.swift */,
-				D1DFEF562B03F1AD00A71C4F /* PlayerResketchView.swift */,
 				D149C2C82B0CCF6400E5F260 /* CustomTabBar.swift */,
+				D122D1442B163D250070B927 /* MatchListTabBar.swift */,
 				D149C2D42B0D4DFD00E5F260 /* OngoingMatchListViewResketch.swift */,
 				D149C2D62B0D4E5D00E5F260 /* MatchCellResketchView.swift */,
 				D122D1342B14C2F70070B927 /* NoUpcomingMatchesView.swift */,
+				D122D1422B163B0F0070B927 /* MatchesListReskatchView.swift */,
+				D1204B992B18E7EE001BEFEB /* BracketsColumnCell.swift */,
+				D1204B952B18B29E001BEFEB /* BracketsResketchView.swift */,
+				D1204B972B18E079001BEFEB /* BracketCell.swift */,
 			);
 			path = Resketch;
 			sourceTree = "<group>";
@@ -573,16 +603,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D122D13F2B16252C0070B927 /* Tournament.swift in Sources */,
 				D1DC4CB52B0663060044BE04 /* LiqupediaSerie.swift in Sources */,
+				D122D1412B1625B30070B927 /* PandascoreOpponents.swift in Sources */,
 				D149C2CF2B0D1E3C00E5F260 /* ShakeModifier.swift in Sources */,
 				D1D93D682ADAAA7B003F1CC7 /* Images.swift in Sources */,
 				D1D93D3F2AD551C0003F1CC7 /* API_Key.swift in Sources */,
 				D1D93D3A2AD49C1E003F1CC7 /* APIClient.swift in Sources */,
+				D1204B942B18AE2C001BEFEB /* Standings.swift in Sources */,
 				D149C2C92B0CCF6400E5F260 /* CustomTabBar.swift in Sources */,
 				D1CFC7E52AF8E63F00CEF15B /* StandingsView.swift in Sources */,
+				D122D1492B166F620070B927 /* PlayerEmptyView.swift in Sources */,
 				D1CFC7F22AF9577300CEF15B /* MatchesListView.swift in Sources */,
+				D122D13B2B1612CD0070B927 /* PlayerViewResketch.swift in Sources */,
 				D1DFEF552B03E7F900A71C4F /* TeamDetailResketchView.swift in Sources */,
 				D1D93D6A2ADACE9A003F1CC7 /* ExtensionString.swift in Sources */,
+				D1204B982B18E079001BEFEB /* BracketCell.swift in Sources */,
+				D1204B9A2B18E7EE001BEFEB /* BracketsColumnCell.swift in Sources */,
+				D122D1472B163ED50070B927 /* MatchType.swift in Sources */,
 				D1CFC7F02AF936EC00CEF15B /* MatchDetailView.swift in Sources */,
 				D1D93DBF2AF1A1AE003F1CC7 /* SearchField.swift in Sources */,
 				D1D93DBD2AF1898F003F1CC7 /* SeriesListView.swift in Sources */,
@@ -595,9 +633,10 @@
 				D149C2C52B0A804E00E5F260 /* Network.swift in Sources */,
 				D1D93DC52AF43A03003F1CC7 /* AnimationEndCallBack.swift in Sources */,
 				D1DFEF532B03C20000A71C4F /* PartisipantsResketchView.swift in Sources */,
-				D1971DAF2AFFD4C900D0D12C /* ChampionShip.swift in Sources */,
+				D122D1432B163B0F0070B927 /* MatchesListReskatchView.swift in Sources */,
 				D149C2BA2B0A374500E5F260 /* SerieLoadingCellView.swift in Sources */,
 				D1F1E1312B012B740022C410 /* PandascoreTournament.swift in Sources */,
+				D122D1452B163D250070B927 /* MatchListTabBar.swift in Sources */,
 				D1971DAD2AFFAEE400D0D12C /* PandascoreManager.swift in Sources */,
 				D1D93D4A2AD6B1C7003F1CC7 /* PandascoreSerie.swift in Sources */,
 				D149C2C12B0A4F2E00E5F260 /* FetchingPlaceholder.swift in Sources */,
@@ -605,13 +644,13 @@
 				D1D93D612AD95675003F1CC7 /* MainView.swift in Sources */,
 				D1F1E1372B014E8C0022C410 /* PandascoreStandings.swift in Sources */,
 				D1D93DC32AF2C473003F1CC7 /* OffsetReader.swift in Sources */,
+				D122D14B2B176E2B0070B927 /* StandingsResketch.swift in Sources */,
 				D1D93D782AE4157B003F1CC7 /* ExtensionDate.swift in Sources */,
 				D1F1E1392B02BD040022C410 /* MainResketch.swift in Sources */,
-				D1D93D832AE421D2003F1CC7 /* Opponent.swift in Sources */,
 				D1D93D7A2AE41FE6003F1CC7 /* PandascoreMatch.swift in Sources */,
-				D1DFEF572B03F1AD00A71C4F /* PlayerResketchView.swift in Sources */,
 				D1D93D7C2AE42058003F1CC7 /* PandascoreTeam.swift in Sources */,
 				D149C2CB2B0D0C4B00E5F260 /* SeriesType.swift in Sources */,
+				D122D13D2B1625170070B927 /* Serie.swift in Sources */,
 				D1D93DC12AF2C0AF003F1CC7 /* TabBarView.swift in Sources */,
 				D1CFC7E92AF9254800CEF15B /* TeamDetailView.swift in Sources */,
 				D1CFC7E12AF8473200CEF15B /* PartisipantsListView.swift in Sources */,
@@ -622,6 +661,7 @@
 				D1971DA92AFE902500D0D12C /* TestWrite.swift in Sources */,
 				D149C2D52B0D4DFD00E5F260 /* OngoingMatchListViewResketch.swift in Sources */,
 				D1CFC7DE2AF7FE2900CEF15B /* DetailInfoView.swift in Sources */,
+				D1204B962B18B29E001BEFEB /* BracketsResketchView.swift in Sources */,
 				D1CFC7DA2AF7F76E00CEF15B /* MatchCellView.swift in Sources */,
 				D1D93D1B2AD47C9F003F1CC7 /* GameFlowApp.swift in Sources */,
 				D1F1E1352B014E830022C410 /* PandascoreBrackets.swift in Sources */,
