@@ -164,14 +164,17 @@ struct DetailInfoResketchView: View {
                                                     
                                                     Spacer()
                                                     
-                                                    //IF NOT STATED, SHOW TBD
-//                                                    if viewStore.tournaments[num].tournament.begin_at
                                                 }
                                                 .frame(height: 30)
+                                                
+                                                BracketsResketchView(store: Store(initialState: BracketsResketchDomain.State(), reducer: {
+                                                    BracketsResketchDomain()
+                                                }))
+                                                .frame(width: geo.size.width, height: geo.size.height * 0.25)
                                             }
                                         }
                                         
-                                        
+
                                         
                                         VStack {
                                             HStack {
@@ -182,7 +185,6 @@ struct DetailInfoResketchView: View {
                                                 
                                                 Spacer()
                                             }
-                                            
                                             .frame(height: 30)
                                             
                                             PartisipantsResketchView(store: Store(
@@ -192,9 +194,9 @@ struct DetailInfoResketchView: View {
                                                 reducer: { PartisipantsResketchDomain() }))
                                             .padding(.bottom, 7)
                                         }
-                                        .padding(.horizontal, 13)
+//                                        .padding(.horizontal, 13)
                                     }
-                                    .padding(.vertical, 10)
+//                                    .padding(.vertical, 10)
 
 //                                    VStack {
 //                                        HStack {

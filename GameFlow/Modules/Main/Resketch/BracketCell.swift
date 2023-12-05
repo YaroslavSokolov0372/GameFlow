@@ -11,7 +11,6 @@ import ComposableArchitecture
 struct BracketCellDomain: Reducer {
     
     struct State: Equatable {
-        
     }
     
     enum Action {
@@ -111,9 +110,6 @@ struct BracketCell: View {
         .listRowSeparator(.hidden)
         .listRowInsets(EdgeInsets())
         .padding()
-//        .listRowSeparator(.hidden)
-//        .listRowInsets(EdgeInsets())
-        
     }
 }
 

@@ -89,8 +89,8 @@ struct BracketsResketchView: View {
                         HStack(alignment: .top, spacing: 0) {
                             ForEach(0..<5, id: \.hashValue) { num in
                                VStack {
-                                    Text("\(num)")
-                                       .foregroundStyle(.black)
+//                                    Text("\(num)")
+//                                       .foregroundStyle(.black)
                                     
                                     BracketsColumnCell(store: Store(initialState: BracketsColumnCellDomain.State(), reducer: {
                                         BracketsColumnCellDomain()
@@ -116,37 +116,6 @@ struct BracketsResketchView: View {
             }
         }
     }
-    
-
-
-    // 3
-//    private func updateCurrentOffsetX(_ dragGestureValue: DragGesture.Value) {
-//        dragOffsetX = dragGestureValue.translation.width
-//    }
-    // 4
-//    private func handleDragEnded(_ gestureValue: DragGesture.Value) {
-//        // TODO: Decide to stay at the same column, or snap to some other column.
-//    }
-
-//    private func moveToLeft() {
-//        withAnimation {
-//            focusedColumnIndex -= 1
-//            dragOffsetX = 0
-//        }
-//    }
-
-//    private func moveToRight() {
-//        withAnimation {
-//            focusedColumnIndex += 1
-//            dragOffsetX = 0
-//        }
-//    }
-
-//    private func stayAtSameIndex() {
-//        withAnimation {
-//            dragOffsetX = 0
-//        }
-//    }
 }
 
 #Preview {
