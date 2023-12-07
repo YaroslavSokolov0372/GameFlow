@@ -12,8 +12,8 @@ import ComposableArchitecture
 struct BracketsColumnCellDomain: Reducer {
     
     
-    struct State {
-        
+    struct State: Equatable {
+        let bracketsColumn: [PandascoreBrackets]
     }
     
     enum Action {
@@ -35,18 +35,25 @@ struct BracketsColumnCell: View {
     var store: StoreOf<BracketsColumnCellDomain>
     
     var body: some View {
-        LazyVStack(spacing: 0){
-            ForEach(0..<5, id: \.self) { num in
-                BracketCell(store: Store(initialState: BracketCellDomain.State(), reducer: {
-                    BracketCellDomain()
-                }))
+        WithViewStore(store, observe: { $0 }) { viewStore in
+            LazyVStack(spacing: 0){
+                ForEach(viewStore.bracketsColumn, id: \.self) { bracket in
+                    BracketCell(store: Store(
+                        initialState: BracketCellDomain.State(
+                            bracket: bracket
+                        ), reducer: {
+                        BracketCellDomain()
+                    }))
+                }
+            }.task {
+                print("bracket fount -", viewStore.bracketsColumn.count)
             }
         }
     }
 }
-
-#Preview {
-    BracketsColumnCell(store: Store(initialState: BracketsColumnCellDomain.State(), reducer: {
-        BracketsColumnCellDomain()
-    }))
-}
+//
+//#Preview {
+//    BracketsColumnCell(store: Store(initialState: BracketsColumnCellDomain.State(), reducer: {
+//        BracketsColumnCellDomain()
+//    }))
+//}

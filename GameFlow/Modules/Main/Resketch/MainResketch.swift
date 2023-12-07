@@ -155,9 +155,8 @@ struct MainResketch: View {
                                     .frame(width: geo.size.width, alignment: .center)
                             }
                             .padding(.vertical, 15)
-
+                            
                             TabView(selection: viewStore.$currentTab) {
-                                
                                 ForEach(SeriesType.allCases, id: \.rawValue) { type in
                                     
                                     
@@ -185,8 +184,8 @@ struct MainResketch: View {
                                     case .upcoming:
                                         SeriesListViewResketch(store: Store(
                                             initialState: SeriesListResketchDomain.State(series: viewStore.isFetching ? viewStore.series : viewStore.series.upcoming, isFetching: viewStore.isFetching), reducer: {
-                                            SeriesListResketchDomain()
-                                        }))
+                                                SeriesListResketchDomain()
+                                            }))
                                         .tag(type)
                                         .offsetX(type == viewStore.currentTab) { size in
                                             if !viewStore.disableOffsetRead {
@@ -232,18 +231,12 @@ struct MainResketch: View {
                                     self.store.send(.tapped)
                                 }
                             }
-                            
                         }
                         .overlay {
                             CustomTabBar(store: self.store.scope(state: \.tabBarState, action: MainResketchDomain.Action.tabBarAction))
                         }
-                        
                     }
-                    
-                    
                 }
-                
-                
             })
             .task {
                 self.store.send(.startFetchData)

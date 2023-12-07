@@ -87,7 +87,7 @@ struct PartisipantsResketchView: View {
                                 
                             }
                         } else {
-                            ScrollView {
+//                            ScrollView {
                                 HStack(spacing: 20) {
                                     ForEach(0..<10, id: \.self) { num in
                                         VStack {
@@ -106,7 +106,7 @@ struct PartisipantsResketchView: View {
                                         }
                                     }
                                 }
-                            }
+//                            }
                         }
                     }
                 }

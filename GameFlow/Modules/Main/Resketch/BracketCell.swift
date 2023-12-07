@@ -11,6 +11,7 @@ import ComposableArchitecture
 struct BracketCellDomain: Reducer {
     
     struct State: Equatable {
+        let bracket: PandascoreBrackets
     }
     
     enum Action {
@@ -32,89 +33,66 @@ struct BracketCell: View {
     var store: StoreOf<BracketCellDomain>
     
     var body: some View {
-        VStack(spacing: 5) {
-            
-            HStack {
-                Text("January 24, 2022, 9:00 AM")
-                    .font(.gilroy(.medium, size: 16))
-                    .foregroundStyle(.gray)
-                Spacer()
-            }
-            .padding(.leading, 10)
-            .padding(.bottom, 7)
-            .frame(width: 290)
-            
-            HStack {
+        
+        WithViewStore(store, observe: { $0 }) { viewStore in
+            VStack(spacing: 5) {
                 
-                AsyncImage(url: URL(string: "https://liquipedia.net/commons/images/thumb/a/a8/Project_Armor_lightmode.png/136px-Project_Armor_lightmode.png")) { image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundStyle(.white)
-                        .frame(width: 30, height: 30)
-                } placeholder: {
-                    Circle()
-                        .frame(width: 25, height: 25)
-                        .foregroundStyle(Color("Gray", bundle: .main))
+                HStack {
+//                    Text("January 24, 2022, 9:00 AM")
+                    Text(viewStore.bracket.begin_at ?? "TBD")
+                        .font(.gilroy(.medium, size: 16))
+                        .foregroundStyle(.gray)
+                    Spacer()
                 }
-                .frame(width: 30)
+                .padding(.leading, 10)
+                .padding(.bottom, 7)
+                .frame(width: 290)
                 
-                Spacer()
                 
-                Text("Team Secret")
                 
-                Spacer()
-                
-                Text("1")
-            }
-            .padding(.horizontal, 30)
-            .foregroundStyle(.white)
-            .frame(width: 290, height: 65)
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .foregroundStyle(Color("Gray", bundle: .main))
-            )
-            
-            HStack {
-                
-                AsyncImage(url: URL(string: "https://liquipedia.net/commons/images/thumb/a/a8/Project_Armor_lightmode.png/136px-Project_Armor_lightmode.png")) { image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundStyle(.white)
-                        .frame(width: 30, height: 30)
-                } placeholder: {
-                    Circle()
-                        .frame(width: 25, height: 25)
-                        .foregroundStyle(Color("Gray", bundle: .main))
+                ForEach(viewStore.bracket.opponents, id: \.self) { opponent in
+                    HStack {
+                        
+                        AsyncImage(url: URL(string: opponent.opponent.image_url ?? "")) { image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundStyle(.white)
+                                .frame(width: 30, height: 30)
+                        } placeholder: {
+                            Circle()
+                                .frame(width: 25, height: 25)
+                                .foregroundStyle(Color("Gray", bundle: .main))
+                        }
+                        .frame(width: 30)
+                        
+                        Spacer()
+                        
+                        Text(opponent.opponent.name)
+                        
+                        Spacer()
+                        
+                        Text("1")
+                    }
+                    .padding(.horizontal, 30)
+                    .foregroundStyle(.white)
+                    .frame(width: 290, height: 65)
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .foregroundStyle(Color("Gray", bundle: .main))
+                    )
                 }
-                .frame(width: 30)
-                
-                Spacer()
-                
-                Text("Team Aster")
-                
-                Spacer()
-                
-                Text("1")
             }
-            .padding(.horizontal, 30)
-            .foregroundStyle(.white)
-            .frame(width: 290, height: 65)
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .foregroundStyle(Color("Gray", bundle: .main))
-            )
+            .font(.gilroy(.medium, size: 18))
+            .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets())
+            .padding()
         }
-        .font(.gilroy(.medium, size: 18))
-        .listRowSeparator(.hidden)
-        .listRowInsets(EdgeInsets())
-        .padding()
     }
 }
 
-#Preview {
-    BracketCell(store: Store(initialState: BracketCellDomain.State(), reducer: {
-        BracketCellDomain()
-    }))
-}
+//#Preview {
+//    BracketCell(store: Store(initialState: BracketCellDomain.State(), reducer: {
+//        BracketCellDomain()
+//    }))
+//}

@@ -15,17 +15,37 @@ struct DetailInfoResketchDomain: Reducer {
         
         @BindingState var currentTab = 0
         var serie: Serie
+        
+//        var showBrackets = false
+//        var bracketsState = BracketsResketchDomain.State()
     }
     
     enum Action: BindableAction {
+        case showBracketsTapped
         case binding(BindingAction<State>)
         case tabSelected(Int)
+//        case bracketsAction(BracketsResketchDomain.Action)
     }
     
     
     var body: some Reducer<State, Action> {
+        
+//        Scope(state: \.bracketsState, action: /Action.bracketsAction) {
+//            BracketsResketchDomain()
+//        }
+        
         Reduce { state, action in
             switch action {
+//            case .bracketsAction(.shouldClose):
+//                state.showBrackets = false
+//                return .run { send in
+////                    await send(.bracketsAction(.unblurView))
+//                }
+//            case .showBracketsTapped:
+//                state.showBrackets = true
+//                return .run { send in
+//                    await send(.bracketsAction(.unblurView))
+//                }
             case .tabSelected(let tab):
                 state.currentTab = tab
                 return .none
@@ -39,7 +59,8 @@ struct DetailInfoResketchDomain: Reducer {
 
 struct DetailInfoResketchView: View {
     
-    @Environment(\.dismiss) var dismiss
+    @Namespace private var animation
+    @Environment(\.dismiss) private  var dismiss
     var store: StoreOf<DetailInfoResketchDomain>
     
     var body: some View {
@@ -50,6 +71,7 @@ struct DetailInfoResketchView: View {
                     Color("Black", bundle: .main)
                         .ignoresSafeArea()
                     
+//                    if !viewStore.showBrackets {
                     VStack(spacing: 0) {
                         
                         //MARK: - Header
@@ -107,8 +129,8 @@ struct DetailInfoResketchView: View {
                                                             liquiInfo: viewStore.serie.liquipediaSerie!.teams,
                                                             tournament: viewStore.serie.tournaments[num]
                                                         ), reducer: {
-                                                        MatchesListResketchDomain()
-                                                    })).navigationBarBackButtonHidden()
+                                                            MatchesListResketchDomain()
+                                                        })).navigationBarBackButtonHidden()
                                                     
                                                 } label: {
                                                     
@@ -121,7 +143,7 @@ struct DetailInfoResketchView: View {
                                                     
                                                 }
                                             }
-                                            .frame(height: 35)
+                                            .frame(width: geo.size.width, height: 35)
                                             
                                             
                                             OngoingMatchListViewResketch(store: Store(
@@ -133,19 +155,16 @@ struct DetailInfoResketchView: View {
                                         
                                         VStack {
                                             if viewStore.serie.tournaments[num].tournament.name != "Playoffs" {
-                                            HStack {
-                                                Text("Standings")
-                                                    .frame(width: geo.size.width / 3)
-                                                    .font(.gilroy(.bold, size: 18))
-                                                    .foregroundStyle(.white)
+                                                HStack {
+                                                    Text("Standings")
+                                                        .frame(width: geo.size.width / 3)
+                                                        .font(.gilroy(.bold, size: 18))
+                                                        .foregroundStyle(.white)
+                                                    
+                                                    Spacer()
+                                                }
+                                                .frame(height: 30)
                                                 
-                                                Spacer()
-                                            }
-                                            .frame(height: 30)
-                                            
-//                                                StandingsView(store: Store(initialState: StandingsDomain.State(), reducer: {
-//                                                    StandingsDomain()
-//                                                }))
                                                 StandingsResketch(store: Store(
                                                     initialState: StandingsResketchDomain.State(
                                                         liquiTeams: viewStore.serie.liquipediaSerie!.teams,
@@ -155,6 +174,7 @@ struct DetailInfoResketchView: View {
                                                     ), reducer: {
                                                         StandingsResketchDomain()
                                                     }))
+                                                
                                             } else {
                                                 HStack {
                                                     Text("Brackets")
@@ -167,14 +187,30 @@ struct DetailInfoResketchView: View {
                                                 }
                                                 .frame(height: 30)
                                                 
-                                                BracketsResketchView(store: Store(initialState: BracketsResketchDomain.State(), reducer: {
-                                                    BracketsResketchDomain()
-                                                }))
-                                                .frame(width: geo.size.width, height: geo.size.height * 0.25)
+                                                
+                                                //                                                    BracketsResketchView(store: self.store.scope(state: \.bracketsState, action: DetailInfoResketchDomain.Action.bracketsAction))
+                                                RoundedRectangle(cornerRadius: 15)
+                                                    .foregroundStyle(Color("Gray", bundle: .main))
+                                                    .frame(width: geo.size.width * 0.94, height: geo.size.height * 0.25)
+                                                //                                                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                                                    .overlay {
+                                                        NavigationLink {
+                                                            //                                                            BracketsResketchView(store: self.store.scope(state: \.bracketsState, action: DetailInfoResketchDomain.Action.bracketsAction)).navigationBarBackButtonHidden()
+                                                            BracketsResketchView(store: Store(
+                                                                initialState: BracketsResketchDomain.State(
+                                                                    brackets: viewStore.serie.tournaments[num].brackets!
+//                                                                        .upperBrackets
+                                                                ), reducer: {
+                                                                    BracketsResketchDomain()
+                                                                })).navigationBarBackButtonHidden()
+                                                        } label: {
+                                                            Text("Press to see the Brackets")
+                                                                .foregroundStyle(.white)
+                                                                .font(.gilroy(.medium, size: 18))
+                                                        }
+                                                    }
                                             }
                                         }
-                                        
-
                                         
                                         VStack {
                                             HStack {
@@ -184,8 +220,10 @@ struct DetailInfoResketchView: View {
                                                     .foregroundStyle(.white)
                                                 
                                                 Spacer()
+                                                
                                             }
                                             .frame(height: 30)
+                                            .padding(.horizontal, 13)
                                             
                                             PartisipantsResketchView(store: Store(
                                                 initialState: PartisipantsResketchDomain.State(
@@ -194,54 +232,8 @@ struct DetailInfoResketchView: View {
                                                 reducer: { PartisipantsResketchDomain() }))
                                             .padding(.bottom, 7)
                                         }
-//                                        .padding(.horizontal, 13)
                                     }
-//                                    .padding(.vertical, 10)
-
-//                                    VStack {
-//                                        HStack {
-//                                            
-//                                            
-//                                            VStack {
-//                                                Text("Panda")
-//                                                
-//                                                
-//                                                ForEach(viewStore.serie.tournaments[num].teams!, id: \.self) { team in
-//                                                    Text(team.name)
-//                                                }
-//                                            }
-//                                            VStack {
-//                                                Text("LiquiFilter")
-//                                                ForEach(viewStore.serie.liquipediaSerie!.getTournamentTeams(viewStore.serie.tournaments[num]), id: \.self) { team in
-//                                                    Text(team.name)
-//                                                }
-//                                            }
-//                                        }
-//                                        
-//                                        VStack {
-//                                            ForEach(viewStore.serie.tournaments[num].teams!, id: \.self) { team in
-//                                                Text(team.name.teamFormatted()
-////                                                    .replacingOccurrences(of: regex, with: "", options: .regularExpression)
-////                                                    .replacingOccurrences(of: "CIS2", with: "")
-////                                                    .replacingOccurrences(of: " ", with: "")
-////                                                    .uppercased()
-//                                                )
-//                                            }
-//                                            
-//                                            VStack {
-//                                                ForEach(viewStore.serie.liquipediaSerie!.teams, id: \.self) { team in
-//                                                    Text(team.name.teamFormatted()
-////                                                        .replacingOccurrences(of: regex, with: "", options: .regularExpression)
-////                                                        .replacingOccurrences(of: "CIS2", with: "")
-////                                                        .replacingOccurrences(of: " ", with: "")
-////                                                        .uppercased()
-//                                                    )
-//                                                }
-//                                            }
-//                                        }
-//                                    }
-//                                    .foregroundStyle(.white)
-                                    
+                                    .padding(.vertical, 10)
                                 }
                                 .background(
                                     Color("Black", bundle: .main)
@@ -253,7 +245,6 @@ struct DetailInfoResketchView: View {
                         }
                         .tabViewStyle(.page(indexDisplayMode: .never))
                         .ignoresSafeArea()
-                        
                         
                         //MARK: - TabViewItems
                         ScrollView(.horizontal) {
@@ -269,24 +260,6 @@ struct DetailInfoResketchView: View {
                                             Text(viewStore.serie.sortedTournamentsByBegin[num].tournament.name.uppercased())
                                                 .foregroundStyle(.white)
                                                 .font(.gilroy(.medium, size: 16))
-                                            
-//                                            switch viewStore.serie.sortedTournamentsByBegin[num].tournament.name {
-//                                                
-//                                            case "Group Stage":
-//                                                Text("Group Stage")
-//                                                    .foregroundStyle(.white)
-//                                                    .font(.gilroy(.medium, size: 16))
-//                                                
-//                                            case "Playoffs":
-//                                                Text("Playoffs")
-//                                                    .foregroundStyle(.white)
-//                                                    .font(.gilroy(.medium, size: 16))
-//                                            default:
-//                                                Text("Phase \(num)")
-//                                                    .foregroundStyle(.white)
-//                                                    .font(.gilroy(.medium, size: 16))
-//                                            }
-                                            
                                         }
                                         .padding(.bottom, 7)
                                         
@@ -334,6 +307,4 @@ struct DetailInfoResketchView: View {
 //}
 
 
-let regex = "\\[[^\\]]*\\]"
-
-
+//let regex = "\\[[^\\]]*\\]"

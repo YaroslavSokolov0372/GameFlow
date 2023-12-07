@@ -26,9 +26,9 @@ extension Opponent: Equatable {
     
 }
 
-extension Opponent: Hashable {
+extension PandascoreOpponents: Hashable {
     func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+        hasher.combine(opponent.id)
     }
 }
 

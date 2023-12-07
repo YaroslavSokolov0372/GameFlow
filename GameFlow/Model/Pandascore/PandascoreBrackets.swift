@@ -25,7 +25,7 @@ struct PandascoreBrackets: Codable {
     let number_of_games: Int
     
     //MARK: chack opponents ???
-//    let opponents: [Opponent]
+    let opponents: [PandascoreOpponents]
     
     
     let original_scheduled_at: String?
@@ -52,49 +52,56 @@ struct PandascoreBrackets: Codable {
     
 }
 
+extension PandascoreBrackets: Equatable {
+    static func == (lhs: PandascoreBrackets, rhs: PandascoreBrackets) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
+extension PandascoreBrackets: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
 
 extension [PandascoreBrackets] {
-    
-    
     
     var upperBrackets: [String: [PandascoreBrackets]] {
         
         var stages: [String: [PandascoreBrackets]] = [:]
-        let regex = "round\\S*(?:\\s\\S+)?"
         
-        for bracket in self.reversed() {
+        for bracket in self {
+            
             if bracket.name.contains("quarterfinal"), bracket.name.contains("Upper") {
                 
-                if let _ = stages["quarterfinal"] {
-                    stages["quarterfinal"]!.append(bracket)
+                if let _ = stages["UPPER QUARTER-FINAL"] {
+                    stages["UPPER QUARTER-FINAL"]!.append(bracket)
                 } else {
-                    stages["quarterfinal"] = [bracket]
+                    stages["UPPER QUARTER-FINAL"] = [bracket]
                 }
                 
             } else if bracket.name.contains("semifinal"), bracket.name.contains("Upper") {
                 
-                if let _ = stages["semifinal"] {
-                    stages["semifinal"]!.append(bracket)
+                if let _ = stages["UPPER SEMI-FINAL"] {
+                    stages["UPPER SEMI-FINAL"]!.append(bracket)
                 } else {
-                    stages["semifinal"] = [bracket]
+                    stages["UPPER SEMI-FINAL"] = [bracket]
                 }
                 
-            } else if bracket.name.contains("bracket final") {
+            } else if bracket.name.contains("bracket final"), bracket.name.contains("Upper") {
                 
-                if let _ = stages["bracket final"] {
-                    stages["bracket final"]!.append(bracket)
+                if let _ = stages["UPPER BRACKET FINAL"] {
+                    stages["UPPER BRACKET FINAL"]!.append(bracket)
                 } else {
-                    stages["bracket final"] = [bracket]
+                    stages["UPPER BRACKET FINAL"] = [bracket]
                 }
-                
-            } else if bracket.name.contains("final"), bracket.name.contains("Upper") {
-                
-                if let _ = stages["final"] {
-                    stages["final"]!.append(bracket)
+            } else if bracket.name.contains("Grand final") {
+                if let _ = stages["GRAND FINAL"] {
+                    stages["GRAND FINAL"]!.append(bracket)
                 } else {
-                    stages["final"] = [bracket]
+                    stages["GRAND FINAL"] = [bracket]
                 }
-                
             }
         }
         
@@ -104,42 +111,41 @@ extension [PandascoreBrackets] {
     var lowerBrackets: [String: [PandascoreBrackets]] {
         
         var stages: [String: [PandascoreBrackets]] = [:]
+        
         let regex = "round\\S*(?:\\s\\S+)?"
         
-        for bracket in self.reversed()  {
+        for bracket in self {
             if bracket.name.contains("round") {
-                
-                let gameName = bracket.name.replacingOccurrences(of: regex, with: "", options: .regularExpression)
-                let split = gameName.split(separator: " ")
+                let matched = matchesForRegexInText(for: regex, in: bracket.name)
+                let split = matched.first!.split(separator: " ")
                 let last = String(split.suffix(1).joined(separator: [" "]))
-                if let _ = stages[last] {
-                    stages[last]!.append(bracket)
-                    
+                if let _ = stages["LOWER ROUND \(last)"] {
+                    stages["LOWER ROUND \(last)"]!.append(bracket)
                 } else {
-                    stages[last] = [bracket]
+                    stages["LOWER ROUND \(last)"] = [bracket]
                 }
             } else if bracket.name.contains("quarterfinal"), bracket.name.contains("Lower") {
                 
-                if let _ = stages["quarterfinal"] {
-                    stages["quarterfinal"]!.append(bracket)
+                if let _ = stages["LOWER QUARTER-FINAL"] {
+                    stages["LOWER QUARTER-FINAL"]!.append(bracket)
                 } else {
-                    stages["quarterfinal"] = [bracket]
+                    stages["LOWER QUARTER-FINAL"] = [bracket]
                 }
                 
             } else if bracket.name.contains("semifinal"), bracket.name.contains("Lower") {
                 
-                if let _ = stages["semifinal"] {
-                    stages["semifinal"]!.append(bracket)
+                if let _ = stages["LOWER SEMI-FINAL"] {
+                    stages["LOWER SEMI-FINAL"]!.append(bracket)
                 } else {
-                    stages["semifinal"] = [bracket]
+                    stages["LOWER SEMI-FINAL"] = [bracket]
                 }
                 
             } else if bracket.name.contains("final"), bracket.name.contains("Lower") {
                 
-                if let _ = stages["final"] {
-                    stages["final"]!.append(bracket)
+                if let _ = stages["LOWER FINAL"] {
+                    stages["LOWER FINAL"]!.append(bracket)
                 } else {
-                    stages["final"] = [bracket]
+                    stages["LOWER FINAL"] = [bracket]
                 }
             }
         }
@@ -147,7 +153,4 @@ extension [PandascoreBrackets] {
     }
 }
 
-
-//"name": "Upper bracket semifinal 1: TBD vs TBD",
-//"name": "Upper bracket final: TBD vs TBD",
 

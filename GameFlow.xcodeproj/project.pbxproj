@@ -62,6 +62,8 @@
 		D1971DA92AFE902500D0D12C /* TestWrite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1971DA82AFE902500D0D12C /* TestWrite.swift */; };
 		D1971DAB2AFEAC5900D0D12C /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1971DAA2AFEAC5900D0D12C /* FirestoreManager.swift */; };
 		D1971DAD2AFFAEE400D0D12C /* PandascoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1971DAC2AFFAEE400D0D12C /* PandascoreManager.swift */; };
+		D1B89D802B1FB97C007447A5 /* TransparentBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B89D7F2B1FB97C007447A5 /* TransparentBlurView.swift */; };
+		D1B89D822B20CE56007447A5 /* RegexMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B89D812B20CE56007447A5 /* RegexMatches.swift */; };
 		D1CFC7DA2AF7F76E00CEF15B /* MatchCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFC7D92AF7F76E00CEF15B /* MatchCellView.swift */; };
 		D1CFC7DC2AF7F79300CEF15B /* OngoingMatchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFC7DB2AF7F79300CEF15B /* OngoingMatchListView.swift */; };
 		D1CFC7DE2AF7FE2900CEF15B /* DetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFC7DD2AF7FE2900CEF15B /* DetailInfoView.swift */; };
@@ -140,6 +142,8 @@
 		D1971DA82AFE902500D0D12C /* TestWrite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWrite.swift; sourceTree = "<group>"; };
 		D1971DAA2AFEAC5900D0D12C /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		D1971DAC2AFFAEE400D0D12C /* PandascoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreManager.swift; sourceTree = "<group>"; };
+		D1B89D7F2B1FB97C007447A5 /* TransparentBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentBlurView.swift; sourceTree = "<group>"; };
+		D1B89D812B20CE56007447A5 /* RegexMatches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexMatches.swift; sourceTree = "<group>"; };
 		D1CFC7D92AF7F76E00CEF15B /* MatchCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCellView.swift; sourceTree = "<group>"; };
 		D1CFC7DB2AF7F79300CEF15B /* OngoingMatchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingMatchListView.swift; sourceTree = "<group>"; };
 		D1CFC7DD2AF7FE2900CEF15B /* DetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoView.swift; sourceTree = "<group>"; };
@@ -273,6 +277,14 @@
 				D149C2C42B0A804E00E5F260 /* Network.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		D1B89D7E2B1FB958007447A5 /* TransparentBlurView */ = {
+			isa = PBXGroup;
+			children = (
+				D1B89D7F2B1FB97C007447A5 /* TransparentBlurView.swift */,
+			);
+			path = TransparentBlurView;
 			sourceTree = "<group>";
 		};
 		D1CFC7D82AF7F75B00CEF15B /* Matches */ = {
@@ -409,6 +421,7 @@
 		D1D93D5F2AD95662003F1CC7 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				D1B89D7E2B1FB958007447A5 /* TransparentBlurView */,
 				D1DFEF4F2B03906800A71C4F /* Resketch */,
 				D1D93D602AD95675003F1CC7 /* MainView.swift */,
 				D1D93DBE2AF1A1AE003F1CC7 /* SearchField.swift */,
@@ -426,6 +439,7 @@
 				D1D93DC42AF43A03003F1CC7 /* AnimationEndCallBack.swift */,
 				D149C2C02B0A4F2E00E5F260 /* FetchingPlaceholder.swift */,
 				D149C2CE2B0D1E3C00E5F260 /* ShakeModifier.swift */,
+				D1B89D812B20CE56007447A5 /* RegexMatches.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -627,6 +641,7 @@
 				D1CFC7EC2AF9306100CEF15B /* PlayerCellView.swift in Sources */,
 				D122D1352B14C2F70070B927 /* NoUpcomingMatchesView.swift in Sources */,
 				D1DFEF512B03BBC900A71C4F /* DetailInfoResketchView.swift in Sources */,
+				D1B89D802B1FB97C007447A5 /* TransparentBlurView.swift in Sources */,
 				D149C2D72B0D4E5D00E5F260 /* MatchCellResketchView.swift in Sources */,
 				D1CFC7DC2AF7F79300CEF15B /* OngoingMatchListView.swift in Sources */,
 				D122D1372B1510380070B927 /* MatchDetailResketchView.swift in Sources */,
@@ -647,6 +662,7 @@
 				D122D14B2B176E2B0070B927 /* StandingsResketch.swift in Sources */,
 				D1D93D782AE4157B003F1CC7 /* ExtensionDate.swift in Sources */,
 				D1F1E1392B02BD040022C410 /* MainResketch.swift in Sources */,
+				D1B89D822B20CE56007447A5 /* RegexMatches.swift in Sources */,
 				D1D93D7A2AE41FE6003F1CC7 /* PandascoreMatch.swift in Sources */,
 				D1D93D7C2AE42058003F1CC7 /* PandascoreTeam.swift in Sources */,
 				D149C2CB2B0D0C4B00E5F260 /* SeriesType.swift in Sources */,
