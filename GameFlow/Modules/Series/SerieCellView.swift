@@ -9,8 +9,11 @@ import SwiftUI
 import ComposableArchitecture
 
 struct SerieCellDomain: Reducer {
-    struct State {
+    
+    struct State: Equatable {
         
+        @BindingState var isFetching: Bool
+        var serie: Serie
     }
     
     enum Action {
@@ -28,21 +31,25 @@ struct SerieCellDomain: Reducer {
 struct SerieCellView: View {
     var store: StoreOf<SerieCellDomain>
     var body: some View {
-        ZStack() {
-//        GeometryReader { geo in
-//            ZStack {
+        
+        WithViewStore(store, observe: { $0 }) { viewStore in
+            
+            ZStack() {
                 RoundedRectangle(cornerRadius: 25)
-//                    .frame(width: geo.size.width * 0.92, height: geo.size.height * 0.35)
-                .frame(width: 370, height: 280)
+                    .frame(width: 360, height: 270)
                     .foregroundStyle(Color("Gray", bundle: .main))
                     .overlay {
                         VStack {
                             Image("Image1", bundle: .main)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                            //                        .frame(width: geo.size.width * 0.84 , height: geo.size.height * 0.24)
-                                .frame(width: 340, height: 190)
+                                .frame(width: 330, height: 180)
                                 .clipShape(RoundedRectangle(cornerRadius: 25))
+                            
+                                .redactCondition(condition: viewStore.isFetching)
+//                                .foregroundStyle(.white)
+//                                .redacted(reason: .placeholder)
+                            
                             
                             Spacer()
                             
@@ -51,53 +58,88 @@ struct SerieCellView: View {
                     }
                 
                 VStack {
-                    Text("dksoadksoa")
-//                    Text("ESL One " + "Kuala Lumpur Western Europe Open Qualifier 1 2023")
+                    Text(viewStore.serie.fullName)
                         .foregroundStyle(.white)
                         .font(.gilroy(.bold, size: 20))
                         .padding(.horizontal)
-                        .frame(width: 370, height: 55, alignment: .topLeading)
-//                        .frame(width: geo.size.width * 0.83, height: geo.size.height * 0.07, alignment: .topLeading)
+                        .frame(width: 360, height: 55, alignment: .topLeading)
+                        .multilineTextAlignment(.leading)
+                    
+//                        .redacted(reason: .placeholder)
+                        .redactCondition(condition: viewStore.isFetching)
+                    
+                    
                     HStack {
-                        Text("$3M Prizepool")
-                            .font(.gilroy(.medium, size: 13))
-                            .foregroundStyle(.white)
-                            .padding(7)
-                            .padding(.vertical, 1)
-                            .background(
-                                RoundedRectangle(cornerRadius: 7)
-                                    .foregroundStyle(Color("Orange", bundle: .main))
-                                    .overlay(content: {
-                                        RoundedRectangle(cornerRadius: 5)
-                                            .foregroundStyle(Color("Orange", bundle: .main))
-                                            .blur(radius: 10)
-                                            .opacity(0.5)
-                                    })
-                            )
                         
+                        if let liquiInfo = viewStore.serie.liquipediaSerie {
+                            
+                            Text(liquiInfo.tier)
+                                .font(.gilroy(.medium, size: 13))
+                                .foregroundStyle(.white)
+                                .padding(7)
+                                .padding(.vertical, 1)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 7)
+                                        .foregroundStyle(Color("Orange", bundle: .main))
+                                        .overlay(content: {
+                                            RoundedRectangle(cornerRadius: 5)
+                                                .foregroundStyle(Color("Orange", bundle: .main))
+                                                .blur(radius: 10)
+                                                .opacity(0.5)
+                                        })
+                                )
+                            
+//                                .redacted(reason: .placeholder)
+                                .redactCondition(condition: viewStore.isFetching)
+                            
+
+                            if liquiInfo.prizepool != "" {
+                                Text(liquiInfo.prizepool)
+                                    .font(.gilroy(.medium, size: 13))
+                                    .foregroundStyle(.white)
+                                    .padding(7)
+                                    .padding(.vertical, 1)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .foregroundStyle(Color("Orange", bundle: .main))
+                                            .overlay(content: {
+                                                RoundedRectangle(cornerRadius: 5)
+                                                    .foregroundStyle(Color("Orange", bundle: .main))
+                                                    .blur(radius: 10)
+                                                    .opacity(0.5)
+                                            })
+                                    )
+                                
+//                                    .redacted(reason: .placeholder)
+                                    .redactCondition(condition: viewStore.isFetching)
+                                
+                            }
+                        }
                         Spacer()
-                        Text("Oct 10 - Dec 19")
+                        
+                        Text(viewStore.serie.duration)
                             .font(.gilroy(.light, size: 12))
                             .foregroundStyle(.gray)
+                        
+//                            .redacted(reason: .placeholder)
+                            .redactCondition(condition: viewStore.isFetching)
+                        
                     }
                     .padding(.horizontal)
-                    .padding(.bottom, 10)
-                    .frame(width: 370, height: 50)
+                    .padding(.bottom, 20)
+                    .frame(width: 360, height: 50)
                 }
+                .frame(width: 360, height: 280, alignment: .bottom)
                 
-                .frame(width: 370, height: 280, alignment: .bottom)
 
-//                .frame(width: geo.size.width * 0.85, height: geo.size.height * 0.42, alignment: .top)
-//            }
-//            .frame(maxWidth: geo.size.width)
-//            }
-            
+                
+            }
         }
     }
 }
 
-#Preview {
-    SerieCellView(store: Store(initialState: SerieCellDomain.State(), reducer: {
-        SerieCellDomain()
-    }))
-}
+//#Preview {
+//    SerieCellView(store: Store(initialState: SerieCellDomain.State(), reducer: {
+//        SerieCellDomain()
+//    }))
+//}

@@ -50,8 +50,12 @@ struct PartisipantsResketchView: View {
                                 } label: {
                                     
                                     VStack {
-                                        if let imageURL = team.image_url {
-                                            AsyncImage(url: URL(string: imageURL)) { image in
+                                        if let liquiTeamImage = viewStore.liquiTeams.getLiquiTeam(by: team.name)?.imageURL {
+                                            
+                                        
+//                                        if let imageURL = team.image_url {
+//                                            AsyncImage(url: URL(string: imageURL)) { image in
+                                            AsyncImage(url: URL(string: "https://liquipedia.net/\(liquiTeamImage)")) { image in
                                                 image
                                                     .resizable()
                                                     .scaledToFit()
@@ -78,7 +82,8 @@ struct PartisipantsResketchView: View {
                                                     
                                                 }
                                         }
-                                        Text(team.acronym == nil ? team.name : team.acronym!)
+//                                        Text(team.acronym == nil ? team.name : team.acronym!)
+                                        Text(team.formattedName().acronym == nil ? team.formattedName().name : team.formattedName().acronym!)
                                             .font(.gilroy(.regular, size: 16))
                                             .foregroundStyle(.white)
                                     }

@@ -54,31 +54,33 @@ struct MatchDetailResketchView: View {
                     
                     VStack(spacing: 10) {
                         
-                        HStack {
-                            Text("MATCH DETAILS")
-                                .multilineTextAlignment(.center)
-                                .foregroundStyle(.white)
-                                .font(.gilroy(.bold, size: 18))
-                                .frame(width: geo.size.width, alignment: .center)
-                        }
-                        .overlay {
-                            HStack {
-                                Button {
-                                    dismiss()
-                                } label: {
-                                    Image("Arrow", bundle: .main)
-                                        .resizable()
-                                        .renderingMode(.template)
-                                        .foregroundStyle(.white)
-                                        .rotationEffect(.degrees(180))
-                                        .frame(width: 30, height: 25)
-                                }
-                                
-                                Spacer()
-                            }
-                            .padding(.leading, 20)
-                        }
-                        .padding(.vertical, 15)
+//                        HStack {
+//                            Text("MATCH DETAILS")
+//                                .multilineTextAlignment(.center)
+//                                .foregroundStyle(.white)
+//                                .font(.gilroy(.bold, size: 18))
+//                                .frame(width: geo.size.width, alignment: .center)
+//                        }
+//                        .overlay {
+//                            HStack {
+//                                Button {
+//                                    dismiss()
+//                                } label: {
+//                                    Image("Arrow", bundle: .main)
+//                                        .resizable()
+//                                        .renderingMode(.template)
+//                                        .foregroundStyle(.white)
+//                                        .rotationEffect(.degrees(180))
+//                                        .frame(width: 30, height: 25)
+//                                }
+//                                
+//                                Spacer()
+//                            }
+//                            .padding(.leading, 20)
+//                        }
+//                        .padding(.vertical, 15)
+                        
+                        HeaderView(width: geo.size.width, header: "Match Details")
                         
                         
                         ScrollView(.vertical) {
@@ -175,6 +177,7 @@ struct MatchDetailResketchView: View {
                                     .frame(width: 150, height: 120, alignment: .center)
                                     
                                     if viewStore.isStarted {
+                                        
                                         HStack {
                                             Text("\(viewStore.match.calcScore(of: viewStore.match.opponents.first!.opponent))")
                                             Text(":")
@@ -183,6 +186,18 @@ struct MatchDetailResketchView: View {
                                         .foregroundStyle(.gray)
                                         .font(.gilroy(.medium, size: 14))
                                         .frame(width: 60)
+                                        
+                                    } else if viewStore.match.isMatchFinished() {
+                                        
+                                        HStack {
+                                            Text("\(viewStore.match.calcScore(of: viewStore.match.opponents.first!.opponent))")
+                                            Text(":")
+                                            Text("\(viewStore.match.calcScore(of: viewStore.match.opponents[1].opponent))")
+                                        }
+                                        .foregroundStyle(.gray)
+                                        .font(.gilroy(.medium, size: 14))
+                                        .frame(width: 60)
+                                        
                                     } else {
                                         Text("VS")
                                             .foregroundStyle(.gray)
@@ -413,8 +428,7 @@ struct MatchDetailResketchView: View {
                                 
                             }))
                             .offset(x: viewStore.pos )
-//                            if viewStore.isStarted {
-                                
+                            if viewStore.isStarted {
                                 VStack(spacing: 15) {
                                     HStack {
                                         Text("Twich Stream List")
@@ -461,7 +475,7 @@ struct MatchDetailResketchView: View {
                                     }
                                 }
                                 .padding(.top, 15)
-//                            }
+                            }
                         }
                         .scrollIndicators(.never)
                         

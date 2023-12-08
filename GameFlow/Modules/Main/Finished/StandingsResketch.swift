@@ -86,23 +86,20 @@ struct StandingsResketch: View {
                                 }
                                 .frame(width: 30)
                                 
-                                Text(viewStore.newStandings[num].name)
+                            Text(viewStore.newStandings[num].name.teamFormatterName())
                             
                             Spacer()
                             
-                            Text("4-0-0")
-                                .frame(width: 80)
-                            
-                            Text("8-0")
+//                            Text("4-0-0")
+//                                .frame(width: 80)
+                            Text("\(viewStore.newStandings[num].wins)-\(viewStore.newStandings[num].looses)")
                                 .frame(maxWidth: 40)
                             
                         }
                         .padding(.leading, 10)
                     }
                     .padding(.horizontal, 10)
-                    
                     .frame(width: 370, height: 60)
-                    
                 }
             }
                 .font(.gilroy(.medium, size: 16))

@@ -8,14 +8,15 @@
 import Foundation
 
 enum MatchType: String, CaseIterable {
+    
     case ongoing = "ONGOING"
     case finished = "FINISHED"
     
     var count: Int {
-        return Self.allCases.count - 1
+        return MatchType.allCases.count - 1
     }
     
     var index: Int {
-        return Self.allCases.firstIndex(of: self) ?? 0
+        return MatchType.allCases.firstIndex(of: self) ?? 0
     }
 }

@@ -87,7 +87,23 @@ extension PandascoreMatch {
         }
     }
     
-    
+    func isMatchFinished() -> Bool {
+        let calendar = Calendar(identifier: .iso8601)
+        let currentTime = Date().iso8601.ISOfotmattedString()
+        
+        if self.status == "finished" {
+            return true
+        } else if let endTime = self.end_at {
+            let currentTime =  Date().ISO8601Format().ISOfotmattedString()
+            if currentTime > endTime.ISOfotmattedString() {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    }
     
     func calcScore(of opponent: Opponent) -> Int {
         
@@ -154,26 +170,40 @@ extension [PandascoreMatch] {
         var standings = [Standings]()
             
         for match in self {
-            if match.status == "finished" {
+            if match.status == "finished" || match.status == "canceled" {
                 
                 if standings.contains(where: { $0.teamId == match.results[0].team_id }) {
                     
                     let firstTeamIndx = standings.firstIndex(where: { $0.teamId == match.results[0].team_id })!
-                    var firsTeam = standings[firstTeamIndx]
+                    var firstTeam = standings[firstTeamIndx]
                     
                     if standings.contains(where: { $0.teamId == match.results[1].team_id}) {
                         let secondTeamIndx = standings.firstIndex(where: { $0.teamId == match.results[1].team_id })!
                         var secondTeam = standings[secondTeamIndx]
                         
-                        
-                        
-                        secondTeam.looses = firsTeam.wins
-                        secondTeam.wins = match.results.first(where: { $0.team_id == secondTeam.teamId})!.score
-                        firsTeam.looses = secondTeam.wins
-                        firsTeam.wins = match.results.first(where: { $0.team_id == firsTeam.teamId})!.score
-                        
-                        standings[secondTeamIndx] = secondTeam
-                        standings[firstTeamIndx] = firsTeam
+                        if match.status == "canceled" {
+                            if firstTeam.wins > secondTeam.wins {
+                                firstTeam.wins = firstTeam.wins + 2
+                                
+                                standings[secondTeamIndx] = secondTeam
+                                standings[firstTeamIndx] = firstTeam
+                            } else {
+                                secondTeam.wins = secondTeam.wins + 2
+                                standings[secondTeamIndx] = secondTeam
+                                standings[firstTeamIndx] = firstTeam
+                            }
+                        } else {
+                            
+                            //                        secondTeam.looses = secondTeam.looses + firsTeam.wins
+                            secondTeam.looses = secondTeam.looses + match.results.first(where: { $0.team_id == firstTeam.teamId})!.score
+                            secondTeam.wins = secondTeam.wins + match.results.first(where: { $0.team_id == secondTeam.teamId})!.score
+                            //                        firsTeam.looses = firsTeam.looses + secondTeam.wins
+                            firstTeam.looses = firstTeam.looses + match.results.first(where: { $0.team_id == secondTeam.teamId})!.score
+                            firstTeam.wins = firstTeam.wins + match.results.first(where: { $0.team_id == firstTeam.teamId})!.score
+                            
+                            standings[secondTeamIndx] = secondTeam
+                            standings[firstTeamIndx] = firstTeam
+                        }
                         
                     } else {
                         //DIDNT FIND SECOND TEAM
@@ -186,20 +216,20 @@ extension [PandascoreMatch] {
                                 teamId: match.results[1].team_id,
                                 imageURL: liquiTeam.imageURL,
                                 wins: match.results[1].score,
-                                looses: firsTeam.wins))
+                                looses: firstTeam.wins))
                         }
                         
-                        firsTeam.wins = match.results.first(where: { $0.team_id == firsTeam.teamId})!.score
-                        firsTeam.looses = match.results[1].score
+                        firstTeam.wins = firstTeam.wins + match.results.first(where: { $0.team_id == firstTeam.teamId})!.score
+                        firstTeam.looses = firstTeam.looses + match.results[1].score
                         
-                        standings[firstTeamIndx] = firsTeam
+                        standings[firstTeamIndx] = firstTeam
                     }
                     
                 } else {
                     //DIDNT FIND FIRST TEAM
                     //FIND TEAM FROM LIQUI
-                    if standings.contains(where: { $0.teamId == match.results[0].team_id}) {
-                        let secondTeamIndx = standings.firstIndex(where: { $0.teamId == match.results[0].team_id })!
+                    if standings.contains(where: { $0.teamId == match.results[1].team_id}) {
+                        let secondTeamIndx = standings.firstIndex(where: { $0.teamId == match.results[1].team_id })!
                         var secondTeam = standings[secondTeamIndx]
                         
                         let pandaTeam = tournament.teams?.first(where: { $0.id == match.results[0].team_id})
@@ -214,17 +244,15 @@ extension [PandascoreMatch] {
                             
                         }
                         
-                        secondTeam.wins = match.results.first(where: { $0.team_id == secondTeam.teamId})!.score
-                        secondTeam.looses = match.results[1].score
+                        secondTeam.wins = secondTeam.wins + match.results.first(where: { $0.team_id == secondTeam.teamId})!.score
+                        secondTeam.looses = secondTeam.looses + match.results[0].score
                         
                         standings[secondTeamIndx] = secondTeam
                         
-                    } else {
+                    }
+                    else {
                         //FIND TEAM FROM LIQUI
                         //DIDNT FIND ANY TEAM
-                        
-                        
-                        
                         let firstPandaTeam = tournament.teams!.first(where: { $0.id == match.results[0].team_id})!
                         if let firstLiquiTeam = liquiInfo.teams.getLiquiTeam(by: firstPandaTeam.name) {
                             
@@ -245,9 +273,6 @@ extension [PandascoreMatch] {
                             }
                         }
                     }
-                    
-                    
-                    
                 }
             }
         }
@@ -275,7 +300,6 @@ struct PandascoreGameWinner: Codable {
     let id: Int?
     let type: String?
 }
-
 
 struct PandascoreResult: Codable {
     let score: Int

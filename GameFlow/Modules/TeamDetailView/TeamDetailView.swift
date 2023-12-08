@@ -12,6 +12,8 @@ struct TeamDetailDomain: Reducer {
     
     struct State: Equatable {
         
+        let team: LiquipediaSerie.LiquipediaTeam
+        
     }
     
     enum Action {
@@ -38,7 +40,7 @@ struct TeamDetailView: View {
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             GeometryReader { geo in
-                //MARK: - Header
+                
                 ZStack {
                     
                     Color("Black", bundle: .main)
@@ -56,7 +58,6 @@ struct TeamDetailView: View {
                         .overlay {
                             HStack {
                                 Button {
-//                                    self.store.send(.backButtonTapped)
                                     dismiss()
                                 } label: {
                                     Image("Arrow", bundle: .main)
@@ -77,21 +78,32 @@ struct TeamDetailView: View {
                         ScrollView {
                             
                             VStack(spacing: 30) {
-                                AsyncImage(url: URL(string: "https://cdn.pandascore.co/images/team/image/1669/600px_team_spirit_2021.png")) { image in
-                                    image
-                                        .resizable()
-                                        .renderingMode(.template)
-                                        .foregroundStyle(.white)
-                                        .scaledToFit()
-                                        .frame(width: 170, height: 170)
+                                if viewStore.team.hasTeamImage {
+                                    AsyncImage(url: URL(string: "https://liquipedia.net/\(viewStore.team.imageURL)")) { image in
+                                        
+                                        image
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 170, height: 170)
+                                        
+                                    } placeholder: {
+                                        Circle()
+                                            .foregroundStyle(Color("Gray", bundle: .main))
+                                            .frame(width: 170, height: 170)
+                                    }
+                                } else {
                                     
-                                } placeholder: {
                                     Circle()
                                         .foregroundStyle(Color("Gray", bundle: .main))
                                         .frame(width: 170, height: 170)
+                                        .overlay {
+                                            Text("?")
+                                                .font(.gilroy(.semiBold, size: 30))
+                                                .foregroundStyle(.white)
+                                        }
                                 }
                                 
-                                Text("Team Spirit")
+                                Text(viewStore.team.name)
                                     .font(.gilroy(.bold, size: 25))
                                     .foregroundStyle(.white)
                                 
@@ -100,8 +112,11 @@ struct TeamDetailView: View {
                             .padding(.bottom, 10)
                             
                             VStack(spacing: 30) {
-                                ForEach(0..<5, id: \.self) { _ in
-                                    PlayerCellView(store: Store(initialState: PlayerCellDomain.State(rotated: false), reducer: {
+                                ForEach(viewStore.team.players, id: \.self) { player in
+                                    PlayerCellView(store: Store(initialState: PlayerCellDomain.State(
+                                        rotated: false,
+                                        liquiPlayer: player
+                                    ), reducer: {
                                         PlayerCellDomain()
                                     }))
                                 }
@@ -113,13 +128,13 @@ struct TeamDetailView: View {
         }
     }
 }
-
-#Preview {
-    TeamDetailView(store: Store(initialState: TeamDetailDomain.State(), reducer: {
-        TeamDetailDomain()
-    }))
-    .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(
-        Color("Black", bundle: .main)
-    )
-}
+//
+//#Preview {
+//    TeamDetailView(store: Store(initialState: TeamDetailDomain.State(), reducer: {
+//        TeamDetailDomain()
+//    }))
+//    .frame(maxWidth: .infinity, maxHeight: .infinity)
+//    .background(
+//        Color("Black", bundle: .main)
+//    )
+//}

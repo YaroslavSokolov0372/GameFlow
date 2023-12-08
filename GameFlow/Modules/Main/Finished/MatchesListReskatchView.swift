@@ -95,34 +95,9 @@ struct MatchesListReskatchView: View {
                     
                     VStack {
                         //MARK: - Header
-                        HStack {
-                            
-                            Text("MATCH LIST")
-                                .multilineTextAlignment(.center)
-                                .foregroundStyle(.white)
-                                .font(.gilroy(.bold, size: 18))
-                                .frame(width: geo.size.width, alignment: .center)
-                        }
-                        .overlay {
-                            HStack {
-                                Button {
-                                    dismiss()
-                                } label: {
-                                    Image("Arrow", bundle: .main)
-                                        .resizable()
-                                        .renderingMode(.template)
-                                        .foregroundStyle(.white)
-                                        .rotationEffect(.degrees(180))
-                                        .frame(width: 30, height: 25)
-                                }
-                                
-                                Spacer()
-                            }
-                            .padding(.leading, 20)
-                        }
-                        .padding(.vertical, 15)
                         
-//                        TabView(selection: viewStore.binding(get: \.currentTab, send: { .tabSelected($0) })) {
+                        HeaderView(width: geo.size.width, header: "Match List")
+                        
                         TabView(selection: viewStore.$currentTab) {
                             ForEach(MatchType.allCases, id: \.self) { type in
                                 ScrollView {
@@ -176,8 +151,7 @@ struct MatchesListReskatchView: View {
                                     let pageOffset = minX - (geo.size.width * CGFloat(type.index))
                                     let pageProgress = pageOffset / geo.size.width
                                     
-                                    
-                                    let limitation = max(min(pageProgress, 0), -CGFloat(MatchesListDomain.MatchType.allCases.count - 1))
+                                    let limitation = max(min(pageProgress, 0), -CGFloat(MatchType.allCases.count - 1))
                                     if !viewStore.tapState.status {
                                         viewStore.send(.scrollOffsetChanged(limitation))
                                     }
@@ -190,54 +164,6 @@ struct MatchesListReskatchView: View {
                     .overlay {
                         MatchListTabBar(store: self.store.scope(state: \.tabBarState, action: MatchesListResketchDomain.Action.tabBarAction))
                     }
-                    
-                    
-//                    VStack() {
-//                        
-//                        RoundedRectangle(cornerRadius: 30)
-//                            .foregroundStyle(Color("Black", bundle: .main))
-//                            .frame(width: geo.size.width * 0.95, height: 60)
-//                            .overlay {
-//                                HStack {
-//                                    ForEach(MatchType.allCases, id: \.rawValue) { type in
-//                                        Button {
-//                                            withAnimation(.easeInOut(duration: 0.3)) {
-//                                                self.store.send(.tabSelected(type))
-//                                                
-//                                                self.store.send(.scrollOffsetChanged(-CGFloat(type.index)))
-//                                                
-//                                                self.store.send(.animationStateStarted)
-//                                                
-//                                            }
-//                                        } label: {
-//                                            Text(type.rawValue)
-//                                                .foregroundStyle(.white)
-//                                                .font(.gilroy(.bold, size: 17))
-//                                                .frame(width: geo.size.width / 2.2)
-//                                        }
-//                                        .disabled(viewStore.tapState.status ? true : false)
-//                                    }
-//                                }
-//                                .background(
-//                                    RoundedRectangle(cornerRadius: 25)
-//                                        .foregroundStyle(Color("Orange", bundle: .main))
-//                                        .frame(width: geo.size.width / 2.12, height: 50)
-//                                        .overlay(content: {
-//                                            RoundedRectangle(cornerRadius: 25)
-//                                                .foregroundStyle(Color("Orange", bundle: .main))
-//                                                .blur(radius: 10)
-//                                                .opacity(0.6)
-//                                        })
-//                                        .offset(x: -90 - (180 * viewStore.scrollProgress))
-//                                )
-//                                .modifier(
-//                                    AnimationEndCallBack(endValaue: viewStore.tapState.progress) {
-//                                        viewStore.send(.animationStateReset)
-//                                    }
-//                                )
-//                            }
-//                    }
-//                    .frame(width: geo.size.width * 1, height: geo.size.height, alignment: .bottom)
                 }
             }
         }

@@ -37,7 +37,7 @@ struct MatchCellResketchDomain: Reducer {
                 return .none
             case .tick:
                 return .run {
-                    send in for await _ in self.clock.timer(interval: .seconds(5)) {
+                    send in for await _ in self.clock.timer(interval: .seconds(60)) {
                         await send(.checkTime)
                     }
                 }
@@ -127,9 +127,9 @@ struct MatchCellResketchView: View {
                                                 Circle()
                                                     .frame(width: 80, height: 80)
                                                     .foregroundStyle(Color("Black", bundle: .main))
-//                                                    .overlay(alignment: .center) {
-//                                                        Text("Loading")
-//                                                    }
+                                                //                                                    .overlay(alignment: .center) {
+                                                //                                                        Text("Loading")
+                                                //                                                    }
                                             }
                                             .frame(width: 150, height: 90, alignment: .center)
                                         } else {
@@ -147,13 +147,13 @@ struct MatchCellResketchView: View {
                                         }
                                     }
                                     
-//                                    Text(firstLiquiTeam == nil ? viewStore.match.opponents.first!.opponent.name : firstLiquiTeam!.name.teamFormatted())
+                                    //                                    Text(firstLiquiTeam == nil ? viewStore.match.opponents.first!.opponent.name : firstLiquiTeam!.name.teamFormatted())
                                     Text(firstLiquiTeam == nil ? viewStore.match.opponents[1].opponent.name.teamFormatterName() : firstLiquiTeam!.name.teamFormatterName())
                                         .textCase(.uppercase)
                                         .foregroundStyle(.white)
                                         .font(.gilroy(.bold, size: 12))
                                         .frame(width: 130, height: 30)
-//                                        .frame(width: 130, height: 40)
+                                    //                                        .frame(width: 130, height: 40)
                                     
                                 }
                                 .frame(width: 150, height: 100, alignment: .center)
@@ -167,7 +167,18 @@ struct MatchCellResketchView: View {
                                     .foregroundStyle(.gray)
                                     .font(.gilroy(.medium, size: 17))
                                     .frame(width: 60)
-                                } else {
+                                } else if viewStore.match.isMatchFinished() {
+                                    
+                                    HStack {
+                                        Text("\(viewStore.match.calcScore(of: viewStore.match.opponents.first!.opponent))")
+                                        Text(":")
+                                        Text("\(viewStore.match.calcScore(of: viewStore.match.opponents[1].opponent))")
+                                    }
+                                    .foregroundStyle(.gray)
+                                    .font(.gilroy(.medium, size: 17))
+                                    .frame(width: 60)
+                                    
+                            } else {
                                     Text("VS")
                                         .foregroundStyle(.gray)
                                         .font(.gilroy(.bold, size: 17))

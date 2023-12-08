@@ -45,3 +45,11 @@ extension Tournament: Equatable {
         lhs.tournament.id == rhs.tournament.id
     }
 }
+
+extension [Tournament] {
+    var sortedTournamentsByBegin: [Tournament] {
+        let tournaments = self.sorted(by: {
+            ($0.tournament.begin_at?.ISOfotmattedString() ?? Date(), $0.tournament.name) < ($1.tournament.begin_at?.ISOfotmattedString() ?? Date(), $1.tournament.name)})
+        return tournaments
+    }
+}

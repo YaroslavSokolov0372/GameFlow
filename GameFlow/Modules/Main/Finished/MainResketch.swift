@@ -174,7 +174,7 @@ struct MainResketch: View {
                                                 let pageProgress = pageOffset / geo.size.width
                                                 
                                                 
-                                                let limitation = max(min(pageProgress, 0), -CGFloat(MainDomain.SeriesType.allCases.count - 1))
+                                                let limitation = max(min(pageProgress, 0), -CGFloat(SeriesType.allCases.count - 1))
                                                 if !viewStore.tapState.status {
                                                     viewStore.send(.scrollOffsetChanged(limitation))
                                                 }
@@ -194,7 +194,7 @@ struct MainResketch: View {
                                                 let pageProgress = pageOffset / geo.size.width
                                                 
                                                 
-                                                let limitation = max(min(pageProgress, 0), -CGFloat(MainDomain.SeriesType.allCases.count - 1))
+                                                let limitation = max(min(pageProgress, 0), -CGFloat(SeriesType.allCases.count - 1))
                                                 if !viewStore.tapState.status {
                                                     viewStore.send(.scrollOffsetChanged(limitation))
                                                 }
@@ -213,7 +213,7 @@ struct MainResketch: View {
                                                 let pageProgress = pageOffset / geo.size.width
                                                 
                                                 
-                                                let limitation = max(min(pageProgress, 0), -CGFloat(MainDomain.SeriesType.allCases.count - 1))
+                                                let limitation = max(min(pageProgress, 0), -CGFloat(SeriesType.allCases.count - 1))
                                                 if !viewStore.tapState.status {
                                                     viewStore.send(.scrollOffsetChanged(limitation))
                                                 }

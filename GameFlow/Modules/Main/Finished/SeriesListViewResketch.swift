@@ -20,22 +20,13 @@ struct SeriesListResketchDomain: Reducer {
         
     }
     
-    
     enum Action: BindableAction {
-//        case serieTapped(Serie)
-//        case serieTapped(Serie)
         case binding(BindingAction<State>)
     }
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
-                
-//            case .serieTapped(let serie):
-////                state.selSerie = serie
-//                print("Serie tapped")
-//                return .none
-                
             case .binding(_):
                 return .none
             default: return .none

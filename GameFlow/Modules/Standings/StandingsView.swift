@@ -10,10 +10,13 @@ import ComposableArchitecture
 
 struct StandingsDomain: Reducer {
     
+    
     struct State: Equatable {
-        
+        let liquiTeams: [LiquipediaSerie.LiquipediaTeam]
+        let standings: [PandascoreStandings]
+        let newStandings: [Standings]
     }
-     
+    
     enum Action {
         
     }
@@ -32,57 +35,49 @@ struct StandingsView: View {
     var store: StoreOf<StandingsDomain>
     
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewstore in
+        WithViewStore(store, observe: { $0 }) { viewStore in
             
             
-                VStack(spacing: 0) {
-                    
-                    
-                        UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20)
-                            .frame(width: 370, height: 40)
-                            .foregroundStyle(Color("Gray", bundle: .main))
-                            .overlay {
-                                HStack {
-                                    Text("#")
-                                        
-                                        .frame(maxWidth: 40)
-                                    
-                                    Text("Teams")
-                                        .padding(.leading, 10)
-                                    
-                                    Spacer()
-                                    
-                                    Text("Matches")
-                                        .frame(width: 80)
-                                    
-                                    Text("Wins")
-                                        .frame(maxWidth: 40)
-                                }
-                                .padding(.horizontal, 10)
-                                .frame(width: 370, height: 40)
-                                
-                                
-                                
-                            }
-                    
-
-                    
-                    ForEach(0..<4, id: \.self) { num in
-                        
-                        Rectangle()
-                            .frame(width: 370, height: 1, alignment: .center)
-                            .foregroundStyle(Color("Gray", bundle: .main))
-                        
+            VStack(spacing: 0) {
+                
+                UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20)
+                    .frame(width: 370, height: 40)
+                    .foregroundStyle(Color("Gray", bundle: .main))
+                    .overlay {
                         HStack {
-                            
-                            Text("\(num + 1).")
+                            Text("#")
                                 .frame(maxWidth: 40)
                             
-                            HStack {
-                                AsyncImage(url: URL(string: "https://cdn.pandascore.co/images/team/image/129904/600px_entity_2021_lightmode.png")) { image in
+                            Text("Teams")
+                                .padding(.leading, 10)
+                            
+                            Spacer()
+                            
+                            Text("Matches")
+                                .frame(width: 80)
+                            
+                            Text("Wins")
+                                .frame(maxWidth: 40)
+                        }
+                        .padding(.horizontal, 10)
+                        .frame(width: 370, height: 40)
+                    }
+                
+                ForEach(viewStore.newStandings.sorted(by: { $0.wins < $1.wins }).indices, id: \.self) { num in
+                    
+                    Rectangle()
+                        .frame(width: 370, height: 1, alignment: .center)
+                        .foregroundStyle(Color("Gray", bundle: .main))
+                    
+                    HStack {
+                        Text("\(num + 1).")
+                            .frame(maxWidth: 40)
+                        
+                        HStack {
+                                AsyncImage(url: URL(string: "https://liquipedia.net/\(viewStore.newStandings[num].imageURL)")) { image in
                                     image
                                         .resizable()
-                                        .renderingMode(.template)
+                                        .scaledToFit()
                                         .foregroundStyle(.white)
                                         .frame(width: 25, height: 25)
                                 } placeholder: {
@@ -92,37 +87,22 @@ struct StandingsView: View {
                                 }
                                 .frame(width: 30)
                                 
-                                Text("Team Spirit")
-                            }
-                            .padding(.leading, 10)
+                            Text(viewStore.newStandings[num].name.teamFormatterName())
                             
                             Spacer()
                             
-                            Text("4-0-0")
-                                .frame(width: 80)
-                            
-                            Text("8-0")
+                            Text("\(viewStore.newStandings[num].wins)-\(viewStore.newStandings[num].looses)")
                                 .frame(maxWidth: 40)
+                            
                         }
-                        .padding(.horizontal, 10)
-
-                        .frame(width: 370, height: 60)
+                        .padding(.leading, 10)
                     }
+                    .padding(.horizontal, 10)
+                    .frame(width: 370, height: 60)
                 }
+            }
                 .font(.gilroy(.medium, size: 16))
                 .foregroundStyle(.white)
         }
     }
-}
-
-#Preview {
-    StandingsView(store: Store(initialState: StandingsDomain.State(), reducer: {
-        StandingsDomain()
-    }))
-    .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background {
-        Color("Black", bundle: .main)
-            .ignoresSafeArea()
-    }
-    
 }

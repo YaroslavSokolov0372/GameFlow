@@ -64,6 +64,7 @@
 		D1971DAD2AFFAEE400D0D12C /* PandascoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1971DAC2AFFAEE400D0D12C /* PandascoreManager.swift */; };
 		D1B89D802B1FB97C007447A5 /* TransparentBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B89D7F2B1FB97C007447A5 /* TransparentBlurView.swift */; };
 		D1B89D822B20CE56007447A5 /* RegexMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B89D812B20CE56007447A5 /* RegexMatches.swift */; };
+		D1B89D852B221424007447A5 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B89D842B221424007447A5 /* HeaderView.swift */; };
 		D1CFC7DA2AF7F76E00CEF15B /* MatchCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFC7D92AF7F76E00CEF15B /* MatchCellView.swift */; };
 		D1CFC7DC2AF7F79300CEF15B /* OngoingMatchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFC7DB2AF7F79300CEF15B /* OngoingMatchListView.swift */; };
 		D1CFC7DE2AF7FE2900CEF15B /* DetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFC7DD2AF7FE2900CEF15B /* DetailInfoView.swift */; };
@@ -84,7 +85,7 @@
 		D1D93D612AD95675003F1CC7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D602AD95675003F1CC7 /* MainView.swift */; };
 		D1D93D682ADAAA7B003F1CC7 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D672ADAAA7B003F1CC7 /* Images.swift */; };
 		D1D93D6A2ADACE9A003F1CC7 /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D692ADACE9A003F1CC7 /* ExtensionString.swift */; };
-		D1D93D782AE4157B003F1CC7 /* ExtensionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D772AE4157B003F1CC7 /* ExtensionDate.swift */; };
+		D1D93D782AE4157B003F1CC7 /* ISOExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D772AE4157B003F1CC7 /* ISOExtensions.swift */; };
 		D1D93D7A2AE41FE6003F1CC7 /* PandascoreMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D792AE41FE6003F1CC7 /* PandascoreMatch.swift */; };
 		D1D93D7C2AE42058003F1CC7 /* PandascoreTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93D7B2AE42058003F1CC7 /* PandascoreTeam.swift */; };
 		D1D93DAB2AF1777A003F1CC7 /* SerieCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D93DAA2AF1777A003F1CC7 /* SerieCellView.swift */; };
@@ -144,6 +145,7 @@
 		D1971DAC2AFFAEE400D0D12C /* PandascoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreManager.swift; sourceTree = "<group>"; };
 		D1B89D7F2B1FB97C007447A5 /* TransparentBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentBlurView.swift; sourceTree = "<group>"; };
 		D1B89D812B20CE56007447A5 /* RegexMatches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexMatches.swift; sourceTree = "<group>"; };
+		D1B89D842B221424007447A5 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		D1CFC7D92AF7F76E00CEF15B /* MatchCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCellView.swift; sourceTree = "<group>"; };
 		D1CFC7DB2AF7F79300CEF15B /* OngoingMatchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingMatchListView.swift; sourceTree = "<group>"; };
 		D1CFC7DD2AF7FE2900CEF15B /* DetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoView.swift; sourceTree = "<group>"; };
@@ -164,7 +166,7 @@
 		D1D93D602AD95675003F1CC7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D1D93D672ADAAA7B003F1CC7 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		D1D93D692ADACE9A003F1CC7 /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
-		D1D93D772AE4157B003F1CC7 /* ExtensionDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDate.swift; sourceTree = "<group>"; };
+		D1D93D772AE4157B003F1CC7 /* ISOExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISOExtensions.swift; sourceTree = "<group>"; };
 		D1D93D792AE41FE6003F1CC7 /* PandascoreMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreMatch.swift; sourceTree = "<group>"; };
 		D1D93D7B2AE42058003F1CC7 /* PandascoreTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandascoreTeam.swift; sourceTree = "<group>"; };
 		D1D93DAA2AF1777A003F1CC7 /* SerieCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerieCellView.swift; sourceTree = "<group>"; };
@@ -258,7 +260,7 @@
 			path = Liquipedia;
 			sourceTree = "<group>";
 		};
-		D149C2B82B0A207A00E5F260 /* Firestore&UserUsage */ = {
+		D149C2B82B0A207A00E5F260 /* UserUsage */ = {
 			isa = PBXGroup;
 			children = (
 				D122D1462B163ED50070B927 /* MatchType.swift */,
@@ -268,7 +270,7 @@
 				D122D13E2B16252C0070B927 /* Tournament.swift */,
 				D1204B932B18AE2C001BEFEB /* Standings.swift */,
 			);
-			path = "Firestore&UserUsage";
+			path = UserUsage;
 			sourceTree = "<group>";
 		};
 		D149C2C32B0A803F00E5F260 /* Network */ = {
@@ -287,14 +289,58 @@
 			path = TransparentBlurView;
 			sourceTree = "<group>";
 		};
-		D1CFC7D82AF7F75B00CEF15B /* Matches */ = {
+		D1B89D832B2212B6007447A5 /* Finished */ = {
 			isa = PBXGroup;
 			children = (
-				D1CFC7D92AF7F76E00CEF15B /* MatchCellView.swift */,
+				D122D1362B1510380070B927 /* MatchDetailResketchView.swift */,
+				D1D93DBE2AF1A1AE003F1CC7 /* SearchField.swift */,
+				D1D93DC02AF2C0AF003F1CC7 /* TabBarView.swift */,
+				D1DFEF4B2B038F9A00A71C4F /* SeriesListViewResketch.swift */,
+				D1DFEF4D2B03906100A71C4F /* SerieCellResketch.swift */,
+				D1F1E1382B02BD040022C410 /* MainResketch.swift */,
+				D122D1422B163B0F0070B927 /* MatchesListReskatchView.swift */,
+				D149C2D62B0D4E5D00E5F260 /* MatchCellResketchView.swift */,
+				D149C2D42B0D4DFD00E5F260 /* OngoingMatchListViewResketch.swift */,
+				D1DFEF502B03BBC900A71C4F /* DetailInfoResketchView.swift */,
+				D122D13A2B1612CD0070B927 /* PlayerViewResketch.swift */,
+				D1DFEF522B03C20000A71C4F /* PartisipantsResketchView.swift */,
+				D122D14A2B176E2B0070B927 /* StandingsResketch.swift */,
+				D1DFEF542B03E7F900A71C4F /* TeamDetailResketchView.swift */,
+			);
+			path = Finished;
+			sourceTree = "<group>";
+		};
+		D1B89D862B226032007447A5 /* CustomHeader */ = {
+			isa = PBXGroup;
+			children = (
+				D1B89D842B221424007447A5 /* HeaderView.swift */,
+			);
+			path = CustomHeader;
+			sourceTree = "<group>";
+		};
+		D1B89D872B2264AE007447A5 /* Check if should save */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Check if should save";
+			sourceTree = "<group>";
+		};
+		D1B89D882B236501007447A5 /* MatchDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				D1CFC7EF2AF936EC00CEF15B /* MatchDetailView.swift */,
 				D1CFC7F12AF9577300CEF15B /* MatchesListView.swift */,
+				D122D1442B163D250070B927 /* MatchListTabBar.swift */,
+			);
+			path = MatchDetailView;
+			sourceTree = "<group>";
+		};
+		D1B89D892B2366C5007447A5 /* OngoingMatchList */ = {
+			isa = PBXGroup;
+			children = (
 				D1CFC7DB2AF7F79300CEF15B /* OngoingMatchListView.swift */,
 			);
-			path = Matches;
+			path = OngoingMatchList;
 			sourceTree = "<group>";
 		};
 		D1CFC7DF2AF846CA00CEF15B /* Partisipants */ = {
@@ -320,12 +366,15 @@
 			path = Brackets;
 			sourceTree = "<group>";
 		};
-		D1CFC7E62AF9252A00CEF15B /* MatchDetailView */ = {
+		D1CFC7E62AF9252A00CEF15B /* Matches */ = {
 			isa = PBXGroup;
 			children = (
-				D1CFC7EF2AF936EC00CEF15B /* MatchDetailView.swift */,
+				D1B89D892B2366C5007447A5 /* OngoingMatchList */,
+				D1B89D882B236501007447A5 /* MatchDetailView */,
+				D1CFC7D92AF7F76E00CEF15B /* MatchCellView.swift */,
+				D122D1342B14C2F70070B927 /* NoUpcomingMatchesView.swift */,
 			);
-			path = MatchDetailView;
+			path = Matches;
 			sourceTree = "<group>";
 		};
 		D1CFC7E72AF9253300CEF15B /* TeamDetailView */ = {
@@ -333,6 +382,7 @@
 			children = (
 				D1CFC7E82AF9254800CEF15B /* TeamDetailView.swift */,
 				D1CFC7EB2AF9306100CEF15B /* PlayerCellView.swift */,
+				D122D1482B166F620070B927 /* PlayerEmptyView.swift */,
 			);
 			path = TeamDetailView;
 			sourceTree = "<group>";
@@ -383,7 +433,7 @@
 		D1D93D302AD48CB3003F1CC7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D149C2B82B0A207A00E5F260 /* Firestore&UserUsage */,
+				D149C2B82B0A207A00E5F260 /* UserUsage */,
 				D149C2B72B0A207000E5F260 /* Liquipedia */,
 				D149C2B62B0A206A00E5F260 /* Pandascore */,
 			);
@@ -405,12 +455,13 @@
 		D1D93D402AD5636D003F1CC7 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				D1B89D862B226032007447A5 /* CustomHeader */,
+				D1B89D7E2B1FB958007447A5 /* TransparentBlurView */,
 				D1CFC7E72AF9253300CEF15B /* TeamDetailView */,
 				D1CFC7DF2AF846CA00CEF15B /* Partisipants */,
 				D1CFC7E32AF8E63300CEF15B /* Brackets */,
 				D1CFC7E22AF8E62100CEF15B /* Standings */,
-				D1CFC7E62AF9252A00CEF15B /* MatchDetailView */,
-				D1CFC7D82AF7F75B00CEF15B /* Matches */,
+				D1CFC7E62AF9252A00CEF15B /* Matches */,
 				D1D93D6B2ADB0948003F1CC7 /* DetailInfo */,
 				D1D93DA92AF17766003F1CC7 /* Series */,
 				D1D93D5F2AD95662003F1CC7 /* Main */,
@@ -421,11 +472,11 @@
 		D1D93D5F2AD95662003F1CC7 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				D1B89D7E2B1FB958007447A5 /* TransparentBlurView */,
+				D1B89D872B2264AE007447A5 /* Check if should save */,
+				D1B89D832B2212B6007447A5 /* Finished */,
 				D1DFEF4F2B03906800A71C4F /* Resketch */,
 				D1D93D602AD95675003F1CC7 /* MainView.swift */,
-				D1D93DBE2AF1A1AE003F1CC7 /* SearchField.swift */,
-				D1D93DC02AF2C0AF003F1CC7 /* TabBarView.swift */,
+				D149C2C82B0CCF6400E5F260 /* CustomTabBar.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -433,7 +484,7 @@
 		D1D93D622AD9AFFC003F1CC7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				D1D93D772AE4157B003F1CC7 /* ExtensionDate.swift */,
+				D1D93D772AE4157B003F1CC7 /* ISOExtensions.swift */,
 				D1D93D692ADACE9A003F1CC7 /* ExtensionString.swift */,
 				D1D93DC22AF2C473003F1CC7 /* OffsetReader.swift */,
 				D1D93DC42AF43A03003F1CC7 /* AnimationEndCallBack.swift */,
@@ -479,22 +530,6 @@
 		D1DFEF4F2B03906800A71C4F /* Resketch */ = {
 			isa = PBXGroup;
 			children = (
-				D122D14A2B176E2B0070B927 /* StandingsResketch.swift */,
-				D122D1362B1510380070B927 /* MatchDetailResketchView.swift */,
-				D122D1482B166F620070B927 /* PlayerEmptyView.swift */,
-				D122D13A2B1612CD0070B927 /* PlayerViewResketch.swift */,
-				D1F1E1382B02BD040022C410 /* MainResketch.swift */,
-				D1DFEF4B2B038F9A00A71C4F /* SeriesListViewResketch.swift */,
-				D1DFEF4D2B03906100A71C4F /* SerieCellResketch.swift */,
-				D1DFEF502B03BBC900A71C4F /* DetailInfoResketchView.swift */,
-				D1DFEF522B03C20000A71C4F /* PartisipantsResketchView.swift */,
-				D1DFEF542B03E7F900A71C4F /* TeamDetailResketchView.swift */,
-				D149C2C82B0CCF6400E5F260 /* CustomTabBar.swift */,
-				D122D1442B163D250070B927 /* MatchListTabBar.swift */,
-				D149C2D42B0D4DFD00E5F260 /* OngoingMatchListViewResketch.swift */,
-				D149C2D62B0D4E5D00E5F260 /* MatchCellResketchView.swift */,
-				D122D1342B14C2F70070B927 /* NoUpcomingMatchesView.swift */,
-				D122D1422B163B0F0070B927 /* MatchesListReskatchView.swift */,
 				D1204B992B18E7EE001BEFEB /* BracketsColumnCell.swift */,
 				D1204B952B18B29E001BEFEB /* BracketsResketchView.swift */,
 				D1204B972B18E079001BEFEB /* BracketCell.swift */,
@@ -631,6 +666,7 @@
 				D1CFC7F22AF9577300CEF15B /* MatchesListView.swift in Sources */,
 				D122D13B2B1612CD0070B927 /* PlayerViewResketch.swift in Sources */,
 				D1DFEF552B03E7F900A71C4F /* TeamDetailResketchView.swift in Sources */,
+				D1B89D852B221424007447A5 /* HeaderView.swift in Sources */,
 				D1D93D6A2ADACE9A003F1CC7 /* ExtensionString.swift in Sources */,
 				D1204B982B18E079001BEFEB /* BracketCell.swift in Sources */,
 				D1204B9A2B18E7EE001BEFEB /* BracketsColumnCell.swift in Sources */,
@@ -660,7 +696,7 @@
 				D1F1E1372B014E8C0022C410 /* PandascoreStandings.swift in Sources */,
 				D1D93DC32AF2C473003F1CC7 /* OffsetReader.swift in Sources */,
 				D122D14B2B176E2B0070B927 /* StandingsResketch.swift in Sources */,
-				D1D93D782AE4157B003F1CC7 /* ExtensionDate.swift in Sources */,
+				D1D93D782AE4157B003F1CC7 /* ISOExtensions.swift in Sources */,
 				D1F1E1392B02BD040022C410 /* MainResketch.swift in Sources */,
 				D1B89D822B20CE56007447A5 /* RegexMatches.swift in Sources */,
 				D1D93D7A2AE41FE6003F1CC7 /* PandascoreMatch.swift in Sources */,

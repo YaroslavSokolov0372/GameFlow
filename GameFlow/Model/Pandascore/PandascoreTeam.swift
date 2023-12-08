@@ -60,3 +60,16 @@ extension [PandascoreTeam] {
     }
 }
 
+extension PandascoreTeam {
+    func formattedName() -> Self {
+        if self.name == "Hustlers" {
+            let newName = "The dudle Bouys"
+            let newAcronym = "TDBOYS"
+            let newTeam = PandascoreTeam(acronym: newAcronym , id: self.id, image_url: self.image_url, location: self.location, modified_at: self.modified_at, name: newName , players: self.players, slug: self.slug)
+
+            return newTeam
+        } else {
+            return self
+        }
+    }
+}

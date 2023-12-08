@@ -20,22 +20,14 @@ struct GameFlowApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            MainView(store: Store(initialState: MainDomain.State(), reducer: {
-//                MainDomain()
-//            }))
             
-//            TestWrite(store: Store(initialState: TestWriteDomain.State(), reducer: {
-//                TestWriteDomain()
-//            }))
-            
-            MainResketch(store: Store(initialState: MainResketchDomain.State(), reducer: {
-                MainResketchDomain()
+            MainView(store: Store(initialState: MainDomain.State(), reducer: {
+                MainDomain()
             }))
             
-//             SerieLoadingCellView()
-            
-            
-//            TestWrite()
+//            MainResketch(store: Store(initialState: MainResketchDomain.State(), reducer: {
+//                MainResketchDomain()
+//            }))
         }
     }
 }

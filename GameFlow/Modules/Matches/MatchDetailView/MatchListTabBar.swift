@@ -81,10 +81,9 @@ struct MatchListTabBar: View {
                                                     VStack(alignment: .center) {
                                                         Text(type.rawValue)
                                                     }
-                                                    .frame(width: 120, alignment: .center)
-                                                    
+
                                                 }
-                                                .frame(maxWidth: 120, alignment: .center)
+                                                .frame(maxWidth: 113, alignment: .center)
                                                 .disabled(viewStore.tapState.status ? true : false)
                                             }
                                         }
@@ -93,14 +92,15 @@ struct MatchListTabBar: View {
                                         .background(
                                             RoundedRectangle(cornerRadius: 25)
                                                 .foregroundStyle(Color("Orange", bundle: .main))
-                                                .frame(width: 115, height: 50)
+                                                .frame(width: 120, height: 50)
                                                 .overlay(content: {
                                                     RoundedRectangle(cornerRadius: 25)
                                                         .foregroundStyle(Color("Orange", bundle: .main))
                                                         .blur(radius: 10)
                                                         .opacity(0.6)
                                                 })
-                                                .offset(x: -60 - (120 * viewStore.scrollProgress))
+                                                .offset(x: -120 - (120 * viewStore.scrollProgress))
+                                                .offset(x: 60)
                                         )
                                         .modifier(
                                             AnimationEndCallBack(endValaue: viewStore.tapState.progress) {

@@ -9,12 +9,13 @@ import SwiftUI
 import ComposableArchitecture
 
 struct SeriesListDomain: Reducer {
+    
     struct State: Equatable {
-        
+        var series: [Serie]
+        var isFetching: Bool
     }
     
     enum Action {
-        
     }
     
     var body: some Reducer<State, Action> {
@@ -24,55 +25,66 @@ struct SeriesListDomain: Reducer {
             }
         }
     }
+    
 }
 
 struct SeriesListView: View {
     var store: StoreOf<SeriesListDomain>
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            ScrollView(.vertical) {
-                VStack() {
-                    Rectangle()
-                        .frame(height: 75)
-                        .foregroundStyle(.clear)
-                    
-                    
-                    ForEach(0..<4, id: \.self) { tournament in
-                        VStack {
-//                            NavigationLink(state: MainDomain.Path.State.detailInfo(.init())) {
-                            NavigationLink {
-                                
-                                DetailInfoView(store: Store(initialState: DetailInfoDomain.State(), reducer: {
-                                    DetailInfoDomain()
-                                })).navigationBarBackButtonHidden()
-                            } label: {
-                                SerieCellView(store: Store(initialState: SerieCellDomain.State(), reducer: {
-                                    SerieCellDomain()
-                                }))
-                                
-                            }
-
-                            
-//                            }
-                        }
-                        .frame(height: 330)
+            
+                ScrollView(.vertical) {
+                    VStack() {
                         
+                        Rectangle()
+                            .frame(height: 15)
+                            .foregroundStyle(.clear)
+                        
+                        if viewStore.series.isEmpty {
+                            
+                            Text("There are no Series in this section")
+                                .foregroundStyle(.white)
+                                .font(.gilroy(.medium, size: 20))
+                            
+                        } else {
+
+                                ForEach(viewStore.series, id: \.self) { serie in
+                                    VStack {
+
+                                        NavigationLink {
+                                            
+                                            DetailInfoView(store: Store(initialState: DetailInfoDomain.State(serie: serie), reducer: {
+                                                DetailInfoDomain()
+                                            })).navigationBarBackButtonHidden()
+                                            
+                                        } label: {
+                                            SerieCellResketch(store: Store(initialState: SerieCellResketchDomain.State(isFetching: viewStore.isFetching, serie: serie), reducer: {
+                                                SerieCellResketchDomain()
+                                            }))
+                                        }
+                                        .disabled(viewStore.isFetching)
+
+                                    }
+                                    .frame(height: 320)
+                                    
+                                    
+                                }
+                            
+                            //MARK: - Rectangle for TaBar not to ovelay on matches when scroll to bottom
+                            Rectangle()
+                                .frame(width: 370, height: 20)
+                                .foregroundStyle(Color("Black", bundle: .main))
+                        }
                     }
-                    
-                    
-                    //MARK: - Rectangle for TaBar not to ovelay on matches when scroll to bottom
-                    Rectangle()
-                        .frame(width: 370, height: 40)
-                        .foregroundStyle(Color("Black", bundle: .main))
                 }
-            }
-            .scrollIndicators(.never)
+                .scrollIndicators(.never)
+                
         }
     }
 }
 
-#Preview {
-    SeriesListView(store: Store(initialState: SeriesListDomain.State(), reducer: {
-        SeriesListDomain()
-    }))
-}
+//#Preview {
+//    SeriesListView(store: Store(initialState: SeriesListDomain.State(), reducer: {
+//        SeriesListDomain()
+//    }))
+//}
