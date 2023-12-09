@@ -75,7 +75,7 @@ struct MainDomain: Reducer {
                 return .none
                 
                 
-
+                
             case .tabSelected(let type):
                 state.currentTab = type
                 state.tabBarState.currentTab = type
@@ -99,7 +99,8 @@ struct MainDomain: Reducer {
                 return .run { send in
                     await send(.tabBarAction(.startFetching))
                     try await Task.sleep(for: .seconds(2))
-                    await send(.fetchFirestoreDataResult(TaskResult { try await apiClient.getFirestoreSeries() }))
+//                    await send(.fetchFirestoreDataResult(TaskResult { try await apiClient.getFirestoreSeries() }))
+                    await send(.fetchFirestoreDataResult(TaskResult { try await apiClient.getData() }))
                 }
             case .fetchFirestoreDataResult(.success(let series)):
                 state.series = series
@@ -110,6 +111,7 @@ struct MainDomain: Reducer {
             case .fetchFirestoreDataResult(let error):
                 print(error)
                 return .run { send in
+                    await send(.tabBarAction(.showErrorMessage(error)))
                     await send(.tabBarAction(.stopFetching))
                 }
             case .binding:
@@ -117,14 +119,12 @@ struct MainDomain: Reducer {
             default: return .none
             }
         }
-        
         BindingReducer()
     }
 }
 
 struct MainView: View {
     
-//    @Environment(\.dismiss) var dismiss
     var store: StoreOf<MainDomain>
 
     

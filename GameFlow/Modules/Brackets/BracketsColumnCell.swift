@@ -13,6 +13,7 @@ struct BracketsColumnCellDomain: Reducer {
     
     
     struct State: Equatable {
+        let liquiTeams: [LiquipediaSerie.LiquipediaTeam]
         let bracketsColumn: [PandascoreBrackets]
     }
     
@@ -40,6 +41,7 @@ struct BracketsColumnCell: View {
                 ForEach(viewStore.bracketsColumn, id: \.self) { bracket in
                     BracketCell(store: Store(
                         initialState: BracketCellDomain.State(
+                            liquiTeams: viewStore.liquiTeams,
                             bracket: bracket
                         ), reducer: {
                         BracketCellDomain()

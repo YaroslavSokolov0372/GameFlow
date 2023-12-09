@@ -23,11 +23,7 @@ struct PandascoreBrackets: Codable {
     let modified_at: String
     let name: String
     let number_of_games: Int
-    
-    //MARK: chack opponents ???
     let opponents: [PandascoreOpponents]
-    
-    
     let original_scheduled_at: String?
     let scheduled_at: String?
     let slug: String?
@@ -35,7 +31,6 @@ struct PandascoreBrackets: Codable {
     let streams_list: [StreamsList]
     let tournament_id: Int
     let winner_type: String
-    
     
     struct Game: Codable {
         
@@ -48,8 +43,8 @@ struct PandascoreBrackets: Codable {
         let length: Int?
         let match_id: Int
         let position: Int
+        let winner: PandascoreGameWinner
     }
-    
 }
 
 extension PandascoreBrackets: Equatable {
@@ -118,7 +113,7 @@ extension [PandascoreBrackets] {
             if bracket.name.contains("round") {
                 let matched = matchesForRegexInText(for: regex, in: bracket.name)
                 let split = matched.first!.split(separator: " ")
-                let last = String(split.suffix(1).joined(separator: [" "]))
+                let last = String(split.suffix(1).joined(separator: [" "])).replacingOccurrences(of: ":", with: "")
                 if let _ = stages["LOWER ROUND \(last)"] {
                     stages["LOWER ROUND \(last)"]!.append(bracket)
                 } else {
@@ -153,4 +148,19 @@ extension [PandascoreBrackets] {
     }
 }
 
+extension PandascoreBrackets {
+    
+    func getOpponentsScore(opponent: Opponent) -> Int {
+        
+        var matchesWon = 0
+        for game in self.games {
+            
+            if game.winner.id == opponent.id {
+                matchesWon += 1
+            }
+        }
+        
+        return matchesWon
+    }
+}
 

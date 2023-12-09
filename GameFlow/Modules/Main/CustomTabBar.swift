@@ -26,9 +26,9 @@ struct CustomTabBarDomain: Reducer {
         case scrollOffsetChanged(CGFloat)
         case animationStateStarted
         case animationStateReset
-        case showErrorMessage(Error)
+        case showErrorMessage(TaskResult<[Serie]>)
         case startFetching
-        case storShowingError
+        case stotShowingError
         case stopFetching
     }
     
@@ -48,27 +48,31 @@ struct CustomTabBarDomain: Reducer {
                 state.showErrorMessage = true
                 
                 switch error {
-                case PandascoreError.pandaInvalidURL:
-                    if !network.isConnected {
-                        state.errorMessage = "No Internet Connection"
-                    } else {
-                        state.errorMessage = "Server Error. Try Again Later"
+                case .failure(let error):
+                    switch error {
+                    case PandascoreError.pandaInvalidURL:
+                        if !network.isConnected {
+                            state.errorMessage = "No Internet Connection"
+                        } else {
+                            state.errorMessage = "Server Error. Try Again Later"
+                        }
+                    case WebScrapingError.invalidURL:
+                        
+                        if !network.isConnected {
+                            state.errorMessage = "No Internet Connection"
+                        } else {
+                            state.errorMessage = "Server Error. Try Again Later"
+                        }
+                    default: state.errorMessage = "Server Error. Try Again Later"
                     }
-                case WebScrapingError.invalidURL:
-                    
-                    if !network.isConnected {
-                        state.errorMessage = "No Internet Connection"
-                    } else {
-                        state.errorMessage = "Server Error. Try Again Later"
-                    }
-                default: state.errorMessage = "Server Error. Try Again Later"
+                default: return .none
                 }
                 return .run { send in
-                    try? await Task.sleep(for: .seconds(3))
-                    await send(.storShowingError)
+                    try? await Task.sleep(for: .seconds(2))
+                    await send(.stotShowingError)
                 }
                 
-            case .storShowingError:
+            case .stotShowingError:
                 
 //                state.isFetching = false
                 

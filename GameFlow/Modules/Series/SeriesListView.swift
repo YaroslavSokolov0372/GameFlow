@@ -58,8 +58,8 @@ struct SeriesListView: View {
                                             })).navigationBarBackButtonHidden()
                                             
                                         } label: {
-                                            SerieCellResketch(store: Store(initialState: SerieCellResketchDomain.State(isFetching: viewStore.isFetching, serie: serie), reducer: {
-                                                SerieCellResketchDomain()
+                                            SerieCellView(store: Store(initialState: SerieCellDomain.State(isFetching: viewStore.isFetching, serie: serie), reducer: {
+                                                SerieCellDomain()
                                             }))
                                         }
                                         .disabled(viewStore.isFetching)

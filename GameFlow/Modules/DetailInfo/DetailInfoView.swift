@@ -114,16 +114,28 @@ struct DetailInfoView: View {
                                                 }
                                                 .frame(height: 30)
                                                 
-                                                StandingsView(store: Store(
-                                                    initialState: StandingsDomain.State(
-                                                        liquiTeams: viewStore.serie.liquipediaSerie!.teams,
-                                                        standings: viewStore.serie.tournaments.sortedTournamentsByBegin[num].standings!,
-                                                        newStandings: viewStore.serie.tournaments.sortedTournamentsByBegin[num].matches!.getStandings(
-                                                            liquiInfo: viewStore.serie.liquipediaSerie! , tournament: viewStore.serie.tournaments.sortedTournamentsByBegin[num])
-                                                    ), reducer: {
-                                                        StandingsDomain()
-                                                    }))
                                                 
+                                                if viewStore.serie.tournaments[num].standings!.isEmpty {
+                                                    
+                                                    RoundedRectangle(cornerRadius: 15)
+                                                        .foregroundStyle(Color("Gray", bundle: .main))
+                                                        .frame(width: geo.size.width * 0.94, height: geo.size.height * 0.25)
+                                                        .overlay(alignment: .center) {
+                                                            Text("TBD")
+                                                                .foregroundStyle(.white)
+                                                                .font(.gilroy(.medium, size: 20))
+                                                        }
+                                                } else {
+                                                    StandingsView(store: Store(
+                                                        initialState: StandingsDomain.State(
+                                                            liquiTeams: viewStore.serie.liquipediaSerie!.teams,
+                                                            standings: viewStore.serie.tournaments.sortedTournamentsByBegin[num].standings!,
+                                                            newStandings: viewStore.serie.tournaments.sortedTournamentsByBegin[num].matches!.getStandings(
+                                                                liquiInfo: viewStore.serie.liquipediaSerie! , tournament: viewStore.serie.tournaments.sortedTournamentsByBegin[num])
+                                                        ), reducer: {
+                                                            StandingsDomain()
+                                                        }))
+                                                }
                                             } else {
                                                 HStack {
                                                     Text("Brackets")
@@ -141,16 +153,17 @@ struct DetailInfoView: View {
                                                     .frame(width: geo.size.width * 0.94, height: geo.size.height * 0.25)
                                                     .overlay {
                                                         NavigationLink {
-                                                            BracketsResketchView(store: Store(
-                                                                initialState: BracketsResketchDomain.State(
+                                                            BracketsView(store: Store(
+                                                                initialState: BracketsDomain.State(
+                                                                    liquiTeams: viewStore.serie.liquipediaSerie!.teams,
                                                                     brackets: viewStore.serie.tournaments.sortedTournamentsByBegin[num].brackets!
                                                                 ), reducer: {
-                                                                    BracketsResketchDomain()
+                                                                    BracketsDomain()
                                                                 })).navigationBarBackButtonHidden()
                                                         } label: {
                                                             Text("Press to see the Brackets")
                                                                 .foregroundStyle(.white)
-                                                                .font(.gilroy(.medium, size: 18))
+                                                                .font(.gilroy(.medium, size: 20))
                                                         }
                                                     }
                                             }

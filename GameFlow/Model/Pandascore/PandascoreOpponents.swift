@@ -31,4 +31,3 @@ extension PandascoreOpponents: Hashable {
         hasher.combine(opponent.id)
     }
 }
-

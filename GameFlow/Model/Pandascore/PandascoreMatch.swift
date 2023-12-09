@@ -163,8 +163,6 @@ extension [PandascoreMatch] {
         return matches.sorted(by: { $0.end_at! > $1.end_at!})
     }
     
-
-    
     func getStandings(liquiInfo: LiquipediaSerie, tournament: Tournament) -> [Standings] {
         
         var standings = [Standings]()

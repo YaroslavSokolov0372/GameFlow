@@ -9,14 +9,16 @@ import Foundation
 
 struct Serie {
     
+    let imageName: String
     var liquipediaSerie: LiquipediaSerie?
     let serie: PandascoreSerie
     var tournaments: [Tournament]
     
-    init(serie: PandascoreSerie, tournaments: [Tournament], liquipeadiaSerie: LiquipediaSerie?) {
+    init(serie: PandascoreSerie, tournaments: [Tournament], liquipeadiaSerie: LiquipediaSerie?, imageName: String) {
         self.serie = serie
         self.tournaments = tournaments
         self.liquipediaSerie = liquipeadiaSerie
+        self.imageName = imageName
     }
     
 }
@@ -105,8 +107,8 @@ extension [Serie] {
 extension Serie {
     
     static let sample = [
-        Serie(serie: PandascoreSerie(begin_at: "2023-11-18T21:00:00Z", end_at: "2023-11-18T21:00:00Z", full_name: "America season 8 2023", id: 4884, league: PandascoreLeague(id: 4884, image_url: nil, modified_at: "", name: "EPL World Series", slug: "dota-2-epl-world-series", url: nil ), league_id: 4884, modified_at: "", name: "America", season: "8", slug: "dota-2-epl-world-series-america-8-2023", tournaments: [], winner_type: "", year: 2023), tournaments: [], liquipeadiaSerie: LiquipediaSerie(name: "EPL World Series: America Season 8", prizepool: "$10,000", teams: [], tier: "Tier 3")),
-        Serie(serie: PandascoreSerie(begin_at: "2023-11-18T21:00:00Z", end_at: "2023-11-18T21:00:00Z", full_name: "America season 8 2023", id: 4884, league: PandascoreLeague(id: 4884, image_url: nil, modified_at: "", name: "EPL World Series", slug: "dota-2-epl-world-series", url: nil ), league_id: 4884, modified_at: "", name: "America", season: "8", slug: "dota-2-epl-world-series-america-8-2023", tournaments: [], winner_type: "", year: 2023), tournaments: [], liquipeadiaSerie: LiquipediaSerie(name: "EPL World Series: America Season 8", prizepool: "$10,000", teams: [], tier: "Tier 3"))
+        Serie(serie: PandascoreSerie(begin_at: "2023-11-18T21:00:00Z", end_at: "2023-11-18T21:00:00Z", full_name: "America season 8 2023", id: 4884, league: PandascoreLeague(id: 4884, image_url: nil, modified_at: "", name: "EPL World Series", slug: "dota-2-epl-world-series", url: nil ), league_id: 4884, modified_at: "", name: "America", season: "8", slug: "dota-2-epl-world-series-america-8-2023", tournaments: [], winner_type: "", year: 2023), tournaments: [], liquipeadiaSerie: LiquipediaSerie(name: "EPL World Series: America Season 8", prizepool: "$10,000", teams: [], tier: "Tier 3"), imageName: DotaImages.allCases.randomElement()!.rawValue),
+        Serie(serie: PandascoreSerie(begin_at: "2023-11-18T21:00:00Z", end_at: "2023-11-18T21:00:00Z", full_name: "America season 8 2023", id: 4884, league: PandascoreLeague(id: 4884, image_url: nil, modified_at: "", name: "EPL World Series", slug: "dota-2-epl-world-series", url: nil ), league_id: 4884, modified_at: "", name: "America", season: "8", slug: "dota-2-epl-world-series-america-8-2023", tournaments: [], winner_type: "", year: 2023), tournaments: [], liquipeadiaSerie: LiquipediaSerie(name: "EPL World Series: America Season 8", prizepool: "$10,000", teams: [], tier: "Tier 3"), imageName: DotaImages.allCases.randomElement()!.rawValue)
     ]
     
     var fullName: String {

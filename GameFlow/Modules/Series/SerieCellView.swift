@@ -40,15 +40,12 @@ struct SerieCellView: View {
                     .foregroundStyle(Color("Gray", bundle: .main))
                     .overlay {
                         VStack {
-                            Image("Image1", bundle: .main)
+                            Image(viewStore.serie.imageName, bundle: .main)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 330, height: 180)
                                 .clipShape(RoundedRectangle(cornerRadius: 25))
-                            
                                 .redactCondition(condition: viewStore.isFetching)
-//                                .foregroundStyle(.white)
-//                                .redacted(reason: .placeholder)
                             
                             
                             Spacer()
@@ -64,8 +61,6 @@ struct SerieCellView: View {
                         .padding(.horizontal)
                         .frame(width: 360, height: 55, alignment: .topLeading)
                         .multilineTextAlignment(.leading)
-                    
-//                        .redacted(reason: .placeholder)
                         .redactCondition(condition: viewStore.isFetching)
                     
                     
@@ -88,8 +83,6 @@ struct SerieCellView: View {
                                                 .opacity(0.5)
                                         })
                                 )
-                            
-//                                .redacted(reason: .placeholder)
                                 .redactCondition(condition: viewStore.isFetching)
                             
 
@@ -109,8 +102,6 @@ struct SerieCellView: View {
                                                     .opacity(0.5)
                                             })
                                     )
-                                
-//                                    .redacted(reason: .placeholder)
                                     .redactCondition(condition: viewStore.isFetching)
                                 
                             }
@@ -120,8 +111,6 @@ struct SerieCellView: View {
                         Text(viewStore.serie.duration)
                             .font(.gilroy(.light, size: 12))
                             .foregroundStyle(.gray)
-                        
-//                            .redacted(reason: .placeholder)
                             .redactCondition(condition: viewStore.isFetching)
                         
                     }
@@ -135,6 +124,7 @@ struct SerieCellView: View {
                 
             }
         }
+
     }
 }
 

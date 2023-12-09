@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 enum PandascoreError: Error {
     case pandaInvalidURL
@@ -236,6 +237,38 @@ class PandascoreManager {
             }
         }
         return tournaments
+    }
+    
+    
+    func fetchRelevantPandaSeries() async throws -> [Serie] {
+        
+        var series: [Serie] = []
+        let ongoingSeries = try await self.getPandaSeries(fetchType: .ongoing)
+        let upcomingSeries = try await self.getPandaSeries(fetchType: .upciming)
+        
+        var allRelevant = ongoingSeries
+        allRelevant.append(contentsOf: upcomingSeries)
+        
+        
+        try await withThrowingTaskGroup(of: Serie.self) { taskGroup in
+            for pandaSerie in allRelevant {
+                taskGroup.addTask {
+                    
+                    let tournaments = try await self.setupTournamentsFrom(pandaSerie)
+                    
+                    return Serie(serie: pandaSerie, tournaments: tournaments, liquipeadiaSerie: nil, imageName: DotaImages.allCases.randomElement()!.rawValue)
+                }
+                
+            }
+            
+            
+            for try await result in taskGroup {
+                series.append(result)
+            }
+            
+        }
+        print(series.count)
+        return series
     }
     
 }

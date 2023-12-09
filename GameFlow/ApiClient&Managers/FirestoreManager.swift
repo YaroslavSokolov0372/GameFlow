@@ -40,7 +40,7 @@ class FirestoreManager {
     
     //MARK: - Function to know whether I need to make Pandascore request or not
     
-    private func getLastDateStamp() async throws -> String {
+     func getLastDateStamp() async throws -> String {
         
         let docRef = db.collection("DateStamps").document("LastFetch")
         
@@ -53,57 +53,78 @@ class FirestoreManager {
                 throw FirestoreError.didntFindData
             }
         } catch {
-            //Handle errors
-            print(error)
             throw FirestoreError.failedFetchingData
         }
     }
     
-    private func writeDateStamp() async throws {
+    func prepareForFetch(closure: @escaping () async throws -> ()) async throws {
         
+        let docRef = db.collection("DateStamps").document("WhoWillFetch")
+        
+        let uuid = UUID()
+        
+        
+        do {
+            try await docRef.setData(["uuid" : uuid.description])
+        } catch {
+            throw FirestoreError.failedWriteData
+        }
+        
+        try await Task.sleep(for: .seconds(2))
+        
+        let lastUUID = try await docRef.getDocument().data()
+        
+        if lastUUID!["uuid"] as! String == uuid.description {
+            try await closure()
+        }
     }
     
+     func writeDateStamp() async throws {
+        
+        let docRef = db.collection("DateStamps").document("LastFetch")
+        
+        let currentTime = Date().iso8601
+        
+        do {
+            try await docRef.setData(["DateStamp" : currentTime])
+        } catch {
+            throw FirestoreError.failedWriteData
+        }
+    }
     
-//    func matchesStartin15() async -> Bool {
-//        return true
-//    }
+    func shouldPandaFetch() async throws  -> Bool {
+        
+        
+        let lastFetch = try await getLastDateStamp()
+        
+        let lastStamp = lastFetch.ISOfotmattedString()
+        let currentTime = Date().iso8601.ISOfotmattedString()
+        
+        let calendar = Calendar(identifier: .iso8601)
+        
+        let difference = calendar.dateComponents([.month, .day, .hour, .minute], from:  lastStamp, to: currentTime )
+        
+        
+        if let hours = difference.hour {
+            if hours > 1 {
+                return true
+            } else {
+                if let minutes = difference.minute {
+                    print(minutes)
+                    if minutes > 30 {
+                        return true
+                    } else {
+                        return false
+                    }
+                } else {
+                    return false
+                }
+            }
+        } else {
+            return false
+        }
+    }
     
-//    func shouldPandascoreReq() async -> Bool {
-//        
-//        
-//        if let lastStamp = await getLastDateStamp() {
-//            
-//            
-//            //DateStamp as Date
-//            let ISOstampAsDate = lastStamp.ISOfotmattedString()
-//            
-//            //user's DateStamp as Date
-//            let date = Date().iso8601
-//            let ISOusersDate = date.ISOfotmattedString()
-//            
-//            
-//            
-//            let calendar = Calendar.current
-//            
-//            //Difference between last fetch and current time
-//            let difference = calendar.dateComponents([.month, .day, .hour, .minute], from: ISOusersDate, to: ISOstampAsDate)
-//            
-//            if let hours = difference.hour {
-//                if hours != 0 {
-//                    print("The difference is - \(hours) hours")
-//                    return true
-//                } else {
-//                    print("The difference is less than one hour")
-//                    return false
-//                }
-//            } else {
-//                print("The difference is less than one hour")
-//                return false
-//            }
-//        } else {
-//            return true
-//        }
-//    }
     
     //MARK: - rewrite data to fireStore have to make request to Pandascore
     
@@ -542,7 +563,7 @@ class FirestoreManager {
                     let tournaments = try await self.getTournamentsData(for: pandaSerie, tournaments: pandaTournaments)
                     let liquiInfo = try await self.getLiquiData(for: pandaSerie)
                     
-                    return Serie(serie: pandaSerie, tournaments: tournaments, liquipeadiaSerie: liquiInfo)
+                    return Serie(serie: pandaSerie, tournaments: tournaments, liquipeadiaSerie: liquiInfo, imageName: DotaImages.allCases.randomElement()!.rawValue)
                 }
             }
             
@@ -554,307 +575,5 @@ class FirestoreManager {
         print(series.count)
         return series
     }
-    
-    
-    
-    
-    
-//    func getTournamentTeams(_ tournament: PandascoreTournament, serie: PandascoreSerie) async throws -> Tournament {
-//        
-//        let docRef = db.collection("ChampionShips")
-//        var teams: [PandascoreTeam] = []
-//        
-//        do {
-//            let documents = try? await docRef
-//                .document("\(serie.id)")
-//                .collection("Tournaments")
-//                .document("\(tournament.id)")
-//                .collection("Teams")
-//                .getDocuments()
-//            
-//            if let documents = documents {
-//                
-//                
-//                
-//                for document in documents.documents {
-//                    
-//                    try teams.append(document.data(as: PandascoreTeam.self))
-//                }
-//                
-//                let tournament = Tournament(tournament: tournament, teams: teams)
-//                return tournament
-//                
-//            } else {
-//                
-//                return Tournament(tournament: tournament)
-//                
-//            }
-//        } catch {
-//            
-//            print(error)
-//            throw RequestError.fetchingFailed
-//        }
-//        
-//    }
-//    
-//    func getTournamentsTeams(_ pandaTournaments: [PandascoreTournament], serie: PandascoreSerie) async throws -> [Tournament] {
-//        
-//        var tournaments: [Tournament] = []
-//        
-//        do {
-//            try await withThrowingTaskGroup(of: Tournament.self) { taskGroup in
-//                for tournament in pandaTournaments {
-//                    taskGroup.addTask {
-//                        try await self.getTournamentTeams(tournament, serie: serie)
-//                    }
-//                }
-//                
-//                for try await result in taskGroup {
-//                    tournaments.append(result)
-//                }
-//            }
-////            print(tournaments)
-//            return tournaments
-//            
-//        } catch {
-//            print(error)
-//            throw RequestError.fetchingFailed
-//        }
-//    }
-//    
-//    func getTournamentMatches(_ tournament: Tournament, serie: PandascoreSerie) async throws -> Tournament {
-//        
-//        let docRef = db.collection("ChampionShips")
-//        var tournament = tournament
-//        var matches: [PandascoreMatch] = []
-//        
-//        do {
-//            let documents = try? await docRef
-//                .document("\(serie.id)")
-//                .collection("Tournaments")
-//                .document("\(tournament.tournament.id)")
-//                .collection("Matches")
-//                .getDocuments()
-//            
-//            if let documents = documents {
-//                for document in documents.documents {
-//                    try matches.append(document.data(as: PandascoreMatch.self))
-//                }
-//                tournament.matches = matches
-//                return tournament
-//            } else {
-//                return tournament
-//            }
-//        } catch {
-//            print(error)
-//            throw RequestError.fetchingFailed
-//        }
-//    }
-//    
-//    func getTournamentsMatches(_ tournaments: [Tournament], serie: PandascoreSerie) async throws -> [Tournament] {
-//        
-//        var newTournaments: [Tournament] = []
-//        
-//        do {
-//            try await withThrowingTaskGroup(of: Tournament.self) { taskGroup in
-//                for tournament in tournaments {
-//                    taskGroup.addTask {
-//                        try await self.getTournamentMatches(tournament, serie: serie)
-//                        
-//                    }
-//                }
-//                
-//                for try await result in taskGroup {
-//                    newTournaments.append(result)
-//                }
-//            }
-//            return tournaments
-//        } catch {
-//            print(error)
-//            throw RequestError.fetchingFailed
-//        }
-//    }
-//    
-//    func getTournamentStandings(_ tournament: Tournament, serie: PandascoreSerie) async throws -> Tournament {
-//        
-//        let docRef = db.collection("ChampionShips")
-//        var tournament = tournament
-//        var matches: [PandascoreStandings] = []
-//        
-//        
-//        do {
-//            let documents = try? await docRef
-//                .document("\(serie.id)")
-//                .collection("Tournaments")
-//                .document("\(tournament.tournament.id)")
-//                .collection("Standings")
-//                .getDocuments()
-//            
-//            if let documents = documents {
-//                for document in documents.documents {
-//                    try matches.append(document.data(as: PandascoreStandings.self))
-//                }
-//                tournament.standings = matches
-//                return tournament
-//            } else {
-//                return tournament
-//            }
-//        } catch {
-//            print(error)
-//            throw RequestError.fetchingFailed
-//        }
-//    }
-//    
-//    func getTournamentsStandings(_ tournaments: [Tournament], serie: PandascoreSerie) async throws -> [Tournament] {
-//        
-//        var newTournaments: [Tournament] = []
-//        
-//        do {
-//            try await withThrowingTaskGroup(of: Tournament.self) { taskGroup in
-//                for tournament in tournaments {
-//                    taskGroup.addTask {
-//                        try await self.getTournamentStandings(tournament, serie: serie)
-//                    }
-//                }
-//                
-//                for try await result in taskGroup {
-//                    newTournaments.append(result)
-//                }
-//            }
-//            print(tournaments)
-//            return tournaments
-//        } catch {
-//            print(error)
-//            throw RequestError.fetchingFailed
-//        }
-//    }
-//    
-//    func getTournamentBrackets(_ tournament: Tournament, serie: PandascoreSerie) async throws -> Tournament {
-//        
-//        let docRef = db.collection("ChampionShips")
-//        var tournament = tournament
-//        var matches: [PandascoreBrackets] = []
-//        
-//        
-//        do {
-//            let documents = try? await docRef
-//                .document("\(serie.id)")
-//                .collection("Tournaments")
-//                .document("\(tournament.tournament.id)")
-//                .collection("Brackets")
-//                .getDocuments()
-//            
-//            if let documents = documents {
-//                for document in documents.documents {
-//                    try matches.append(document.data(as: PandascoreBrackets.self))
-//                }
-//                tournament.brackets = matches
-//                return tournament
-//            } else {
-//                return tournament
-//            }
-//        } catch {
-//            print(error)
-//            throw RequestError.fetchingFailed
-//        }
-//    }
-//    
-//    func getTournamentsBrackets(_ tournaments: [Tournament], serie: PandascoreSerie ) async throws -> [Tournament] {
-//        
-//        var newTournaments: [Tournament] = []
-//        
-//        do {
-//            try await withThrowingTaskGroup(of: Tournament.self) { taskGroup in
-//                for tournament in tournaments {
-//                    taskGroup.addTask {
-//                        try await self.getTournamentBrackets(tournament, serie: serie)
-//                    }
-//                }
-//                
-//                for try await result in taskGroup {
-//                    newTournaments.append(result)
-//                }
-//            }
-//            return tournaments
-//        } catch {
-//            print(error)
-//            throw RequestError.fetchingFailed
-//        }
-//    }
-    
-//    func getData() async throws -> ChampionShip {
-//        
-//        
-//        var championShip = ChampionShip(series: [])
-//        let pandascoreSeries = try await getSeries()
-//        
-//        try await withThrowingTaskGroup(of: Serie.self) { taskGroup in
-//            for serie in pandascoreSeries {
-//                taskGroup.addTask {
-//                    let tournaments = try await self.getSerieTournaments(serie)
-//                    let tournamentsWithTeams = try await self.getTournamentsTeams(tournaments, serie: serie)
-//                    let tournamentsWithMatches = try await self.getTournamentsMatches(tournamentsWithTeams, serie: serie)
-//                    let tournamentsWithBrackets = try await self.getTournamentsBrackets(tournamentsWithMatches, serie: serie)
-//                    let tournamentsWithStandings = try await self.getTournamentsStandings(tournamentsWithBrackets, serie: serie)
-//                    
-////                    let tournamentsWithStandings = try await getTournamentsStandings(tournamentsWithMatches, serie: serie)
-//                    
-//                    return Serie(serie: serie, tournaments: tournamentsWithStandings, liquipeadiaSerie: nil)
-//                }
-//            }
-//            
-//            for try await result in taskGroup {
-//                championShip.series.append(result)
-//            }
-//        }
-//        
-//        return championShip
-//    }
-    
-    
-    
-
-    
-    
-//    func getData() async throws -> [PandascoreSerie] {
-//        
-//        do {
-//            var championShips = ChampionShip(series: [])
-//            let series = try await getSeries()
-//            
-//            
-//            try await withThrowingTaskGroup(of: Serie.self) { taskGroup in
-//                for serie in series {
-//                    let tournaments = try await getSerieTournaments(serie)
-//                    let tournamentsWithTeams = try await getTournamentsTeams(_tournaments: <#T##[Tournament]#>, serie: <#T##Serie#>)
-//                }
-//            }
-//            
-////            let docRef = db.collection("ChampionShips")
-////            
-////            do {
-////                
-////                var series: [PandascoreSerie] = []
-////                
-////                let documents = try await docRef.getDocuments()
-////                
-////                for document in documents.documents {
-////                    
-////                    try series.append(document.data(as: PandascoreSerie.self))
-////                    
-////                }
-////                
-////                return series
-////                
-////            } catch {
-////                print("Firestore get data error - ",error)
-////                return []
-////            }
-//        } catch {
-//            print(error)
-//            throw RequestError.fetchingFailed
-//        }
-//        return []
-//    }
 }
 

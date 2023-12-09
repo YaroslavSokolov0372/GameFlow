@@ -141,10 +141,10 @@ struct TestWrite: View {
                 
 //                try await self.apiClient.getFirestoreSeries()
                 
-                let series = try await self.apiClient.fetchRelevantPandaSeries()
-                 let liquiSerie = try await self.apiClient.getRelevantLiquiSeries()
-                 let filteredSerie = try await self.apiClient.filteredSeries(liquiSeries: liquiSerie, pandaSeries: series)
-                try await self.apiClient.writeDataToFirestore(filteredSerie)
+//                let series = try await self.apiClient.fetchRelevantPandaSeries()
+//                 let liquiSerie = try await self.apiClient.getRelevantLiquiSeries()
+//                 let filteredSerie = try await self.apiClient.filteredSeries(liquiSeries: liquiSerie, pandaSeries: series)
+//                try await self.apiClient.writeDataToFirestore(filteredSerie)
                 
                 
                 
